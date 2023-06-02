@@ -1,0 +1,13 @@
+X - date
+X - What state
+X - Service to be provided
+X - Receiving services person and Address
+X - Providing services person and Address
+X - What are important deadlines
+X - When, how and how much will the person get paid?
+X - When does this agreement terminate
+X - Other special provisions
+X - Contractor must obtain insurance?
+X - Is the contractor liable for claims against recipient
+X - Is the contractor required to return property of recipient at termination
+Who will sign

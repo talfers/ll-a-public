@@ -1,0 +1,25 @@
+{
+  "short_name": "Landlord Assistant",
+  "name": "Landlord Assistant",
+  "icons": [
+    {
+      "src": "logo-simple-40",
+      "sizes": "40x40",
+      "type": "image/png"
+    },
+    {
+      "src": "logo-simple-128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "logo-simple-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

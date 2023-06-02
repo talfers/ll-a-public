@@ -1,0 +1,47 @@
+X - state
+
+X - Landlord name 
+X - Landlord Address 
+X - Tenant name
+X - Property Address
+
+X - lease term
+X - lease start/end
+
+X - payment freq
+X - rent amount
+X - rent due date
+X - payment methods
+X - bounced check penalty
+X - late fees and days for cutoffs
+X - security deposit?
+
+X - Pet policy
+
+X - how many guests are allowed
+X - how long can they stay at a time and per year
+X - Can tenant sublet
+X - Smoking allowed on prem or inside?
+
+X - Who pays for what utilities
+
+X - Tenant maintenance responsibilities
+X - who to call for maintenancee
+X - how to reach them
+
+X - furnishings
+
+X - storage/parking privileges
+
+X - Charge for property damage
+X - What happens if property is destroyed (amount landlord will pay)
+
+X - Lease terminiation if property sold
+X - tenant notice requirement and early termination fee
+
+X - Number of keys and charges for lockout and key replacement
+
+X - Built prior to 1978? Lead paint
+X - (added to placeholder) Dispute resolution
+
+inspection list?
