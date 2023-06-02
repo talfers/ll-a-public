@@ -1,6 +1,6 @@
 # Landlord Assistant
 
-This project can be found here: [Landlord Assistant](https://landlord-assistant-hur5h44zvq-uw.a.run.app/)
+This project can be found here: [Landlord Assistant](https://landlordassist.io/)
 
 ## Available Scripts
 
