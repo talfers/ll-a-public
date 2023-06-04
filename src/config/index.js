@@ -1,5 +1,5 @@
 import keys from '../keys'
-import db, { provider, analytics, auth } from '../keys/firebase'
+import db, { provider, analytics, auth } from '../keys/firebase.js'
 
 const config = { REACT_APP_OPENAI_API_KEY: '', REACT_APP_OPENAI_URL: '', db, provider, analytics, auth }
 if (process.env.REACT_APP_ENV === 'PROD') {
