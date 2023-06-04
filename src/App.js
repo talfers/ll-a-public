@@ -1,4 +1,4 @@
-import { AuthContextProvider } from './context/AuthContext';
+import { AuthContextProvider } from './hooks/useAuth';
 import ProtectedRoute from './components/ProtectedRoute';
 import { Provider as TaskProvider } from './context/TaskContext';
 import Header from './components/Header';

@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useMemo } from 'react';
-import { useLocalStorage } from "../hooks/useLocalStorage";
+import { useLocalStorage } from "./useLocalStorage";
 import { 
     createUserWithEmailAndPassword, 
     signInWithEmailAndPassword, 
@@ -66,6 +66,6 @@ export const AuthContextProvider = ({children}) => {
   )
 }
 
-export const UserAuth = () => {
+export const useAuth = () => {
   return useContext(AuthContext)
 }

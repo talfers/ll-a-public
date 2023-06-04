@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import db from "../config/firebase";
-import { UserAuth } from '../context/AuthContext';
+import { useAuth } from '../hooks/useAuth';
 import { getDocs, addDoc, onSnapshot, collection } from "firebase/firestore";
 import { ProductsContainerStyled, ProductContainerStyled, IconContainerStyled } from '../styles/Products';
 import { PrimaryButtonStyled } from '../styles/Button';
@@ -10,7 +10,7 @@ import { faChessKnight, faChessQueen, faChessPawn } from '@fortawesome/free-soli
 
 
 function Products(props) {
-    const { user } = UserAuth()
+    const { user } = useAuth()
     const [tiers, setTiers] = useState([])
     
     console.log(user?.uid);

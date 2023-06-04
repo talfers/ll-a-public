@@ -1,11 +1,11 @@
 import React from 'react';
 import logo from '../imgs/logo-500.png';
 import UserIcon from './UserIcon';
-import { UserAuth } from '../context/AuthContext';
+import { useAuth } from '../hooks/useAuth';
 import { MarginContainerStyled, LogoStyled } from '../styles/Margin';
 
 function Header() {
-    const { user, logOut } = UserAuth();
+    const { user, logOut } = useAuth();
     
     return (
         <MarginContainerStyled className='margin-container'>

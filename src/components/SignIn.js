@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { UserAuth } from '../context/AuthContext';
+import { useAuth } from '../hooks/useAuth';
 import { NavLink, useNavigate } from 'react-router-dom'
 import { 
     FormSectionStyled, 
@@ -21,7 +21,7 @@ const SignIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const { signIn, signInWithGoogle } = UserAuth();
+    const { signIn, signInWithGoogle } = useAuth();
     const onSubmit = async (e) => {
         e.preventDefault()
         try {

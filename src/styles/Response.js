@@ -8,27 +8,39 @@ export const ResponseContainerStyled = styled.div`
     flex: 1;
     display: flex;
     flex-direction: column;
-    /* background-color: aquamarine; */
 `;
 
 export const ResponseHeaderStyled = styled.div`
     display: flex;
     justify-content: space-between;
     margin-bottom: 12px;
+    @media only screen and ${devices.md} {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 `;
 
 export const ResponseTitleStyled = styled.h3`
     font-size: 24px;
 `;
 
-export const ResponseCopyButtonStyled = styled.div`
+
+export const ResponseActionButtonsContainerStyled = styled.div`
     align-self: flex-end;
+    display: flex;
+    @media only screen and ${devices.md} {
+        align-self: center;
+    }
+`;
+
+export const ResponseButtonStyled = styled.div`
     background-color: ${bg};
     padding: 6px;
     border-radius: 4px;
     font-size: 20px;
     cursor: pointer;
-    margin: 0px;
+    margin: 0px 4px;
     
     &:hover {
         transform: scale(1.15);
@@ -63,9 +75,9 @@ export const CopySnack = styled.span`
     color: ${bg};
     border-radius: 4px;
     position: absolute;
-    width: 96px;
+    width: ${props => props.$size?`${props.$size}px`:''};
     display: flex;
     align-items: center;
     justify-content: space-between;
-    left: calc(50% - 48px);
+    left:  ${props => props.$size?`calc(50% - ${props.$size/2}px)`:''};
 `;

@@ -75,9 +75,7 @@ const postTaskData = (dispatch) => {
       }
       // Massage and parse the chunk of data
       const chunk = decoder.decode(value);
-      console.log(chunk);
       const lines = chunk.split("\n");
-      console.log(lines);
       const parsedLines = lines
         .map((line) => line.replace(/^data: /, "").trim()) // Remove the "data: " prefix
         .filter((line) => line !== "" && line !== "[DONE]") // Remove empty lines and "[DONE]"
@@ -87,7 +85,7 @@ const postTaskData = (dispatch) => {
         const { choices } = parsedLine;
         const { delta } = choices[0];
         const { content } = delta;
-        console.log(content);
+  
         // Update the UI with the new content
         if (content) {
           if(content === '' || content === ' ') dispatch({type: 'post_response', payload: {response: tab.response += '\n', tabId: tab.id}})
