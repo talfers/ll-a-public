@@ -10,6 +10,7 @@ export const ButtonStyled = styled.div`
     font-family: ${ff};
     border: 2px solid transparent;
     margin: 8px;
+    pointer-events: ${props => props.$disabled?'none':''};
 `;
 
 export const PrimaryButtonStyled = styled(ButtonStyled)`

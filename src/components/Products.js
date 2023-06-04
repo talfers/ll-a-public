@@ -23,7 +23,7 @@ function Products(props) {
             const productData = querySnapshot.docs             
             productData.forEach(async (d) => {
                 console.log(d);
-                const qst = await getDocs(collection(db, "products", d.id, "prices"));
+                const qst = await getDocs(collection(config.db, "products", d.id, "prices"));
                 qst.forEach((doc) => {
                     console.log(doc.id, " => ", doc.data());
                     let pricesData = doc.data()
@@ -44,7 +44,7 @@ function Products(props) {
     const checkout = async (tierId) => {
         console.log(tierId);
         console.log(user.uid);
-        let collectionRef = collection(db, "customers", user.uid, "checkout_sessions");
+        let collectionRef = collection(config.db, "customers", user.uid, "checkout_sessions");
         const docRef = await addDoc(collectionRef, {
             tier: tierId,
             success_url: window.location.origin + "/",

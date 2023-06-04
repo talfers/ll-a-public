@@ -171,3 +171,7 @@ export const GoogleButtonStyled = styled.div`
         cursor: not-allowed;
     }
 `;
+
+export const RecaptchaContainerStyled = styled.div`
+    margin: 16px 8px 0px 8px;
+`;

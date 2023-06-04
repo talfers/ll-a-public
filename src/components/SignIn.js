@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { useAuth } from '../hooks/useAuth';
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom';
+import Recaptcha from './Recaptcha';
 import { 
     FormSectionStyled, 
     FormNavContainerStyled, 
@@ -22,30 +23,47 @@ const SignIn = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const { signIn, signInWithGoogle } = useAuth();
+    const [isCaptchaSuccessful, setIsCaptchaSuccess] = useState(false);
+
     const onSubmit = async (e) => {
         e.preventDefault()
-        try {
-            await signIn(email, password)
-            navigate("/");
-        } catch (error) {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            setError(errorMessage)
-            console.log(errorCode, errorMessage);
+        if (isCaptchaSuccessful) {
+            setError('')
+            try {
+                await signIn(email, password)
+                navigate("/");
+            } catch (error) {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                setError(errorMessage)
+                console.log(errorCode, errorMessage);
+            }
+        } else {
+            setError('Please confirm you are not a robot before continuing');
         }
+        
        
     }
 
     const onSubmitWithGoogle = async () => {
-        try {
-            await signInWithGoogle()
-            navigate("/");
-        } catch (error) {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            setError(errorMessage)
-            console.log(errorCode, errorMessage);
+        if (isCaptchaSuccessful) {
+            setError('')
+            try {
+                await signInWithGoogle()
+                navigate("/");
+            } catch (error) {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                setError(errorMessage)
+                console.log(errorCode, errorMessage);
+            }
+        } else {
+            setError('Please confirm you are not a robot before continuing')
         }
+    }
+
+    const onRecaptchaChange = (value) => {
+        setIsCaptchaSuccess(true)
     }
  
     return(
@@ -80,6 +98,7 @@ const SignIn = () => {
                                 onChange={(e)=>setPassword(e.target.value)}
                             />
                         </InputContainerStyled>
+                        <Recaptcha onChange={onRecaptchaChange}/>
                         {error!==''?<p>{error}</p>:null}
                         
                         <FormNavContainerStyled>
