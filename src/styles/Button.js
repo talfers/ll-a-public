@@ -14,6 +14,7 @@ export const ButtonStyled = styled.div`
 `;
 
 export const PrimaryButtonStyled = styled(ButtonStyled)`
+    border: 2px solid ${bg};
     background-color: ${bg};
     color: #f5f5f5;
 
@@ -28,6 +29,26 @@ export const PrimaryButtonStyled = styled(ButtonStyled)`
             border: 2px solid transparent;
             background-color: ${bg};
             color: #f5f5f5;
+        }
+    }
+`;
+
+export const SecondaryButtonStyled = styled(ButtonStyled)`
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+
+    &:hover {
+        border: 2px solid ${bg};
+        background-color: ${bg};
+        color: #f5f5f5;
+    }
+
+    @media only screen and ${devices.md} {
+        &:hover {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
         }
     }
 `;
