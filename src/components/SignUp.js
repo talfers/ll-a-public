@@ -21,7 +21,7 @@ const SignUp = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
     const [error, setError] = useState('')
-    const { signUp, signInWithGoogle } = useAuth();
+    const { signUp, signInWithGoogle, verificationEmail } = useAuth();
     const [isCaptchaSuccessful, setIsCaptchaSuccess] = useState(false);
     
     const onSubmit = async (e) => {
@@ -30,7 +30,8 @@ const SignUp = () => {
             setError('')
             try {
                 await signUp(email, password)
-                navigate("/");
+                navigate("/thankyou");
+                await verificationEmail()
             } catch (error) {
                 const errorCode = error.code;
                 const errorMessage = error.message;
@@ -48,7 +49,9 @@ const SignUp = () => {
             setError('')
             try {
                 await signInWithGoogle()
-                navigate("/");
+                navigate("/thankyou");
+                await verificationEmail()
+                
             } catch (error) {
                 const errorCode = error.code;
                 const errorMessage = error.message;

@@ -5,7 +5,8 @@ import {
     signInWithEmailAndPassword, 
     signOut, 
     onAuthStateChanged,
-    signInWithPopup
+    signInWithPopup,
+    sendEmailVerification
 } from 'firebase/auth';
 import config from "../config";
 
@@ -18,9 +19,7 @@ export const AuthContextProvider = ({children}) => {
   useEffect(() => {
     const listener = onAuthStateChanged(config.auth, async (user) => {
       setUser(user);
-      
     });
-
     return () => {
       listener();
     };
@@ -37,20 +36,18 @@ export const AuthContextProvider = ({children}) => {
   }
 
   const signInWithGoogle = async () => {
-    try {
-      const { user } = await signInWithPopup(config.auth, config.provider)
-      setUser(user)
-    } catch(err) {
-      console.log(err.message);
-    }
+    const { user } = await signInWithPopup(config.auth, config.provider)
+    setUser(user)
   }
-
 
   const logOut = async () => {
       await signOut(config.auth);
       setUser(null)
   }
 
+  const verificationEmail = async () => {
+    await sendEmailVerification(config.auth.currentUser);
+  }
 
   const value = useMemo(
     () => ({
@@ -60,7 +57,7 @@ export const AuthContextProvider = ({children}) => {
   );
 
   return (
-    <AuthContext.Provider value={{...value, signIn, signUp, signInWithGoogle, logOut}}>
+    <AuthContext.Provider value={{...value, signIn, signUp, signInWithGoogle, logOut, verificationEmail}}>
       {children}
     </AuthContext.Provider>
   )

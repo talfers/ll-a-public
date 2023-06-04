@@ -1,12 +1,13 @@
 import React from 'react';
+import { useAuth } from '../hooks/useAuth';
+import { ContainerStyled, ParagraphStyled } from '../styles/Main';
 
-
-const ThankYou = (props) => {
-
+const ThankYou = () => {
+  const { user } = useAuth();
   return (
-    <div>
-      <p>Thank you for signing up with Landlord Assist!</p>
-    </div>
+    <ContainerStyled>
+      <ParagraphStyled>Thank you for signing up with Landlord Assist! We've sent a verification email to your inbox at {user.email}. Please verify your email before continuing.</ParagraphStyled>
+    </ContainerStyled>
     
   )
 }
