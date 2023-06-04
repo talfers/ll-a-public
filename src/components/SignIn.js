@@ -116,10 +116,16 @@ const SignIn = () => {
                                                 
                     </form>
                     
-                    <p className="text-sm text-white text-center">
+                    <p>
                         No account yet? {' '}
                         <NavLink style={{color: 'white'}} to="/signup">
                             Sign up
+                        </NavLink>
+                    </p>
+                    <p>
+                        Need password reset? {' '}
+                        <NavLink style={{color: 'white'}} to="/reset">
+                            Reset Password
                         </NavLink>
                     </p>                        
                 </FormContainerStyled>

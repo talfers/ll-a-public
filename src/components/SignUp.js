@@ -123,7 +123,7 @@ const SignUp = () => {
                 
                 <p>
                     Already have an account?{' '}
-                    <NavLink style={{color: 'white'}} to="/" >
+                    <NavLink style={{color: 'white'}} to="/signin" >
                         Sign in
                     </NavLink>
                 </p>                   

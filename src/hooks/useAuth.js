@@ -6,7 +6,8 @@ import {
     signOut, 
     onAuthStateChanged,
     signInWithPopup,
-    sendEmailVerification
+    sendEmailVerification,
+    sendPasswordResetEmail
 } from 'firebase/auth';
 import config from "../config";
 
@@ -49,6 +50,10 @@ export const AuthContextProvider = ({children}) => {
     await sendEmailVerification(config.auth.currentUser);
   }
 
+  const sendResetPasswordEmail = async (email) => {
+    await sendPasswordResetEmail(config.auth, email);
+  }
+
   const value = useMemo(
     () => ({
       user
@@ -57,7 +62,7 @@ export const AuthContextProvider = ({children}) => {
   );
 
   return (
-    <AuthContext.Provider value={{...value, signIn, signUp, signInWithGoogle, logOut, verificationEmail}}>
+    <AuthContext.Provider value={{...value, signIn, signUp, signInWithGoogle, logOut, verificationEmail, sendResetPasswordEmail}}>
       {children}
     </AuthContext.Provider>
   )

@@ -1,17 +1,15 @@
 import React from 'react';
-import { useAuth } from '../hooks/useAuth';
 import { ContainerStyled, ParagraphStyled } from '../styles/Main';
 import { NavLink } from 'react-router-dom';
 
-const ThankYou = () => {
-  const { user } = useAuth();
+const ResetPasswordMessage = () => {
   return (
     <ContainerStyled>
-      <ParagraphStyled>Thank you for signing up with Landlord Assist! We've sent a verification email to your inbox at {user.email}. Please verify your email before continuing.</ParagraphStyled>
+      <ParagraphStyled>Password reset email has been sent; Check your Inbox!</ParagraphStyled>
       <p style={{marginTop: '16px'}}><NavLink style={{color: 'white'}} to="/signin">Back to Sign in</NavLink></p>
     </ContainerStyled>
     
   )
 }
  
-export default ThankYou;
+export default ResetPasswordMessage;
