@@ -7,7 +7,7 @@ import {
     onAuthStateChanged,
     signInWithPopup
 } from 'firebase/auth';
-import { auth as fbAuth, provider } from '../config/firebase';
+import config from "../config";
 
 
 const AuthContext = createContext()
@@ -16,7 +16,7 @@ export const AuthContextProvider = ({children}) => {
   const [user, setUser] = useLocalStorage("user", null);
 
   useEffect(() => {
-    const listener = onAuthStateChanged(fbAuth, async (user) => {
+    const listener = onAuthStateChanged(config.auth, async (user) => {
       setUser(user);
       
     });
@@ -27,18 +27,18 @@ export const AuthContextProvider = ({children}) => {
   }, [setUser]);
 
   const signUp = async (email, password) => {
-      let a =  await createUserWithEmailAndPassword(fbAuth, email, password);
+      let a =  await createUserWithEmailAndPassword(config.auth, email, password);
       setUser(a)
   }
 
   const signIn = async (email, password) => {
-      let a =  await signInWithEmailAndPassword(fbAuth, email, password);
+      let a =  await signInWithEmailAndPassword(config.auth, email, password);
       setUser(a)
   }
 
   const signInWithGoogle = async () => {
     try {
-      const { user } = await signInWithPopup(fbAuth, provider)
+      const { user } = await signInWithPopup(config.auth, config.provider)
       setUser(user)
     } catch(err) {
       console.log(err.message);
@@ -47,7 +47,7 @@ export const AuthContextProvider = ({children}) => {
 
 
   const logOut = async () => {
-      await signOut(fbAuth);
+      await signOut(config.auth);
       setUser(null)
   }
 

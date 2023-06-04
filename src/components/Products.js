@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import db from "../config/firebase";
+import config from "../config";
 import { useAuth } from '../hooks/useAuth';
 import { getDocs, addDoc, onSnapshot, collection } from "firebase/firestore";
 import { ProductsContainerStyled, ProductContainerStyled, IconContainerStyled } from '../styles/Products';
@@ -19,7 +19,7 @@ function Products(props) {
         const titles = ['Good', 'Better', 'Best']
         const icons = [faChessPawn, faChessKnight, faChessQueen]
         const fetchTiers = async () => {
-            let querySnapshot = await getDocs(collection(db, "products"));
+            let querySnapshot = await getDocs(collection(config.db, "products"));
             const productData = querySnapshot.docs             
             productData.forEach(async (d) => {
                 console.log(d);
