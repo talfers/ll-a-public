@@ -5,6 +5,7 @@ import { getAnalytics } from "firebase/analytics";
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 import env from "@beam-australia/react-env";
 
+console.log("ENV", env("FIREBASE_API_KEY"));
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
