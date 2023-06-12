@@ -70,12 +70,14 @@ const SignUp = () => {
 
     const onSubmitWithGoogle = async () => {
         setError('')
+        setLoading(1)
         try {
             await signInWithGoogle()
-            navigate("/thankyou");
             await verificationEmail()
-            
+            await loadCheckout(selectedPlan, user.uid)
+            setLoading(0)
         } catch (error) {
+            setLoading(0)
             const errorCode = error.code;
             const errorMessage = error.message;
             setError(errorMessage)
