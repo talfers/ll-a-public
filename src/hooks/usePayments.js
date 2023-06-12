@@ -1,6 +1,6 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useCallback } from 'react';
 import db from '../config/firebase';
-import { collection, addDoc, onSnapshot } from "firebase/firestore";
+import { collection, addDoc, onSnapshot, query, getDocs } from "firebase/firestore";
 import { loadStripe } from '@stripe/stripe-js';
 import config from '../config';
 
@@ -8,6 +8,7 @@ import config from '../config';
 const PaymentsContext = createContext()
 
 export const PaymentsContextProvider = ({children}) => {
+  const [subscription, setSubscription] = useState(null)
 
   const checkout = async (priceId, userId) => {
     const docRef = await addDoc(collection(db, "customers", userId, "checkout_sessions"), {
@@ -15,7 +16,11 @@ export const PaymentsContextProvider = ({children}) => {
         success_url: 'https://landlordassist.io/thankyou',
         cancel_url: 'https://landlordassist.io/signup'
     });
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 6c1bf98fd76f47f373ee3f1c0f10381e6e507d3e
     onSnapshot(docRef, async (snap) => {
         const {error, sessionId} = snap.data()
         if(error) {
@@ -28,9 +33,32 @@ export const PaymentsContextProvider = ({children}) => {
     })
   }
 
-  const getCurrentPlan = async () => {
 
+  const getCurrentPlan = useCallback(async (userId) => {
+    const q = query(collection(db, "customers", userId, "subscriptions"));
+    const querySnapshot = await getDocs(q);
+    let tempSub = {}
+    querySnapshot.forEach(async (sub) => {
+      console.log(sub.data());
+      tempSub.role = sub.data().role
+      tempSub.plan = sub.data().items.slice(-1)[0]
+      tempSub.status = sub.data().status
+      tempSub.current_period_end = sub.data().current_period_end.seconds
+      tempSub.current_period_end_date = new Date(sub.data().current_period_end.seconds * 1000).toLocaleDateString("en-US")
+      tempSub.current_period_start =  sub.data().current_period_start.seconds 
+      tempSub.current_period_start_date = new Date(sub.data().current_period_start.seconds * 1000).toLocaleDateString("en-US")
+    })
+    return tempSub
+  }, [])
+  
+  const getCurrentPlan = async (userId) => {
+    const q = query(collection(db, "customers", userId, "subscriptions"));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(async sub => {
+      console.log(sub.data());
+    })
   }
+
 
   return (
     <PaymentsContext.Provider value={{checkout, getCurrentPlan}}>

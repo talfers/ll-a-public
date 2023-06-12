@@ -57,7 +57,7 @@ export const ResponseButtonStyled = styled.div`
     }
 `;
 
-export const ResponseStyled = styled.p`
+export const ResponseStyled = styled.div`
     font-size: 16px;
 
     @media only screen and ${devices.md} {
