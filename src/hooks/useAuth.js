@@ -27,14 +27,14 @@ export const AuthContextProvider = ({children}) => {
   }, [setUser]);
 
   const signUp = async (email, password) => {
-      let a =  await createUserWithEmailAndPassword(config.auth, email, password);
-      setUser(a)
-      return a
+      let { user } =  await createUserWithEmailAndPassword(config.auth, email, password);
+      setUser(user)
+      return user
   }
 
   const signIn = async (email, password) => {
-      let a =  await signInWithEmailAndPassword(config.auth, email, password);
-      setUser(a)
+      let { user } =  await signInWithEmailAndPassword(config.auth, email, password);
+      setUser(user)
   }
 
   const signInWithGoogle = async () => {
