@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { useAuth } from '../hooks/useAuth';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { 
     FormSectionStyled, 
     FormNavContainerStyled, 
@@ -9,7 +9,9 @@ import {
     InputStyled, 
     LabelStyled, 
 } from '../styles/Form';
+import { NavLinkWrapper } from '../styles/Main';
 import { PrimaryButtonStyled } from '../styles/Button';
+
 
 const ResetPassword = () => {
     const navigate = useNavigate();
@@ -63,9 +65,11 @@ const ResetPassword = () => {
                 
                 <p>
                     Didn't mean to be here?{' '}
-                    <NavLink style={{color: 'white'}} to="/signin" >
+                    <NavLinkWrapper to="/signin" >
                         Sign in
-                    </NavLink>
+                    </NavLinkWrapper>
+                    
+                    
                 </p>                   
             </FormContainerStyled>
         </FormSectionStyled>

@@ -13,6 +13,12 @@
   --cardBG: #463366;
   --cardText: #cabae2;
   --activeColor: #ff6e6c;
+  /* --bg: #fff; */
+  /* --headline: #000; */
+  /* --paragraph: #301e4e; */
+  /* --cardBG: #fff; */
+  /* --cardText: #301e4e; */
+  /* --activeColor: #ff6e6c; */
   --ff: 'Nunito', sans-serif;
 }
 
@@ -52,3 +58,4 @@ code {
     -webkit-transition: visibility 0s, opacity 0.4s ease-in-out;
     -ms-transition: visibility 0s, opacity 0.4s ease-in-out;
 }
+

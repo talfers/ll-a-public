@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo } from 'react';
+import { createContext, useContext, useEffect } from 'react';
 import { useLocalStorage } from "./useLocalStorage";
 import { 
     createUserWithEmailAndPassword, 
@@ -54,15 +54,8 @@ export const AuthContextProvider = ({children}) => {
     await sendPasswordResetEmail(config.auth, email);
   }
 
-  const value = useMemo(
-    () => ({
-      user
-    }),
-    [user]
-  );
-
   return (
-    <AuthContext.Provider value={{...value, signIn, signUp, signInWithGoogle, logOut, verificationEmail, sendResetPasswordEmail}}>
+    <AuthContext.Provider value={{user, signIn, signUp, signInWithGoogle, logOut, verificationEmail, sendResetPasswordEmail}}>
       {children}
     </AuthContext.Provider>
   )

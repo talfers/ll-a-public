@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { useAuth } from '../hooks/useAuth';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Recaptcha from './Recaptcha';
 import { 
     FormSectionStyled, 
@@ -14,7 +14,8 @@ import {
     OrContainerStyled,
     HrStyled
 } from '../styles/Form';
-import { PrimaryButtonStyled } from '../styles/Button'
+import { NavLinkWrapper } from '../styles/Main';
+import { PrimaryButtonStyled } from '../styles/Button';
 
 
 const SignIn = () => {
@@ -46,19 +47,15 @@ const SignIn = () => {
     }
 
     const onSubmitWithGoogle = async () => {
-        if (isCaptchaSuccessful) {
-            setError('')
-            try {
-                await signInWithGoogle()
-                navigate("/");
-            } catch (error) {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                setError(errorMessage)
-                console.log(errorCode, errorMessage);
-            }
-        } else {
-            setError('Please confirm you are not a robot before continuing')
+        setError('')
+        try {
+            await signInWithGoogle()
+            navigate("/");
+        } catch (error) {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            setError(errorMessage)
+            console.log(errorCode, errorMessage);
         }
     }
 
@@ -98,7 +95,7 @@ const SignIn = () => {
                                 onChange={(e)=>setPassword(e.target.value)}
                             />
                         </InputContainerStyled>
-                        <Recaptcha onChange={onRecaptchaChange}/>
+                        <Recaptcha data-size={'compact'} onChange={onRecaptchaChange}/>
                         {error!==''?<p>{error}</p>:null}
                         
                         <FormNavContainerStyled>
@@ -118,15 +115,15 @@ const SignIn = () => {
                     
                     <p>
                         No account yet? {' '}
-                        <NavLink style={{color: 'white'}} to="/signup">
+                        <NavLinkWrapper to="/signup">
                             Sign up
-                        </NavLink>
+                        </NavLinkWrapper>
                     </p>
                     <p>
                         Need password reset? {' '}
-                        <NavLink style={{color: 'white'}} to="/reset">
+                        <NavLinkWrapper to="/reset">
                             Reset Password
-                        </NavLink>
+                        </NavLinkWrapper>
                     </p>                        
                 </FormContainerStyled>
             </FormSectionStyled>

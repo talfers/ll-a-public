@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import { devices } from "../data/constants"
-import { headline, activeColor, bg, cardText, ff } from './'
+import { headline, activeColor, bg, cardText, ff, contrastText } from './'
 
 const shrink = keyframes`   
     0% {
@@ -59,7 +59,7 @@ export const MenuBarContainerStyled = styled.div`
     align-items: center;
     background: transparent;
     width: 100%;
-    color: white;
+    color: ${contrastText};
     font-family: ${ff};
     @media only screen and ${devices.md} {
         display: flex;
@@ -104,7 +104,7 @@ export const MenuButtonContainerStyled = styled.div`
 export const MenuButtonLineStyled = styled.div`
     height: 2px;
     width: 20px;
-    background: ${(props) => props.$color?`${props.$color}`:""};
+    background: ${contrastText};
     transition: all 0.2s ease;
     -webkit-transition: all 0.2s ease;
     -ms-transition: all 0.2s ease;
@@ -152,7 +152,7 @@ export const MenuItemStyled = styled.div`
     padding: 1rem 0;
     margin: 0 5%;
     cursor: pointer;
-    color: #fff;
+    color: ${contrastText};
     transition: color 0.2s ease-in-out;
     -webkit-transition: color 0.2s ease-in-out;
     -ms-transition: color 0.2s ease-in-out;

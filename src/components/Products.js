@@ -1,93 +1,64 @@
-import React, { useState, useEffect } from 'react';
-import config from "../config";
-import { useAuth } from '../hooks/useAuth';
-import { getDocs, addDoc, onSnapshot, collection } from "firebase/firestore";
-import { ProductsContainerStyled, ProductContainerStyled, IconContainerStyled } from '../styles/Products';
+import React from 'react';
+import { usePlans } from '../hooks/usePlans';
+import { 
+    ProductsContainerStyled, 
+    ProductContainerStyled, 
+    IconContainerStyled, 
+    CloseButton, 
+    ProductModalStyled,
+    ButtonContainerStyled
+} from '../styles/Products';
+import { ContentHeaderStyled } from '../styles/Main';
 import { PrimaryButtonStyled } from '../styles/Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChessKnight, faChessQueen, faChessPawn } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIconWrapper } from '../styles/Main';
 
 
+function Products() {
+    const { plans, setSelectedPlan, setShowPlans, selectedPlan } = usePlans();
+    console.log(plans);
 
-function Products(props) {
-    const { user } = useAuth()
-    const [tiers, setTiers] = useState([])
-    
-    console.log(user?.uid);
-
-    useEffect(() => {
-        const titles = ['Good', 'Better', 'Best']
-        const icons = [faChessPawn, faChessKnight, faChessQueen]
-        const fetchTiers = async () => {
-            let querySnapshot = await getDocs(collection(config.db, "products"));
-            const productData = querySnapshot.docs             
-            productData.forEach(async (d) => {
-                console.log(d);
-                const qst = await getDocs(collection(config.db, "products", d.id, "prices"));
-                qst.forEach((doc) => {
-                    console.log(doc.id, " => ", doc.data());
-                    let pricesData = doc.data()
-                    let updatedTiers = [...pricesData.tiers]
-                    updatedTiers.forEach((t, i) => {
-                        t.priceId = doc.id;
-                        t.name = titles[i];
-                        t.icon = icons[i];
-                    })
-                    setTiers(updatedTiers)
-                });        
-
-            });
-        }
-        fetchTiers()
-    }, [])
-    console.log(tiers);
-    const checkout = async (tierId) => {
-        console.log(tierId);
-        console.log(user.uid);
-        let collectionRef = collection(config.db, "customers", user.uid, "checkout_sessions");
-        const docRef = await addDoc(collectionRef, {
-            tier: tierId,
-            success_url: window.location.origin + "/",
-            cancel_url: window.location.origin + "/products"
-        });
-        
-        onSnapshot(docRef, (snap) => {
-            console.log(snap.data());
-            const { error, url } = snap.data();
-            if(error) {
-                console.error(`An error has occured: ${error.message}`);
-            }
-            if(url) {
-                window.location.assign(url)
-            }
-        })
-    }
-
-
-    const createTiers = () => {
-        return tiers.map((t, i) => (
-            <ProductContainerStyled key={i}>
+    const createPlans = () => {
+        return plans.map((p, i) => (
+            <ProductContainerStyled key={i} selected={selectedPlan===p.prices.priceId} onClick={() => {setSelectedPlan(p.prices.priceId)}}>
                 <IconContainerStyled>
-                    <FontAwesomeIcon icon={t.icon} size={"2xl"} color={'inherit'}/>
+                    <FontAwesomeIconWrapper $theme={'dark'}>
+                       <FontAwesomeIcon icon={p.icon} size={"2xl"} color={'inherit'}/>
+                    </FontAwesomeIconWrapper>
                 </IconContainerStyled>
-                
-                <h2>{t.name}</h2>
-                <p><strong>Price:</strong> ${t.flat_amount/100} / month</p>
-                <p>{i===tiers.length-1?<strong>Unlimited</strong>:<span><strong>Up to: </strong>{t.up_to}</span>} queries / month</p>
+                <h2>{p.name}</h2>
+                <p style={{marginBottom: '20px'}}>{p.description}</p>
+                <p><strong>Price:</strong> ${p.prices.priceData.unit_amount/100} / month</p>
+                <p><span><strong>Up to: </strong>{p.up_to}</span> queries / month</p>
                 <br/>
-                <PrimaryButtonStyled onClick={() => checkout(t.priceId)}>Subscribe</PrimaryButtonStyled>
             </ProductContainerStyled>
         ))
     }
 
-    console.log(tiers);
-
     return (
-        <ProductsContainerStyled>
-            {tiers.length===0?null:
-            createTiers()
-            }
-        </ProductsContainerStyled>
+        
+        <ProductModalStyled>
+            <CloseButton onClick={() => {setShowPlans(0)}}>X</CloseButton>
+            <ContentHeaderStyled>Select a Plan</ContentHeaderStyled>
+            <ProductsContainerStyled>
+                {plans.length===0?<div>loading...</div>:
+                createPlans()
+                }
+            </ProductsContainerStyled>
+            <ButtonContainerStyled>
+                <PrimaryButtonStyled 
+                    onClick={() => {
+                        setSelectedPlan(selectedPlan);
+                        setShowPlans(0);
+                    }}
+                >
+                    Continue
+                </PrimaryButtonStyled>
+            </ButtonContainerStyled>
+            
+        </ProductModalStyled>
+            
+        
     );
 }
 

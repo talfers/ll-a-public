@@ -1,6 +1,8 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+// import plans from '../data/plans'
+// import { usePlans } from '../hooks/usePlans';
 import { useAuth } from '../hooks/useAuth';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Recaptcha from './Recaptcha';
 import { 
     FormSectionStyled, 
@@ -13,25 +15,36 @@ import {
     GoogleButtonContainerStyled,
     OrContainerStyled,
     HrStyled,
+    // PlansButton,
+    // PlanViewContainerStyled,
 } from '../styles/Form';
 import { PrimaryButtonStyled } from '../styles/Button';
+import { NavLinkWrapper } from '../styles/Main';
+// import Products from './Products';
+
 
 const SignUp = () => {
     const navigate = useNavigate();
+    const { signUp, signInWithGoogle, verificationEmail } = useAuth();
+    // const { plans, showPlans, setShowPlans, selectedPlan, setSelectedPlan } = usePlans()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
     const [error, setError] = useState('')
-    const { signUp, signInWithGoogle, verificationEmail } = useAuth();
     const [isCaptchaSuccessful, setIsCaptchaSuccess] = useState(false);
+    // const [showPlans, setShowPlans] = useState(plans.length===0?0:1);
+    // const [selectedPlan, setSelectedPlan] = useState(plans.length===0?'':plans[0].prices.priceId);
+
     
+
+
     const onSubmit = async (e) => {
         e.preventDefault()
         if (isCaptchaSuccessful) {
             setError('')
             try {
-                await signUp(email, password)
+                await signUp(email, password);
                 navigate("/thankyou");
-                await verificationEmail()
+                await verificationEmail();
             } catch (error) {
                 const errorCode = error.code;
                 const errorMessage = error.message;
@@ -45,23 +58,18 @@ const SignUp = () => {
     }
 
     const onSubmitWithGoogle = async () => {
-        if (isCaptchaSuccessful) {
-            setError('')
-            try {
-                await signInWithGoogle()
-                navigate("/thankyou");
-                await verificationEmail()
-                
-            } catch (error) {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                setError(errorMessage)
-                console.log(errorCode, errorMessage);
-            }
-        } else {
-            setError('Please confirm you are not a robot before continuing')
+        setError('')
+        try {
+            await signInWithGoogle()
+            navigate("/thankyou");
+            await verificationEmail()
+            
+        } catch (error) {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            setError(errorMessage)
+            console.log(errorCode, errorMessage);
         }
-        
     }
 
     const onRecaptchaChange = (value) => {
@@ -70,7 +78,20 @@ const SignUp = () => {
 
  
   return (
-    <main>        
+    <main>
+        {/* {
+            showPlans===1?
+            <ModalBackgroundStyled>
+                <Products 
+                plans={plans} 
+                setShowPlans={setShowPlans} 
+                selectedPlan={selectedPlan} 
+                setSelectedPlan={setSelectedPlan} 
+                />
+            </ModalBackgroundStyled>
+            :
+            null
+        }  */}
         <FormSectionStyled>
             <FormContainerStyled>                                                                                             
                 <form>                                                                                            
@@ -102,6 +123,12 @@ const SignUp = () => {
                                   
                         />
                     </InputContainerStyled>
+                    {/* <PlanViewContainerStyled>
+                        Selected Plan: {plans.filter(p => p.prices.priceId === selectedPlan)[0].name}
+                        {'  '}${plans.filter(p => p.prices.priceId === selectedPlan)[0].prices.priceData.unit_amount/100}
+                        <PlansButton onClick={() => setShowPlans(1)}>Show plans</PlansButton>
+                    </PlanViewContainerStyled> */}
+                    
                     <Recaptcha onChange={onRecaptchaChange}/>
                     {error!==''?<p>{error}</p>:null}
                                                        
@@ -116,16 +143,16 @@ const SignUp = () => {
                     <OrContainerStyled><HrStyled/><p>OR</p><HrStyled/></OrContainerStyled>
                     <GoogleButtonContainerStyled>
                         <GoogleButtonStyled onClick={onSubmitWithGoogle}>Continue with Google</GoogleButtonStyled>
-                    </GoogleButtonContainerStyled>
-                    
-                                                                    
+                    </GoogleButtonContainerStyled>                                     
                 </form>
                 
                 <p>
                     Already have an account?{' '}
-                    <NavLink style={{color: 'white'}} to="/signin" >
+                    <NavLinkWrapper to="/signin" >
                         Sign in
-                    </NavLink>
+                    </NavLinkWrapper>
+             
+                    
                 </p>                   
             </FormContainerStyled>
         </FormSectionStyled>

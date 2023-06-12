@@ -27,9 +27,9 @@ function Hamburger(props) {
         <div>
             <MenuBarContainerStyled>
                 <MenuButtonContainerStyled  $open={menuOpen} onClick={handleMenuClick}>
-                    <MenuButtonLineTopStyled $open={menuOpen} $color='white'/>
-                    <MenuButtonLineMiddleStyled $open={menuOpen} $color='white'/>
-                    <MenuButtonLineBottomStyled $open={menuOpen} $color='white'/>
+                    <MenuButtonLineTopStyled $open={menuOpen} />
+                    <MenuButtonLineMiddleStyled $open={menuOpen} />
+                    <MenuButtonLineBottomStyled $open={menuOpen} />
                 </MenuButtonContainerStyled>
             </MenuBarContainerStyled>
             {
