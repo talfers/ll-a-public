@@ -16,8 +16,6 @@ import { FontAwesomeIconWrapper } from '../styles/Main';
 
 
 function Products(props) {
-    
-    console.log(props.plans);
 
     const createPlans = () => {
         return props.plans.map((p, i) => (
@@ -28,7 +26,7 @@ function Products(props) {
                     </FontAwesomeIconWrapper>
                 </IconContainerStyled>
                 <ProductHeader>{p.name}</ProductHeader>
-                <ProductText $spaceBelow>{p.description}</ProductText>
+                <ProductText $hideMobile $spaceBelow>{p.description}</ProductText>
                 <ProductText><strong>Price:</strong> ${p.prices.priceData.unit_amount/100} / month</ProductText>
                 <ProductText><span><strong>Up to: </strong>{p.up_to}</span> queries / month</ProductText>
             </ProductContainerStyled>

@@ -28,6 +28,7 @@ export const useDownloadFile = () => {
             pdf.save(`${fileName}.${fileType}`);
             // console.log({success: "success"})
         } catch (err) {
+            alert(err.message)
             console.log(err.message);
         }
     } else if (fileType === 'docx') {
@@ -41,6 +42,7 @@ export const useDownloadFile = () => {
             a.remove()
             
         } catch (err) {
+            alert(err.message)
             console.log(err.message);
         }
     } else {

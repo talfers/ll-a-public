@@ -12,6 +12,7 @@ function UserIcon(props) {
             await props.logOut()
             navigate("/");
         } catch (error) {
+            alert(error.message)
             console.log(error);
         }
     }

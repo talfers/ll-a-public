@@ -12,10 +12,10 @@ export const PaymentsContextProvider = ({children}) => {
   const checkout = async (priceId, userId) => {
     const docRef = await addDoc(collection(db, "customers", userId, "checkout_sessions"), {
         price: priceId,
-        success_url: 'http://localhost:3000/thankyou',
-        cancel_url: 'http://localhost:3000/signup'
+        success_url: 'https://landlordassist.io/thankyou',
+        cancel_url: 'https://landlordassist.io/signup'
     });
-    console.log(docRef);
+
     onSnapshot(docRef, async (snap) => {
         const {error, sessionId} = snap.data()
         if(error) {

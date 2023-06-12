@@ -18,6 +18,7 @@ export const ProductModalStyled = styled.div`
     padding: 24px;
     margin-bottom: 24px;
     @media only screen and ${devices.md} {
+        width: 75%;
         display: flex;
         padding: 12px;
     }
@@ -84,5 +85,6 @@ export const ProductText = styled.p`
     @media only screen and ${devices.md} {
         font-size: 0.7em;
         margin-bottom: ${props => props.$spaceBelow?'8px':'0px'};
+        display: ${props => props.$hideMobile?'none':''};
     }
 `;
