@@ -1,5 +1,5 @@
 import { AuthContextProvider } from './hooks/useAuth';
-import { PlansContextProvider } from './hooks/usePlans';
+import { PaymentsContextProvider } from './hooks/usePayments';
 import { ThemeContextProvider } from './hooks/useTheme';
 import ProtectedRoute from './components/ProtectedRoute';
 import RedirectRoute from './components/RedirectRoute';
@@ -22,7 +22,7 @@ function App() {
   return (
     
       <AuthContextProvider>
-        <PlansContextProvider>
+        <PaymentsContextProvider>
           <ThemeContextProvider>
             <TaskProvider>
                 <div className="App">
@@ -42,7 +42,7 @@ function App() {
                 </div>
             </TaskProvider>
           </ThemeContextProvider>
-        </PlansContextProvider>
+        </PaymentsContextProvider>
       </AuthContextProvider>
       
   );

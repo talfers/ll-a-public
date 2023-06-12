@@ -13,12 +13,12 @@
   --cardBG: #463366;
   --cardText: #cabae2;
   --activeColor: #ff6e6c;
-  /* --bg: #fff; */
-  /* --headline: #000; */
-  /* --paragraph: #301e4e; */
-  /* --cardBG: #fff; */
-  /* --cardText: #301e4e; */
-  /* --activeColor: #ff6e6c; */
+  /* --bg: #fff;
+  --headline: #301e4e;
+  --paragraph: #301e4e;
+  --cardBG: #fff;
+  --cardText: grey;
+  --activeColor: #ff6e6c; */
   --ff: 'Nunito', sans-serif;
 }
 

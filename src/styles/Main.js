@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { devices } from "../data/constants";
 import { NavLink } from 'react-router-dom';
-import { cardBG, cardText, contrastText, headline, bg } from './'
+import { cardBG, cardText, contrastText, headline } from './'
 
 export const ContainerStyled = styled.div`
     display: flex;
@@ -37,7 +37,7 @@ export const NavLinkWrapper = styled(NavLink)`
 `;
 
 export const FontAwesomeIconWrapper = styled.div`
-    color: ${props => props.$theme==='light'?contrastText:bg};
+    color: ${props => props.$theme==='light'?contrastText:cardText};
 `;
 
 export const ModalBackgroundStyled = styled.div`

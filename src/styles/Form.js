@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { devices } from "../data/constants";
-import { cardText, activeColor, ff, cardBG, bg, contrastText } from './';
+import { cardText, activeColor, ff, cardBG, bg, contrastText, boxShadow } from './';
 
 export const FormSectionStyled = styled.section`
     width: 60%;
@@ -9,6 +9,7 @@ export const FormSectionStyled = styled.section`
     margin: 0 auto;
     color: ${cardText};
     max-width: 600px;
+    box-shadow: ${boxShadow};
     @media only screen and ${devices.md} {
         width: 80%;
     }
@@ -30,7 +31,7 @@ export const InputContainerStyled = styled.div`
 
 export const InputStyled = styled.input`
     border-radius: 8px;
-    border: ${cardText} 1px solid;
+    border: ${cardText} 2px solid;
     padding: 6px;
     vertical-align:top;
     font-family: ${ff};

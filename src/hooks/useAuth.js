@@ -29,6 +29,7 @@ export const AuthContextProvider = ({children}) => {
   const signUp = async (email, password) => {
       let a =  await createUserWithEmailAndPassword(config.auth, email, password);
       setUser(a)
+      return a
   }
 
   const signIn = async (email, password) => {

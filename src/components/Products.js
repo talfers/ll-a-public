@@ -1,5 +1,4 @@
 import React from 'react';
-import { usePlans } from '../hooks/usePlans';
 import { 
     ProductsContainerStyled, 
     ProductContainerStyled, 
@@ -14,13 +13,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FontAwesomeIconWrapper } from '../styles/Main';
 
 
-function Products() {
-    const { plans, setSelectedPlan, setShowPlans, selectedPlan } = usePlans();
-    console.log(plans);
+function Products(props) {
+    
+    console.log(props.plans);
 
     const createPlans = () => {
-        return plans.map((p, i) => (
-            <ProductContainerStyled key={i} selected={selectedPlan===p.prices.priceId} onClick={() => {setSelectedPlan(p.prices.priceId)}}>
+        return props.plans.map((p, i) => (
+            <ProductContainerStyled key={i} selected={props.selectedPlan===p.prices.priceId} onClick={() => {props.setSelectedPlan(p.prices.priceId)}}>
                 <IconContainerStyled>
                     <FontAwesomeIconWrapper $theme={'dark'}>
                        <FontAwesomeIcon icon={p.icon} size={"2xl"} color={'inherit'}/>
@@ -38,18 +37,18 @@ function Products() {
     return (
         
         <ProductModalStyled>
-            <CloseButton onClick={() => {setShowPlans(0)}}>X</CloseButton>
+            <CloseButton onClick={() => {props.setShowPlans(0)}}>X</CloseButton>
             <ContentHeaderStyled>Select a Plan</ContentHeaderStyled>
             <ProductsContainerStyled>
-                {plans.length===0?<div>loading...</div>:
+                {props.plans.length===0?<div>loading...</div>:
                 createPlans()
                 }
             </ProductsContainerStyled>
             <ButtonContainerStyled>
                 <PrimaryButtonStyled 
                     onClick={() => {
-                        setSelectedPlan(selectedPlan);
-                        setShowPlans(0);
+                        props.setSelectedPlan(props.selectedPlan);
+                        props.setShowPlans(0);
                     }}
                 >
                     Continue

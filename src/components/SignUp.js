@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-// import plans from '../data/plans'
-// import { usePlans } from '../hooks/usePlans';
+import React, { useState, useEffect } from 'react';
+import plans from '../data/plans'
 import { useAuth } from '../hooks/useAuth';
+import { usePayments } from '../hooks/usePayments';
 import { useNavigate } from 'react-router-dom';
+import Loading from './Loading';
 import Recaptcha from './Recaptcha';
 import { 
     FormSectionStyled, 
@@ -15,46 +16,56 @@ import {
     GoogleButtonContainerStyled,
     OrContainerStyled,
     HrStyled,
-    // PlansButton,
-    // PlanViewContainerStyled,
+    PlansButton,
+    PlanViewContainerStyled,
 } from '../styles/Form';
 import { PrimaryButtonStyled } from '../styles/Button';
-import { NavLinkWrapper } from '../styles/Main';
-// import Products from './Products';
+import { ModalBackgroundStyled, NavLinkWrapper } from '../styles/Main';
+import Products from './Products';
 
 
 const SignUp = () => {
     const navigate = useNavigate();
     const { signUp, signInWithGoogle, verificationEmail } = useAuth();
-    // const { plans, showPlans, setShowPlans, selectedPlan, setSelectedPlan } = usePlans()
+    const { checkout } = usePayments();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
     const [error, setError] = useState('')
     const [isCaptchaSuccessful, setIsCaptchaSuccess] = useState(false);
-    // const [showPlans, setShowPlans] = useState(plans.length===0?0:1);
-    // const [selectedPlan, setSelectedPlan] = useState(plans.length===0?'':plans[0].prices.priceId);
-
+    const [showPlans, setShowPlans] = useState(0);
+    const [selectedPlan, setSelectedPlan] = useState(plans[0].prices.priceId);
+    const [loading, setLoading] = useState(0);
     
+    useEffect(() => {
+        setShowPlans(1)
+    }, [setShowPlans])
 
+    const loadCheckout = async (priceId, userId) => {
+        await checkout(priceId, userId)
+    }
 
     const onSubmit = async (e) => {
         e.preventDefault()
         if (isCaptchaSuccessful) {
             setError('')
+            setLoading(1)
             try {
-                await signUp(email, password);
-                navigate("/thankyou");
+                let { user } = await signUp(email, password);
+                console.log(user);
                 await verificationEmail();
+                await loadCheckout(selectedPlan, user.uid)
+                setLoading(0)
             } catch (error) {
+                setLoading(0)
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 setError(errorMessage)
                 console.log(errorCode, errorMessage);
             }
         } else {
+            setLoading(0)
             setError('Please confirm you are not a robot before continuing')
         }
-        
     }
 
     const onSubmitWithGoogle = async () => {
@@ -76,10 +87,15 @@ const SignUp = () => {
         setIsCaptchaSuccess(true)
     }
 
- 
   return (
     <main>
-        {/* {
+        {
+            loading?
+            <Loading message={"Loading..."}/>
+            :null
+        }
+        
+        {
             showPlans===1?
             <ModalBackgroundStyled>
                 <Products 
@@ -91,7 +107,7 @@ const SignUp = () => {
             </ModalBackgroundStyled>
             :
             null
-        }  */}
+        } 
         <FormSectionStyled>
             <FormContainerStyled>                                                                                             
                 <form>                                                                                            
@@ -119,15 +135,14 @@ const SignUp = () => {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)} 
                             required                                 
-                            placeholder="Password" 
-                                  
+                            placeholder="Password"   
                         />
                     </InputContainerStyled>
-                    {/* <PlanViewContainerStyled>
+                    <PlanViewContainerStyled>
                         Selected Plan: {plans.filter(p => p.prices.priceId === selectedPlan)[0].name}
                         {'  '}${plans.filter(p => p.prices.priceId === selectedPlan)[0].prices.priceData.unit_amount/100}
                         <PlansButton onClick={() => setShowPlans(1)}>Show plans</PlansButton>
-                    </PlanViewContainerStyled> */}
+                    </PlanViewContainerStyled>
                     
                     <Recaptcha onChange={onRecaptchaChange}/>
                     {error!==''?<p>{error}</p>:null}
@@ -151,8 +166,6 @@ const SignUp = () => {
                     <NavLinkWrapper to="/signin" >
                         Sign in
                     </NavLinkWrapper>
-             
-                    
                 </p>                   
             </FormContainerStyled>
         </FormSectionStyled>

@@ -29,7 +29,7 @@ export const ProductsContainerStyled = styled.div`
     padding: 24px;
     margin-bottom: 24px;
     @media only screen and ${devices.md} {
-        display: flex;
+        flex-direction: column;
     }
 `;
 
@@ -53,7 +53,7 @@ export const ProductContainerStyled = styled.div`
     border-radius: 12px;
     border: ${props => props.selected?`2px solid ${activeColor}`:'2px solid transparent'};
     @media only screen and ${devices.md} {
-        display: flex;
+        
     }
 `;
 
