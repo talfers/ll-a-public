@@ -10,6 +10,7 @@ export const ProfileContainerStyled = styled(ContainerStyled)`
 export const ProfileContentContainerStyled = styled.div`
     text-align: left;
     margin-bottom: 20px;
+    margin-top: 24px;
 `;
 
 export const ProfileHeaderContainerStyled = styled.div`

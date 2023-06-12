@@ -29,7 +29,7 @@ const Profile = () => {
                 <FontAwesomeIconWrapper $theme={'light'}>
                     <FontAwesomeIcon icon={faArrowCircleLeft} size={"xl"} color={'inherit'} />
                 </FontAwesomeIconWrapper>
-                Go Back
+                <span style={{marginLeft:'4px'}}>Go Back</span>
             </GoBackButtonStyled>
             <ProfileContentContainerStyled>
                 <ProfileHeaderContainerStyled>
