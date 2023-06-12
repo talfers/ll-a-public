@@ -33,7 +33,7 @@ export const AuthContextProvider = ({children}) => {
   }
 
   const signIn = async (email, password) => {
-      let { user } = await signInWithEmailAndPassword(config.auth, email, password);
+      let { user } =  await signInWithEmailAndPassword(config.auth, email, password);
       setUser(user)
   }
 

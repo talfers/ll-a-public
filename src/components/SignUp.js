@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import plans from '../data/plans'
 import { useAuth } from '../hooks/useAuth';
 import { usePayments } from '../hooks/usePayments';
-import { useNavigate } from 'react-router-dom';
 import Loading from './Loading';
 import Recaptcha from './Recaptcha';
 import { 
@@ -25,7 +24,6 @@ import Products from './Products';
 
 
 const SignUp = () => {
-    const navigate = useNavigate();
     const { signUp, signInWithGoogle, verificationEmail } = useAuth();
     const { checkout } = usePayments();
     const [email, setEmail] = useState('')
@@ -51,7 +49,6 @@ const SignUp = () => {
             setLoading(1)
             try {
                 let user = await signUp(email, password);
-                console.log(user);
                 await verificationEmail();
                 await loadCheckout(selectedPlan, user.uid)
                 setLoading(0)
