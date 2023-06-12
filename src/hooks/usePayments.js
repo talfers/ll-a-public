@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useCallback } from 'react';
 import db from '../config/firebase';
 import { collection, addDoc, onSnapshot, query, getDocs } from "firebase/firestore";
 import { loadStripe } from '@stripe/stripe-js';
@@ -16,7 +16,7 @@ export const PaymentsContextProvider = ({children}) => {
         success_url: 'http://localhost:3000/thankyou',
         cancel_url: 'http://localhost:3000/signup'
     });
-    console.log(docRef);
+    
     onSnapshot(docRef, async (snap) => {
         const {error, sessionId} = snap.data()
         if(error) {
@@ -29,6 +29,24 @@ export const PaymentsContextProvider = ({children}) => {
     })
   }
 
+
+  const getCurrentPlan = useCallback(async (userId) => {
+    const q = query(collection(db, "customers", userId, "subscriptions"));
+    const querySnapshot = await getDocs(q);
+    let tempSub = {}
+    querySnapshot.forEach(async (sub) => {
+      console.log(sub.data());
+      tempSub.role = sub.data().role
+      tempSub.plan = sub.data().items.slice(-1)[0]
+      tempSub.status = sub.data().status
+      tempSub.current_period_end = sub.data().current_period_end.seconds
+      tempSub.current_period_end_date = new Date(sub.data().current_period_end.seconds * 1000).toLocaleDateString("en-US")
+      tempSub.current_period_start =  sub.data().current_period_start.seconds 
+      tempSub.current_period_start_date = new Date(sub.data().current_period_start.seconds * 1000).toLocaleDateString("en-US")
+    })
+    return tempSub
+  }, [])
+  
   const getCurrentPlan = async (userId) => {
     const q = query(collection(db, "customers", userId, "subscriptions"));
     const querySnapshot = await getDocs(q);

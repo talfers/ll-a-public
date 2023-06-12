@@ -15,6 +15,7 @@ export const ContainerStyled = styled.div`
     padding: 20px;
     background: ${cardBG};
     border-radius: 12px;
+    color: ${cardText};
 `;
 
 export const ParagraphStyled = styled.p`
