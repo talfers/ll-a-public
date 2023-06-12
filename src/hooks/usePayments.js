@@ -1,6 +1,6 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useState } from 'react';
 import db from '../config/firebase';
-import { collection, addDoc, onSnapshot } from "firebase/firestore";
+import { collection, addDoc, onSnapshot, query, getDocs } from "firebase/firestore";
 import { loadStripe } from '@stripe/stripe-js';
 import config from '../config';
 
@@ -8,6 +8,7 @@ import config from '../config';
 const PaymentsContext = createContext()
 
 export const PaymentsContextProvider = ({children}) => {
+  const [subscription, setSubscription] = useState(null)
 
   const checkout = async (priceId, userId) => {
     const docRef = await addDoc(collection(db, "customers", userId, "checkout_sessions"), {
@@ -28,9 +29,14 @@ export const PaymentsContextProvider = ({children}) => {
     })
   }
 
-  const getCurrentPlan = async () => {
-
+  const getCurrentPlan = async (userId) => {
+    const q = query(collection(db, "customers", userId, "subscriptions"));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(async sub => {
+      console.log(sub.data());
+    })
   }
+
 
   return (
     <PaymentsContext.Provider value={{checkout, getCurrentPlan}}>

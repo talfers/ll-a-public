@@ -50,7 +50,7 @@ const SignUp = () => {
             setError('')
             setLoading(1)
             try {
-                let { user } = await signUp(email, password);
+                let user = await signUp(email, password);
                 console.log(user);
                 await verificationEmail();
                 await loadCheckout(selectedPlan, user.uid)
@@ -72,7 +72,7 @@ const SignUp = () => {
         setError('')
         setLoading(1)
         try {
-            await signInWithGoogle()
+            let user = await signInWithGoogle()
             await verificationEmail()
             await loadCheckout(selectedPlan, user.uid)
             setLoading(0)
