@@ -30,6 +30,9 @@ export const ContentHeaderStyled = styled.h1`
     font-family: inherit;
     font-size: 36px;
     margin-bottom: 10px;
+    @media only screen and ${devices.md} {
+        font-size: 30px;
+    }
 `;
 
 export const NavLinkWrapper = styled(NavLink)`

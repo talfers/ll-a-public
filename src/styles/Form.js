@@ -133,6 +133,7 @@ export const PlansButton = styled.div`
     border-radius: 4px;
     border: 1px solid ${cardText};
     margin-left: 12px;
+    text-align: center;
 `;
 
 export const PlanViewContainerStyled = styled.div`

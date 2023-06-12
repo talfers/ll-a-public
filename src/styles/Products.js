@@ -19,6 +19,7 @@ export const ProductModalStyled = styled.div`
     margin-bottom: 24px;
     @media only screen and ${devices.md} {
         display: flex;
+        padding: 12px;
     }
 `;
 
@@ -27,9 +28,9 @@ export const ProductsContainerStyled = styled.div`
     align-items: center;
     justify-content: center;
     padding: 24px;
-    margin-bottom: 24px;
     @media only screen and ${devices.md} {
         flex-direction: column;
+        padding: 6px;
     }
 `;
 
@@ -53,7 +54,8 @@ export const ProductContainerStyled = styled.div`
     border-radius: 12px;
     border: ${props => props.selected?`2px solid ${activeColor}`:'2px solid transparent'};
     @media only screen and ${devices.md} {
-        
+        height: inherit;
+        padding: 12px;
     }
 `;
 
@@ -69,4 +71,18 @@ export const ButtonContainerStyled = styled.div`
     width: 100%;
     display: flex;
     justify-content: flex-end;
+`;
+
+export const ProductHeader = styled.h2`
+    @media only screen and ${devices.md} {
+        font-size: 1em;
+    }
+`;
+
+export const ProductText = styled.p`
+    margin-bottom: ${props => props.$spaceBelow?'20px':'0px'};
+    @media only screen and ${devices.md} {
+        font-size: 0.7em;
+        margin-bottom: ${props => props.$spaceBelow?'8px':'0px'};
+    }
 `;

@@ -5,7 +5,9 @@ import {
     IconContainerStyled, 
     CloseButton, 
     ProductModalStyled,
-    ButtonContainerStyled
+    ButtonContainerStyled,
+    ProductHeader,
+    ProductText
 } from '../styles/Products';
 import { ContentHeaderStyled } from '../styles/Main';
 import { PrimaryButtonStyled } from '../styles/Button';
@@ -25,11 +27,10 @@ function Products(props) {
                        <FontAwesomeIcon icon={p.icon} size={"2xl"} color={'inherit'}/>
                     </FontAwesomeIconWrapper>
                 </IconContainerStyled>
-                <h2>{p.name}</h2>
-                <p style={{marginBottom: '20px'}}>{p.description}</p>
-                <p><strong>Price:</strong> ${p.prices.priceData.unit_amount/100} / month</p>
-                <p><span><strong>Up to: </strong>{p.up_to}</span> queries / month</p>
-                <br/>
+                <ProductHeader>{p.name}</ProductHeader>
+                <ProductText $spaceBelow>{p.description}</ProductText>
+                <ProductText><strong>Price:</strong> ${p.prices.priceData.unit_amount/100} / month</ProductText>
+                <ProductText><span><strong>Up to: </strong>{p.up_to}</span> queries / month</ProductText>
             </ProductContainerStyled>
         ))
     }
