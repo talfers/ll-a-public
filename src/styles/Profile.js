@@ -7,8 +7,20 @@ export const ProfileContainerStyled = styled(ContainerStyled)`
     position: relative;
 `;
 
+export const ProfileContentContainerStyled = styled.div`
+    text-align: left;
+    margin-bottom: 20px;
+`;
+
+export const ProfileHeaderContainerStyled = styled.div`
+    display: flex;
+    border-bottom: 1.5px solid ${cardText};
+    margin-bottom: 4px;
+`;
+
 export const ProfileHeaderStyled = styled.h2`
-    
+    margin-left: 8px;
+    margin-bottom: 4px;
 `;
 
 export const ProfileTextStyled = styled.div`
