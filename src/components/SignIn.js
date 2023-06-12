@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import { UserAuth } from '../context/AuthContext';
-import { NavLink, useNavigate } from 'react-router-dom'
+import { useAuth } from '../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
+import Recaptcha from './Recaptcha';
 import { 
     FormSectionStyled, 
     FormNavContainerStyled, 
@@ -13,7 +14,8 @@ import {
     OrContainerStyled,
     HrStyled
 } from '../styles/Form';
-import { PrimaryButtonStyled } from '../styles/Button'
+import { NavLinkWrapper } from '../styles/Main';
+import { PrimaryButtonStyled } from '../styles/Button';
 
 
 const SignIn = () => {
@@ -21,22 +23,31 @@ const SignIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const { signIn, signInWithGoogle } = UserAuth();
+    const { signIn, signInWithGoogle } = useAuth();
+    const [isCaptchaSuccessful, setIsCaptchaSuccess] = useState(false);
+
     const onSubmit = async (e) => {
         e.preventDefault()
-        try {
-            await signIn(email, password)
-            navigate("/");
-        } catch (error) {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            setError(errorMessage)
-            console.log(errorCode, errorMessage);
+        if (isCaptchaSuccessful) {
+            setError('')
+            try {
+                await signIn(email, password)
+                navigate("/");
+            } catch (error) {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                setError(errorMessage)
+                console.log(errorCode, errorMessage);
+            }
+        } else {
+            setError('Please confirm you are not a robot before continuing');
         }
+        
        
     }
 
     const onSubmitWithGoogle = async () => {
+        setError('')
         try {
             await signInWithGoogle()
             navigate("/");
@@ -46,6 +57,10 @@ const SignIn = () => {
             setError(errorMessage)
             console.log(errorCode, errorMessage);
         }
+    }
+
+    const onRecaptchaChange = (value) => {
+        setIsCaptchaSuccess(true)
     }
  
     return(
@@ -80,6 +95,7 @@ const SignIn = () => {
                                 onChange={(e)=>setPassword(e.target.value)}
                             />
                         </InputContainerStyled>
+                        <Recaptcha data-size={'compact'} onChange={onRecaptchaChange}/>
                         {error!==''?<p>{error}</p>:null}
                         
                         <FormNavContainerStyled>
@@ -97,11 +113,17 @@ const SignIn = () => {
                                                 
                     </form>
                     
-                    <p className="text-sm text-white text-center">
+                    <p>
                         No account yet? {' '}
-                        <NavLink style={{color: 'white'}} to="/signup">
+                        <NavLinkWrapper to="/signup">
                             Sign up
-                        </NavLink>
+                        </NavLinkWrapper>
+                    </p>
+                    <p>
+                        Need password reset? {' '}
+                        <NavLinkWrapper to="/reset">
+                            Reset Password
+                        </NavLinkWrapper>
                     </p>                        
                 </FormContainerStyled>
             </FormSectionStyled>

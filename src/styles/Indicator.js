@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import { devices } from "../data/constants"
-import { activeColor, cardText, bg, cardBG } from './'
+import { activeColor, cardText, bg, cardBG, contrastText } from './'
 
 const lineAnim = keyframes`   
     0% {
@@ -124,7 +124,7 @@ export const ProgressBarStyled = styled.div`
 `;
 
 export const ProgressHeaderStyled = styled.h4`
-    color: white;
+    color: ${contrastText};
 `;
 
 export const ProgressHeaderSpanStyled = styled.span`

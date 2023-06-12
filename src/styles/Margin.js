@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import { devices } from "../data/constants";
+import { contrastText } from './';
 
 export const MarginContainerStyled = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
+    color: ${contrastText};
 `;
 
 export const LogoStyled = styled.img`
@@ -24,11 +25,13 @@ export const UserIconContainerStyled = styled.div`
     top: 20px;
     right: 20px;
     z-index: 99;
+    display: flex;
 `;
 
 export const UserContent = styled.span`
     font-size: 14px;
     margin: 0px 6px;
+    display: flex;
     z-index: 99;
     cursor: ${(props) => props.$disabled?'':'pointer'};
     pointer-events: ${(props) => props.$disabled?'none':''};

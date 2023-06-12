@@ -1,5 +1,6 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIconWrapper } from '../styles/Main';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { UserIconContainerStyled, UserContent, UsernameText } from '../styles/Margin';
 import { useNavigate } from 'react-router-dom'
@@ -16,8 +17,10 @@ function UserIcon(props) {
     }
     return (
         <UserIconContainerStyled>
-            <UserContent $disabled>
-                <FontAwesomeIcon icon={faUser} size={"sm"} color={'#fff'}/>
+            <UserContent onClick={() => navigate("/profile")}>
+                <FontAwesomeIconWrapper $theme={'light'}>
+                    <FontAwesomeIcon icon={faUser} size={"sm"} color={'inherit'} />
+                </FontAwesomeIconWrapper>
                 <UsernameText style={{marginLeft: '6px'}}>{props.user?props.user.email:'none'}</UsernameText>
             </UserContent>
             <UserContent onClick={handleLogOut}>Signout</UserContent>

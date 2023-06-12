@@ -1,7 +1,7 @@
 import React from 'react';
 import Form from './Form'
 import Response from './Response';
-import Loading from './Loading'
+import Loading from './Loading';
 import { TabContentContainerStyled, TabContentHeaderStyled, TabContentTextStyled, DividerStyled, TabContentShortTextStyled } from '../styles/Tabs'
 
 function Tab(props) {
@@ -9,7 +9,7 @@ function Tab(props) {
         <TabContentContainerStyled>
             {
                 props.tab.loading?
-                <Loading />:<></>
+                <Loading message={"Awaiting response from assistant.."}/>:<></>
             }
                 <div>
                     <TabContentHeaderStyled>{props.tab.title}</TabContentHeaderStyled>
