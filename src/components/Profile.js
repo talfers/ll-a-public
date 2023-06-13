@@ -3,7 +3,7 @@ import { useAuth } from '../hooks/useAuth';
 import { usePayments } from '../hooks/usePayments';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowCircleLeft, faUser } from '@fortawesome/free-solid-svg-icons'
-import { ProfileContainerStyled, ProfileContentContainerStyled, ProfileHeaderContainerStyled, ProfileHeaderStyled, ProfileTextStyled, SignOutButtonStyled, GoBackButtonStyled } from '../styles/Profile';
+import { ProfileContainerStyled, ProfileContentContainerStyled, ProfileHeaderContainerStyled, ProfileHeaderStyled, ProfileTextStyled, ActionButtonStyled, GoBackButtonStyled } from '../styles/Profile';
 import { FontAwesomeIconWrapper } from '../styles/Main';
 import { useNavigate } from 'react-router-dom'
 
@@ -49,8 +49,8 @@ const Profile = () => {
                 <ProfileTextStyled>Member since: {subscription?.current_period_start_date}</ProfileTextStyled>
                 <ProfileTextStyled>Renewal date: {subscription?.current_period_end_date}</ProfileTextStyled>
             </ProfileContentContainerStyled>
-            <SignOutButtonStyled onClick={() => manageSubscription(customer.stripeId)}>Manage Account</SignOutButtonStyled>
-            <SignOutButtonStyled onClick={() => logOut()}>Signout</SignOutButtonStyled>
+            <ActionButtonStyled onClick={() => manageSubscription(customer.stripeId)}>Manage Account</ActionButtonStyled>
+            <ActionButtonStyled onClick={() => logOut()}>Signout</ActionButtonStyled>
         </ProfileContainerStyled>
     )
 }

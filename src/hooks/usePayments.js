@@ -1,4 +1,5 @@
 import { createContext, useContext, useCallback } from 'react';
+import axios from 'axios';
 import db from '../config/firebase';
 import { collection, addDoc, onSnapshot, query, getDocs, where } from "firebase/firestore";
 import { loadStripe } from '@stripe/stripe-js';
@@ -28,13 +29,24 @@ export const PaymentsContextProvider = ({children}) => {
     })
   }
 
+  
   const manageSubscription = async (customerId) => {
-    // const stripe = await loadStripe(config.REACT_APP_STRIPE_SECRET_KEY);
-    // await stripe.billingPortal.sessions.create({
-    //   customer: customerId,
-    //   return_url: 'https://landlordassist.io/profiles'
-    // })
+    try {
+      let res = await axios.post('http://localhost:5000/manage', {
+        customer: customerId,
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
+      console.log(res);
+      window.location.href = res.data.url;
+    } catch(err) {
+      console.log(err.message);
+      alert(err.message)
+    }
   }
+
 
   const getCustomer = useCallback(async (email) => {
     const q = query(collection(db, "customers"), where("email", "==", email));
@@ -64,7 +76,6 @@ export const PaymentsContextProvider = ({children}) => {
     return tempSub
   }, [])
   
-
 
   return (
     <PaymentsContext.Provider value={{checkout, getCurrentPlan, getCustomer, manageSubscription}}>

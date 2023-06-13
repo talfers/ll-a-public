@@ -30,12 +30,12 @@ export const ProfileTextStyled = styled.div`
     }
 `;
 
-export const SignOutButtonStyled = styled.div`
+export const ActionButtonStyled = styled.div`
     cursor: pointer;
     padding: 4px 6px;
     border-radius: 4px;
     border: 1px solid ${cardText};
-    margin-left: 12px;
+    margin: 4px 0px 4px 12px;
     text-align: center;
 `;
 
