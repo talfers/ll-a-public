@@ -1,6 +1,6 @@
 import { createContext, useContext, useCallback } from 'react';
 import db from '../config/firebase';
-import { collection, addDoc, onSnapshot, query, getDocs } from "firebase/firestore";
+import { collection, addDoc, onSnapshot, query, getDocs, where } from "firebase/firestore";
 import { loadStripe } from '@stripe/stripe-js';
 import config from '../config';
 
@@ -28,13 +28,31 @@ export const PaymentsContextProvider = ({children}) => {
     })
   }
 
+  const manageSubscription = async (customerId) => {
+    // const stripe = await loadStripe(config.REACT_APP_STRIPE_SECRET_KEY);
+    // await stripe.billingPortal.sessions.create({
+    //   customer: customerId,
+    //   return_url: 'https://landlordassist.io/profiles'
+    // })
+  }
+
+  const getCustomer = useCallback(async (email) => {
+    const q = query(collection(db, "customers"), where("email", "==", email));
+    const querySnapshot = await getDocs(q);
+    let tempCustomer = {}
+    querySnapshot.forEach(async (d) => {
+      tempCustomer = d.data();
+    })
+    return tempCustomer;
+    
+  }, [])
+
 
   const getCurrentPlan = useCallback(async (userId) => {
     const q = query(collection(db, "customers", userId, "subscriptions"));
     const querySnapshot = await getDocs(q);
     let tempSub = {}
     querySnapshot.forEach(async (sub) => {
-      console.log(sub.data());
       tempSub.role = sub.data().role
       tempSub.plan = sub.data().items.slice(-1)[0]
       tempSub.status = sub.data().status
@@ -49,7 +67,7 @@ export const PaymentsContextProvider = ({children}) => {
 
 
   return (
-    <PaymentsContext.Provider value={{checkout, getCurrentPlan}}>
+    <PaymentsContext.Provider value={{checkout, getCurrentPlan, getCustomer, manageSubscription}}>
       {children}
     </PaymentsContext.Provider>
   )

@@ -11,17 +11,22 @@ import { useNavigate } from 'react-router-dom'
 const Profile = () => { 
     const navigate = useNavigate();
     const { user, logOut } = useAuth();
-    const { getCurrentPlan } = usePayments();
-    const [subscription, setSubscription] = useState(null)
+    const { getCurrentPlan, getCustomer, manageSubscription } = usePayments();
+    const [subscription, setSubscription] = useState(null);
+    const [customer, setCustomer] = useState(null);
 
     useEffect(() => {
-        const getPlan = async () => {
+        const getDetails = async () => {
             let sub = await getCurrentPlan(user.uid);
             setSubscription(sub)
+            let cust = await getCustomer(user.email);
+            setCustomer(cust)
         }
-        getPlan()
-    }, [user.uid, getCurrentPlan])
+        getDetails()
+    }, [user.uid, getCurrentPlan, user.email, getCustomer])
     
+    
+
     return (
         <ProfileContainerStyled>
             
@@ -44,6 +49,7 @@ const Profile = () => {
                 <ProfileTextStyled>Member since: {subscription?.current_period_start_date}</ProfileTextStyled>
                 <ProfileTextStyled>Renewal date: {subscription?.current_period_end_date}</ProfileTextStyled>
             </ProfileContentContainerStyled>
+            <SignOutButtonStyled onClick={() => manageSubscription(customer.stripeId)}>Manage Account</SignOutButtonStyled>
             <SignOutButtonStyled onClick={() => logOut()}>Signout</SignOutButtonStyled>
         </ProfileContainerStyled>
     )
