@@ -1,5 +1,4 @@
 import { createContext, useContext, useCallback } from 'react';
-import axios from 'axios';
 import db from '../config/firebase';
 import { collection, addDoc, onSnapshot, query, getDocs, where } from "firebase/firestore";
 import { loadStripe } from '@stripe/stripe-js';
@@ -30,21 +29,22 @@ export const PaymentsContextProvider = ({children}) => {
   }
 
   
-  const manageSubscription = async (customerId) => {
-    try {
-      let res = await axios.post('http://localhost:5000/manage', {
-        customer: customerId,
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      })
-      console.log(res);
-      window.location.href = res.data.url;
-    } catch(err) {
-      console.log(err.message);
-      alert(err.message)
-    }
+  const manageSubscription = async () => {
+    alert('feature not enabled yet')
+    // try {
+    //   let res = await axios.post('http://localhost:5000/manage', {
+    //     customer: customerId,
+    //   }, {
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     }
+    //   })
+    //   console.log(res);
+    //   window.location.href = res.data.url;
+    // } catch(err) {
+    //   console.log(err.message);
+    //   alert(err.message)
+    // }
   }
 
 

@@ -51,7 +51,6 @@ const SignUp = () => {
                 let user = await signUp(email, password);
                 await verificationEmail();
                 await loadCheckout(selectedPlan, user.uid)
-                setLoading(0)
             } catch (error) {
                 setLoading(0)
                 const errorCode = error.code;

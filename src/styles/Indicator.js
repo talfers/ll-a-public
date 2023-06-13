@@ -39,13 +39,13 @@ export const LoadingContentContainerStyled = styled.div`
     justify-content: center;
     border-radius: 8px;
     opacity: 0.95;
-    padding: 20px 14px;
+    padding: 30px 20px;
     margin: 0px 24px;
     text-align: center;
     z-index: 99;
     @media only screen and ${devices.md} {
         max-width: 60%;
-        padding: 16px 8px;
+        padding: 20px 12px;
         margin: 0px 12px; 
     }
 `;
