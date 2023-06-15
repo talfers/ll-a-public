@@ -45,7 +45,7 @@ export const InputStyled = styled.input`
 
 export const SelectStyled = styled.select`
     border-radius: 8px;
-    border: ${cardText} 1px solid;
+    border: ${cardText} 2px solid;
     padding: 6px;
     vertical-align:top;
     min-width: 100px;
@@ -60,7 +60,7 @@ export const SelectStyled = styled.select`
 
 export const TextAreaStyled = styled.textarea`
     border-radius: 8px;
-    border: ${cardText} 1px solid;
+    border: ${cardText} 2px solid;
     padding: 6px;
     vertical-align:top;
     font-family: ${ff};

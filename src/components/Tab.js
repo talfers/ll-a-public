@@ -16,7 +16,7 @@ function Tab(props) {
                     <TabContentTextStyled>{props.tab.text}</TabContentTextStyled>
                     <TabContentShortTextStyled>{props.tab.shortDescription}</TabContentShortTextStyled>
                     <div className='tabs__interaction__content'>
-                        <Form tab={props.tab} />
+                        <Form tab={props.tab}  customer={props.customer} subscription={props.subscription} />
                         <br></br>
                         <DividerStyled></DividerStyled>
                         <br></br>
