@@ -44,13 +44,8 @@ function Products(props) {
                 }
             </ProductsContainerStyled>
             <ButtonContainerStyled>
-                <PrimaryButtonStyled 
-                    onClick={() => {
-                        props.setSelectedPlan(props.selectedPlan);
-                        props.setShowPlans(0);
-                    }}
-                >
-                    Continue
+                <PrimaryButtonStyled onClick={props.onContinue}>
+                    {props.continueText}
                 </PrimaryButtonStyled>
             </ButtonContainerStyled>
             

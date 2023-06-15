@@ -26,6 +26,7 @@ export const LoadingContainerStyled = styled.div`
     width: 100%;
     height: 100%;
     display: flex;
+    z-index: 999;
     flex-direction: column;
     align-items: center;
     justify-content: center;
