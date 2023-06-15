@@ -11,10 +11,6 @@ import {
     InputContainerStyled, 
     InputStyled, 
     LabelStyled, 
-    GoogleButtonStyled, 
-    GoogleButtonContainerStyled,
-    OrContainerStyled,
-    HrStyled,
     PlansButton,
     PlanViewContainerStyled,
 } from '../styles/Form';
@@ -24,7 +20,7 @@ import Products from './Products';
 
 
 const SignUp = () => {
-    const { signUp, signInWithGoogle, verificationEmail } = useAuth();
+    const { signUp, verificationEmail } = useAuth();
     const { checkout } = usePayments();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
@@ -64,22 +60,6 @@ const SignUp = () => {
         }
     }
 
-    const onSubmitWithGoogle = async () => {
-        setError('')
-        setLoading(1)
-        try {
-            let user = await signInWithGoogle()
-            await verificationEmail()
-            await loadCheckout(selectedPlan, user.uid)
-            setLoading(0)
-        } catch (error) {
-            setLoading(0)
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            setError(errorMessage)
-            console.log(errorCode, errorMessage);
-        }
-    }
 
     const onRecaptchaChange = (value) => {
         setIsCaptchaSuccess(true)
@@ -152,11 +132,7 @@ const SignUp = () => {
                         >  
                             Sign up                                
                         </PrimaryButtonStyled>
-                    </FormNavContainerStyled>
-                    <OrContainerStyled><HrStyled/><p>OR</p><HrStyled/></OrContainerStyled>
-                    <GoogleButtonContainerStyled>
-                        <GoogleButtonStyled onClick={onSubmitWithGoogle}>Continue with Google</GoogleButtonStyled>
-                    </GoogleButtonContainerStyled>                                     
+                    </FormNavContainerStyled>                               
                 </form>
                 
                 <p>

@@ -55,7 +55,7 @@ const Profile = () => {
                     
                 }
             </ProfileContentContainerStyled>
-            <ActionButtonStyled onClick={() => manageSubscription()}>Manage Account</ActionButtonStyled>
+            <ActionButtonStyled onClick={() => manageSubscription(customer)}>Manage Account</ActionButtonStyled>
             <ActionButtonStyled onClick={() => logOut()}>Signout</ActionButtonStyled>
         </ProfileContainerStyled>
     )
