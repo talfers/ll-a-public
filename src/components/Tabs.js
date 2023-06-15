@@ -25,7 +25,7 @@ function Tabs(props) {
                     onNavClick={setActiveTab}
                     activeTabId={activeTabId}
                 />
-            <Tab tab={activeTab} />
+            <Tab tab={activeTab} customer={props.customer} subscription={props.subscription} />
         </div>
     );
 }

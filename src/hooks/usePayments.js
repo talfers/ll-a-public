@@ -30,7 +30,7 @@ export const PaymentsContextProvider = ({children}) => {
 
   
   const manageSubscription = async () => {
-    alert('feature not enabled yet')
+    alert('Feature under construction')
     // try {
     //   let res = await axios.post('http://localhost:5000/manage', {
     //     customer: customerId,

@@ -39,7 +39,7 @@ function Response(props) {
             {props.tab.response!==''?
                 <ResponseHeaderStyled>
                     <ResponseTitleStyled>Assistant Response</ResponseTitleStyled>
-                    {snack!==''?<CopySnack $size={showSnack.includes('Downloaded')?172:96}><FontAwesomeIcon icon={faCheck} size={"lg"} color={'green'}/>{snack}</CopySnack>:<></>}
+                    {snack!==''?<CopySnack $size={snack.includes('Downloaded')?172:96}><FontAwesomeIcon icon={faCheck} size={"lg"} color={'green'}/>{snack}</CopySnack>:<></>}
                     <ResponseActionButtonsContainerStyled>
                         <ResponseButtonStyled onClick={() => {
                             navigator.clipboard.writeText(props.tab.response)
