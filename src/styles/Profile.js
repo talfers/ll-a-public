@@ -11,6 +11,7 @@ export const ProfileContentContainerStyled = styled.div`
     text-align: left;
     margin-bottom: 20px;
     margin-top: 24px;
+    padding: 20px;
 `;
 
 export const ProfileHeaderContainerStyled = styled.div`

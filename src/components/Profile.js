@@ -3,7 +3,7 @@ import plans from '../data/plans';
 import { useAuth } from '../hooks/useAuth';
 import { usePayments } from '../hooks/usePayments';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowCircleLeft, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faArrowCircleLeft, faUser, faCircle } from '@fortawesome/free-solid-svg-icons'
 import { ProfileContainerStyled, ProfileContentContainerStyled, ProfileHeaderContainerStyled, ProfileHeaderStyled, ProfileTextStyled, ActionButtonStyled, GoBackButtonStyled } from '../styles/Profile';
 import { FontAwesomeIconWrapper, ModalBackgroundStyled } from '../styles/Main';
 import { useNavigate } from 'react-router-dom'
@@ -83,12 +83,12 @@ const Profile = () => {
                     <FontAwesomeIconWrapper $theme={'light'}>
                         <FontAwesomeIcon icon={faUser} size={"xl"} color={'inherit'} />
                     </FontAwesomeIconWrapper>
-                    <ProfileHeaderStyled>{user.email}</ProfileHeaderStyled>
+                    <ProfileHeaderStyled>{user.email.length>20?`${user.email.slice(0,20)}..`:user.email}</ProfileHeaderStyled>
                 </ProfileHeaderContainerStyled>
                 
                 {   subscription?.status?
                     <>
-                        <ProfileTextStyled>Status: <span style={{color: subscription?.status==='active'?'green':'red'}}>{subscription?.status.charAt(0).toUpperCase() + subscription?.status.slice(1)}</span></ProfileTextStyled>
+                        <ProfileTextStyled>Status: <FontAwesomeIcon icon={faCircle} size={"xs"} color={subscription?.status==='active'?'green':'red'} /> <span style={{color: subscription?.status==='active'?'green':'red'}}>{subscription?.status.charAt(0).toUpperCase() + subscription?.status.slice(1)}</span></ProfileTextStyled>
                         <ProfileTextStyled>Plan: ${subscription?.plan.price.unit_amount/100} / {subscription?.plan.plan.interval}</ProfileTextStyled>
                         <ProfileTextStyled>Member since: {subscription?.current_period_start_date}</ProfileTextStyled>
                         <ProfileTextStyled>Renewal date: {subscription?.current_period_end_date}</ProfileTextStyled>
