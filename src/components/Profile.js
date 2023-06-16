@@ -1,26 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import plans from '../data/plans';
+import React from 'react';
 import { useAuth } from '../hooks/useAuth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowCircleLeft, faUser, faCircle } from '@fortawesome/free-solid-svg-icons'
+import { faArrowCircleLeft, faUser } from '@fortawesome/free-solid-svg-icons'
 import { ProfileContainerStyled, ProfileContentContainerStyled, ProfileHeaderContainerStyled, ProfileHeaderStyled, ProfileTextStyled, ActionButtonStyled, GoBackButtonStyled } from '../styles/Profile';
-import { FontAwesomeIconWrapper, ModalBackgroundStyled } from '../styles/Main';
+import { FontAwesomeIconWrapper } from '../styles/Main';
 import { useNavigate } from 'react-router-dom'
-import Loading from './Loading';
-import Products from './Products';
-import { PlanViewContainerStyled, PlansButton } from '../styles/Form';
 
 
 const Profile = () => { 
     const navigate = useNavigate();
     const { user, logOut } = useAuth();
-    const { getCurrentPlan, getCustomer, manageSubscription, checkout } = usePayments();
+    const { getCurrentPlan, getCustomer, manageSubscription } = usePayments();
     const [subscription, setSubscription] = useState(null);
     const [customer, setCustomer] = useState(null);
-    const [showPlans, setShowPlans] = useState(0);
-    const [selectedPlan, setSelectedPlan] = useState(plans[0].prices.priceId);
-    const [loading, setLoading] = useState(0);
-    const [error, setError] = useState('');
 
     useEffect(() => {
         const getDetails = async () => {
@@ -32,84 +24,44 @@ const Profile = () => {
         getDetails()
     }, [user.uid, getCurrentPlan, user.email, getCustomer])
     
-
-    const loadCheckout = async (e) => {
-        e.preventDefault()
-        setError('')
-        setLoading(1)
-        try {
-            await checkout(selectedPlan, user.uid, '/profile', '/profile' )
-        } catch (error) {
-            setLoading(0)
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            setError(errorMessage)
-            console.log(errorCode, errorMessage);
-        }
+    const loadCheckout = async (priceId, userId) => {
+        alert('Feature under construction')
     }
 
     return (
         <ProfileContainerStyled>
-            {
-                loading?
-                <Loading message={"Loading..."}/>
-                :null
-            }
             
-            {
-                showPlans===1?
-                <ModalBackgroundStyled>
-                    <Products
-                    plans={plans} 
-                    setShowPlans={setShowPlans} 
-                    selectedPlan={selectedPlan} 
-                    setSelectedPlan={setSelectedPlan}
-                    onContinue={loadCheckout}
-                    continueText={'Continue to Pay'}
-                    />
-                </ModalBackgroundStyled>
-                :
-                null
-            } 
             <GoBackButtonStyled onClick={() => {navigate(-1)}}>
-                <FontAwesomeIconWrapper>
+                <FontAwesomeIconWrapper $theme={'light'}>
                     <FontAwesomeIcon icon={faArrowCircleLeft} size={"xl"} color={'inherit'} />
                 </FontAwesomeIconWrapper>
                 <span style={{marginLeft:'4px'}}><strong>Go Back</strong></span>
             </GoBackButtonStyled>
             <ProfileContentContainerStyled>
                 <ProfileHeaderContainerStyled>
-                    <FontAwesomeIconWrapper>
+                    <FontAwesomeIconWrapper $theme={'light'}>
                         <FontAwesomeIcon icon={faUser} size={"xl"} color={'inherit'} />
                     </FontAwesomeIconWrapper>
-                    <ProfileHeaderStyled>{user.email.length>20?`${user.email.slice(0,20)}..`:user.email}</ProfileHeaderStyled>
+                    <ProfileHeaderStyled>{user.email}</ProfileHeaderStyled>
                 </ProfileHeaderContainerStyled>
                 
                 {   subscription?.status?
                     <>
-
-                        <ProfileTextStyled>Status: <FontAwesomeIcon icon={faCircle} size={"xs"} color={subscription?.status==='active'?'green':'red'} /> <span style={{color: subscription?.status==='active'?'green':'red'}}>{subscription?.status.charAt(0).toUpperCase() + subscription?.status.slice(1)}</span></ProfileTextStyled>
-                        <ProfileTextStyled>Plan: ${subscription?.plan.price.unit_amount/100} / {subscription?.plan.plan.interval}</ProfileTextStyled>
-                        <ProfileTextStyled>Member since: {subscription?.current_period_start_date}</ProfileTextStyled>
-                        <ProfileTextStyled>Renewal date: {subscription?.current_period_end_date}</ProfileTextStyled>
-                        <ActionButtonStyled onClick={() => manageSubscription(customer)}>Manage Account</ActionButtonStyled>
-
-
+                        <ProfileTextStyled>Status: <span style={{color: user.plan?.status==='active'?'green':'red'}}>{user.plan?.status.charAt(0).toUpperCase() + user.plan?.status.slice(1)}</span></ProfileTextStyled>
+                        <ProfileTextStyled>Plan: ${user.plan?.plan.price.unit_amount/100} / {user.plan?.plan.plan.interval}</ProfileTextStyled>
+                        <ProfileTextStyled>Member since: {user.plan?.current_period_start_date}</ProfileTextStyled>
+                        <ProfileTextStyled>Renewal date: {user.plan?.current_period_end_date}</ProfileTextStyled>
                     </>:
                     subscription===null?
                     <div>loading...</div>:
                     <div>
                         <p>Please pay for an account before talking to the assistant</p>
-                        {error!==''?<p>{error}</p>:null}
-                        <PlanViewContainerStyled>
-                            Selected Plan: {plans.filter(p => p.prices.priceId === selectedPlan)[0].name}
-                            {'  '}${plans.filter(p => p.prices.priceId === selectedPlan)[0].prices.priceData.unit_amount/100}
-                            <PlansButton onClick={() => setShowPlans(1)}>Show plans</PlansButton>
-                        </PlanViewContainerStyled>
+                        <ActionButtonStyled onClick={() => loadCheckout()}>Pay Now</ActionButtonStyled>
                     </div>
                     
                 }
             </ProfileContentContainerStyled>
+            <ActionButtonStyled onClick={() => manageSubscription(customer)}>Manage Account</ActionButtonStyled>
             <ActionButtonStyled onClick={() => logOut()}>Signout</ActionButtonStyled>
         </ProfileContainerStyled>
     )

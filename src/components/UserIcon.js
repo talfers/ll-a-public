@@ -19,7 +19,7 @@ function UserIcon(props) {
     return (
         <UserIconContainerStyled>
             <UserContent onClick={() => navigate("/profile")}>
-                <FontAwesomeIconWrapper>
+                <FontAwesomeIconWrapper $theme={'light'}>
                     <FontAwesomeIcon icon={faUser} size={"sm"} color={'inherit'} />
                 </FontAwesomeIconWrapper>
                 <UsernameText style={{marginLeft: '6px'}}>{props.user?props.user.email:'none'}</UsernameText>

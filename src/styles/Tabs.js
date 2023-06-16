@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { devices } from "../data/constants";
+import { cardText, cardBG, paragraph, headline } from '.';
 
 
 export const TabsContainerStyled = styled.div`
@@ -9,18 +10,18 @@ export const TabsContainerStyled = styled.div`
 
 export const TabContentContainerStyled = styled.div`
     padding: 30px;
-    color: ${({ theme }) => theme.colors.paragraph};
+    color: ${paragraph};
     font-family: inherit;
     font-weight: 400;
     font-size: 16px;
     line-height: 1.4;
     border-radius: 8px;
-    background: ${({ theme }) => theme.colors.cardBG};
+    background: ${cardBG};
     min-height: 400px;
 `;
 
 export const TabContentHeaderStyled = styled.h3`
-    color: ${({ theme }) => theme.colors.headline};
+    color: ${headline};
     font-weight: 700;
     font-family: inherit;
     font-size: 24px;
@@ -42,5 +43,5 @@ export const TabContentShortTextStyled = styled.p`
 `;
 
 export const DividerStyled = styled.hr`
-    border: 1px solid ${({ theme }) => theme.colors.cardText};
+    border: 1px solid ${cardText};
 `;

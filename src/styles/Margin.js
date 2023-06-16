@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 import { devices } from "../data/constants";
-import * as theme from "./Theme";
-
+import { contrastText } from './';
 
 export const MarginContainerStyled = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    color: ${({ theme }) => theme.colors.contrastText};
+    color: ${contrastText};
 `;
 
 export const LogoStyled = styled.img`
@@ -46,49 +45,4 @@ export const UsernameText = styled.span`
     @media only screen and ${devices.md} {
         display: none;
     }
-`;
-
-
-export const ThemeToggleContainer = styled.div`
-    height: 30px;
-    width: 64px;
-    background: ${theme.dark.colors.cardText};
-    position: absolute;
-    left: 20px;
-    top: 20px;
-    border-radius: 30px;
-    cursor: pointer;
-    @media only screen and ${devices.md} {
-        display: ${(props) => props.$mobile?'block':'none'};
-        
-    }
-`;
-
-export const ThemeToggleBall = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 30px;
-    width: 30px;
-    border-radius: 30px;
-    background: ${theme.dark.colors.cardBG};
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: ${({ theme }) => theme.colors.themeToggleTranslate};
-    transition: all 0.5s ease;
-`;
-
-export const ThemeIcons = styled.div`
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-`;
-
-export const ThemeImage = styled.i`
-    height: 20px;
-    width: 20px;
-    color: ${({ theme }) => theme.colors.themeToggleContrast};
 `;

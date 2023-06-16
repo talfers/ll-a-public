@@ -1,5 +1,6 @@
 import styled, { keyframes } from 'styled-components';
-import { devices } from "../data/constants";
+import { devices } from "../data/constants"
+import { activeColor, cardText, bg, cardBG, contrastText } from './'
 
 const lineAnim = keyframes`   
     0% {
@@ -25,14 +26,13 @@ export const LoadingContainerStyled = styled.div`
     width: 100%;
     height: 100%;
     display: flex;
-    z-index: 999;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 `;
 
 export const LoadingContentContainerStyled = styled.div`
-    background: ${({ theme }) => theme.colors.cardBG};
+    background: ${cardBG};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -52,7 +52,7 @@ export const LoadingContentContainerStyled = styled.div`
 `;
 
 export const LoadingHeaderStyled = styled.h2`
-    color: ${({ theme }) => theme.colors.cardText};
+    color: ${cardText};
     opacity: 1;
     font-size: 24px;
     margin-bottom: 16px;
@@ -88,7 +88,7 @@ export const LoadingIndicatorStyled = styled.div`
         left: -50%;
         height: 3px;
         width: 40%;
-        background-color: ${({ theme }) => theme.colors.activeColor};
+        background-color: ${activeColor};
         -webkit-animation: ${lineAnim} 1s linear infinite;
         -moz-animation: ${lineAnim} 1s linear infinite;
         animation: ${lineAnim} 1s linear infinite;
@@ -107,7 +107,7 @@ export const ProgressContainerStyled = styled.div`
 `;
 
 export const ProgressBarOuterStyled = styled.div`
-    background: ${({ theme }) => theme.colors.cardText};
+    background: ${cardText};
     width: 75%;
     height: 8px;
     border-radius: 4px;
@@ -119,17 +119,17 @@ export const ProgressBarOuterStyled = styled.div`
 `;
 
 export const ProgressBarStyled = styled.div`
-    background: ${({ theme }) => theme.colors.bg};
+    background: ${bg};
     width: ${(props) => props.$progress?`${props.$progress*100}%`:'0%'};
     height: 8px;
     border-radius: 4px;
 `;
 
 export const ProgressHeaderStyled = styled.h4`
-    color: ${({ theme }) => theme.colors.contrastText};
+    color: ${contrastText};
 `;
 
 export const ProgressHeaderSpanStyled = styled.span`
-    color: ${({ theme }) => theme.colors.cardText};
+    color: ${cardText};
     margin-left: 8px;
 `;

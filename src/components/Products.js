@@ -21,7 +21,7 @@ function Products(props) {
         return props.plans.map((p, i) => (
             <ProductContainerStyled key={i} selected={props.selectedPlan===p.prices.priceId} onClick={() => {props.setSelectedPlan(p.prices.priceId)}}>
                 <IconContainerStyled>
-                    <FontAwesomeIconWrapper>
+                    <FontAwesomeIconWrapper $theme={'dark'}>
                        <FontAwesomeIcon icon={p.icon} size={"2xl"} color={'inherit'}/>
                     </FontAwesomeIconWrapper>
                 </IconContainerStyled>
@@ -44,8 +44,13 @@ function Products(props) {
                 }
             </ProductsContainerStyled>
             <ButtonContainerStyled>
-                <PrimaryButtonStyled onClick={props.onContinue}>
-                    {props.continueText}
+                <PrimaryButtonStyled 
+                    onClick={() => {
+                        props.setSelectedPlan(props.selectedPlan);
+                        props.setShowPlans(0);
+                    }}
+                >
+                    Continue
                 </PrimaryButtonStyled>
             </ButtonContainerStyled>
             
