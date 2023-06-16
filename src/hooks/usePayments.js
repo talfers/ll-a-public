@@ -9,11 +9,11 @@ const PaymentsContext = createContext()
 
 export const PaymentsContextProvider = ({children}) => {
 
-  const checkout = async (priceId, userId) => {
+  const checkout = async (priceId, userId, success_endpoint, cancel_endpoint) => {
     const docRef = await addDoc(collection(db, "customers", userId, "checkout_sessions"), {
         price: priceId,
-        success_url: 'https://landlordassist.io/thankyou',
-        cancel_url: 'https://landlordassist.io/signup'
+        success_url: `${config.REACT_APP_PROD_URL}${success_endpoint}`,
+        cancel_url: `${config.REACT_APP_PROD_URL}${cancel_endpoint}`,
     });
     
     onSnapshot(docRef, async (snap) => {

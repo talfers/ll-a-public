@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import plans from '../data/plans'
+import plans from '../data/plans';
 import { useAuth } from '../hooks/useAuth';
 import Loading from './Loading';
 import Recaptcha from './Recaptcha';
@@ -39,7 +39,12 @@ const SignUp = () => {
     }, [setShowPlans])
 
     const loadCheckout = async (priceId, userId) => {
-        await checkout(priceId, userId)
+        await checkout(priceId, userId, '/thankyou', '/signup' )
+    }
+
+    const onContinue = () => {
+        setSelectedPlan(selectedPlan);
+        setShowPlans(0)
     }
 
     const onSubmit = async (e) => {
@@ -101,7 +106,9 @@ const SignUp = () => {
                 plans={plans} 
                 setShowPlans={setShowPlans} 
                 selectedPlan={selectedPlan} 
-                setSelectedPlan={setSelectedPlan} 
+                setSelectedPlan={setSelectedPlan}
+                onContinue={onContinue}
+                continueText={'Continue'}
                 />
             </ModalBackgroundStyled>
             :

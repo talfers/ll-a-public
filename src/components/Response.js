@@ -44,21 +44,21 @@ function Response(props) {
                         <ResponseButtonStyled onClick={() => {
                             navigator.clipboard.writeText(props.tab.response)
                             showSnack('Copied!')}}>
-                            <FontAwesomeIconWrapper $theme={'light'}>
+                            <FontAwesomeIconWrapper>
                                 <FontAwesomeIcon icon={faCopy} size={"lg"} color={'inherit'}/>
                             </FontAwesomeIconWrapper>
                         </ResponseButtonStyled>
                         <ResponseButtonStyled onClick={() => {
                             downloadFile('docx', 'response', props.tab.shortName)
                             showSnack('Doc Downloaded!')}}>
-                            <FontAwesomeIconWrapper $theme={'light'}>
+                            <FontAwesomeIconWrapper>
                                 <FontAwesomeIcon icon={faFileWord} size={"lg"} color={'inherit'}/>
                             </FontAwesomeIconWrapper> 
                         </ResponseButtonStyled>
                         <ResponseButtonStyled onClick={() => {
                             downloadFile('pdf', 'response', props.tab.shortName)
                             showSnack('PDF Downloaded!')}}>
-                            <FontAwesomeIconWrapper $theme={'light'}>
+                            <FontAwesomeIconWrapper>
                                 <FontAwesomeIcon icon={faFilePdf} size={"lg"} color={'inherit'}/>
                             </FontAwesomeIconWrapper>
                         </ResponseButtonStyled>

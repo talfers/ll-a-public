@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { devices } from "../data/constants";
-import { ff, cardText, bg } from './'
+
 
 export const ResponseContainerStyled = styled.div`
-    font-family: ${ff};
+    font-family: ${({ theme }) => theme.colors.ff};
     padding: 16px;
     flex: 1;
     display: flex;
@@ -35,7 +35,7 @@ export const ResponseActionButtonsContainerStyled = styled.div`
 `;
 
 export const ResponseButtonStyled = styled.div`
-    background-color: ${bg};
+    background-color: ${({ theme }) => theme.colors.bg};
     padding: 6px;
     border-radius: 4px;
     font-size: 20px;
@@ -71,8 +71,8 @@ export const ResponseItem = styled.div`
 
 export const CopySnack = styled.span`
     padding: 10px;
-    background-color: ${cardText};
-    color: ${bg};
+    background-color: ${({ theme }) => theme.colors.cardText};
+    color: ${({ theme }) => theme.colors.bg};
     border-radius: 4px;
     position: absolute;
     width: ${props => props.$size?`${props.$size}px`:''};
