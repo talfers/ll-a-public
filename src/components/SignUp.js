@@ -10,10 +10,6 @@ import {
     InputContainerStyled, 
     InputStyled, 
     LabelStyled, 
-    GoogleButtonStyled, 
-    GoogleButtonContainerStyled,
-    OrContainerStyled,
-    HrStyled,
     PlansButton,
     PlanViewContainerStyled,
     FormErrorStyled
@@ -24,7 +20,12 @@ import Products from './Products';
 
 
 const SignUp = () => {
+<<<<<<< HEAD
     const { signUp, signUpWithGoogle, verificationEmail, checkout } = useAuth();
+=======
+    const { signUp, verificationEmail } = useAuth();
+    const { checkout } = usePayments();
+>>>>>>> bb2c412bda6561f6ba185bcc4b7ad284e5bfd9cd
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
     const [error, setError] = useState('')
@@ -63,6 +64,7 @@ const SignUp = () => {
         }
     }
 
+<<<<<<< HEAD
     const onSubmitWithGoogle = async () => {
         setError('')
         setLoading(1)
@@ -77,6 +79,8 @@ const SignUp = () => {
             console.log(errorCode, errorMessage);
         }
     }
+=======
+>>>>>>> bb2c412bda6561f6ba185bcc4b7ad284e5bfd9cd
 
     const onRecaptchaChange = (value) => {
         setIsCaptchaSuccess(true)
@@ -150,11 +154,7 @@ const SignUp = () => {
                         >  
                             Sign up                                
                         </PrimaryButtonStyled>
-                    </FormNavContainerStyled>
-                    <OrContainerStyled><HrStyled/><p>OR</p><HrStyled/></OrContainerStyled>
-                    <GoogleButtonContainerStyled>
-                        <GoogleButtonStyled onClick={onSubmitWithGoogle}>Continue with Google</GoogleButtonStyled>
-                    </GoogleButtonContainerStyled>                                     
+                    </FormNavContainerStyled>                               
                 </form>
                 
                 <p>

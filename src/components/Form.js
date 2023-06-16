@@ -11,13 +11,17 @@ function Form(props) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        resetResponse(props.tab.id)
-        const elem = document.getElementById("response");
-        updateLoading(props.tab.id, true)
-        elem.scrollIntoView();
-        await postTaskData(props.tab)
-        updateLoading(props.tab.id, false)
-        elem.scrollIntoView();
+        if(props.subscription?.status==='active') {
+            resetResponse(props.tab.id)
+            const elem = document.getElementById("response");
+            updateLoading(props.tab.id, true)
+            elem.scrollIntoView();
+            await postTaskData(props.tab)
+            updateLoading(props.tab.id, false)
+            elem.scrollIntoView();
+        } else {
+            alert('Please pay for an account before talking to the assistant');
+        }
     }
 
     const createInputs = () => {

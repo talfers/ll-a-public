@@ -11,14 +11,14 @@ import ThankYou from './components/ThankYou';
 import VerifyEmail from './components/VerifyEmail';
 import ResetPassword from './components/ResetPassword';
 import ResetPasswordMessage from './components/ResetPasswordMessage';
-import Products from './components/Products';
 import MainScreen from './components/MainScreen';
-import { Routes, Route} from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 
 function App() {
   return (
       <AuthContextProvider>
+<<<<<<< HEAD
           <TaskProvider>
               <div className="App">
                 <Header/>
@@ -36,6 +36,28 @@ function App() {
                 <Footer/>
               </div>
           </TaskProvider>
+=======
+        <PaymentsContextProvider>
+          <ThemeContextProvider>
+            <TaskProvider>
+                <div className="App">
+                  <Header/>
+                  <Routes>
+                    <Route path="/signin" element={<RedirectRoute><SignIn/></RedirectRoute>} />
+                    <Route path="/signup" element={<RedirectRoute><SignUp/></RedirectRoute>} />
+                    <Route path="/reset" element={<ResetPassword/>} />
+                    <Route path="/resetsent" element={<ResetPasswordMessage/>} />
+                    <Route path="/thankyou" element={<RedirectRoute><ThankYou/></RedirectRoute>}/>
+                    <Route path="/verifyemail" element={<RedirectRoute><VerifyEmail/></RedirectRoute>}/>
+                    <Route path="/" element={<ProtectedRoute><MainScreen/></ProtectedRoute>} />
+                    <Route path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>} />
+                  </Routes>
+                  <Footer/>
+                </div>
+            </TaskProvider>
+          </ThemeContextProvider>
+        </PaymentsContextProvider>
+>>>>>>> bb2c412bda6561f6ba185bcc4b7ad284e5bfd9cd
       </AuthContextProvider>
       
   );
