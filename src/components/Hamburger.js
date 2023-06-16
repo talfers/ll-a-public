@@ -35,7 +35,6 @@ function Hamburger(props) {
             {
                 menuOpen===1?
                 <MenuContainerStyled $open={menuOpen}>
-                    
                     <MenuListStyled $open={menuOpen}>
                     {props.tabs.map((item, i) => (
                         <div key={i}>

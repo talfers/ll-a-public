@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { devices } from "../data/constants";
 import { NavLink } from 'react-router-dom';
+import { cardBG, cardText, contrastText, headline } from './'
 
 export const ContainerStyled = styled.div`
     display: flex;
@@ -12,20 +13,20 @@ export const ContainerStyled = styled.div`
     text-align: center;
     margin: 0 auto;
     padding: 20px;
-    background: ${({ theme }) => theme.colors.cardBG};
+    background: ${cardBG};
     border-radius: 12px;
-    color: ${({ theme }) => theme.colors.cardText};
+    color: ${cardText};
 `;
 
 export const ParagraphStyled = styled.p`
-    color: ${({ theme }) => theme.colors.cardText};
+    color: ${cardText};
     @media only screen and ${devices.md} {
         
     }
 `;
 
 export const ContentHeaderStyled = styled.h1`
-    color: ${({ theme }) => theme.colors.headline};
+    color: ${headline};
     font-weight: 700;
     font-family: inherit;
     font-size: 36px;
@@ -36,20 +37,20 @@ export const ContentHeaderStyled = styled.h1`
 `;
 
 export const NavLinkWrapper = styled(NavLink)`
-    color: ${({ theme }) => theme.colors.contrastText};
+    color: ${contrastText};
 `;
 
 export const FontAwesomeIconWrapper = styled.div`
-    color: ${({ theme }) => theme.colors.contrastText};
+    color: ${props => props.$theme==='light'?contrastText:cardText};
 `;
 
 export const ModalBackgroundStyled = styled.div`
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
     left: 0;
+    bottom: 0;
     width: 100%;
-    height: 100%;
     background: rgba(0,0,0,0.3);
     display: flex;
     align-items: center;

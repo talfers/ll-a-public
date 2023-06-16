@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 import { devices } from "../data/constants";
+import { cardText, activeColor, ff, cardBG, bg, contrastText, boxShadow } from './';
 
 export const FormSectionStyled = styled.section`
     width: 60%;
-    background: ${({ theme }) => theme.colors.cardBG};
+    background: ${cardBG};
     border-radius: 12px;
     margin: 0 auto;
-    color: ${({ theme }) => theme.colors.cardText};
+    color: ${cardText};
     max-width: 600px;
-    box-shadow: ${({ theme }) => theme.colors.boxShadow};
+    box-shadow: ${boxShadow};
     @media only screen and ${devices.md} {
         width: 80%;
     }
@@ -30,43 +31,43 @@ export const InputContainerStyled = styled.div`
 
 export const InputStyled = styled.input`
     border-radius: 8px;
-    border: ${({ theme }) => theme.colors.cardText} 2px solid;
+    border: ${cardText} 2px solid;
     padding: 6px;
     vertical-align:top;
-    font-family: ${({ theme }) => theme.colors.ff};
+    font-family: ${ff};
     
     &:focus {
         outline: none !important;
-        border: 2px solid ${({ theme }) => theme.colors.activeColor};
+        border: 2px solid ${activeColor};
         /* box-shadow: 0 0 10px lightgray; */
     }
 `;
 
 export const SelectStyled = styled.select`
     border-radius: 8px;
-    border: ${({ theme }) => theme.colors.cardText} 2px solid;
+    border: ${cardText} 2px solid;
     padding: 6px;
     vertical-align:top;
     min-width: 100px;
-    font-family: ${({ theme }) => theme.colors.ff};
+    font-family: ${ff};
 
     &:focus {
         outline: none !important;
-        border: 2px solid ${({ theme }) => theme.colors.activeColor};
+        border: 2px solid ${activeColor};
         /* box-shadow: 0 0 10px lightgray; */
     }
 `;
 
 export const TextAreaStyled = styled.textarea`
     border-radius: 8px;
-    border: ${({ theme }) => theme.colors.cardText} 2px solid;
+    border: ${cardText} 2px solid;
     padding: 6px;
     vertical-align:top;
-    font-family: ${({ theme }) => theme.colors.ff};
+    font-family: ${ff};
 
     &:focus {
         outline: none !important;
-        border: 2px solid ${({ theme }) => theme.colors.activeColor};
+        border: 2px solid ${activeColor};
         /* box-shadow: 0 0 10px lightgray; */
     }
     height: 100px;
@@ -78,7 +79,7 @@ export const LabelStyled = styled.label`
 `;
 
 export const FormContainerStyled = styled.div`
-    font-family: ${({ theme }) => theme.colors.ff};
+    font-family: ${ff};
     padding: 16px;
     flex: 1;
 `;
@@ -121,7 +122,7 @@ export const OrContainerStyled = styled.div`
 
 export const HrStyled = styled.hr`
     height: 1.25px;
-    background: ${({ theme }) => theme.colors.bg};
+    background: ${bg};
     width: 100px;
     margin: 0px 12px;
 `;
@@ -130,7 +131,7 @@ export const PlansButton = styled.div`
     cursor: pointer;
     padding: 4px 6px;
     border-radius: 4px;
-    border: 1px solid ${({ theme }) => theme.colors.cardText};
+    border: 1px solid ${cardText};
     margin-left: 12px;
     text-align: center;
 `;
@@ -159,7 +160,7 @@ export const GoogleButtonStyled = styled.div`
     align-items: center;
     justify-content: center;
     background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=);
-    background-color: ${({ theme }) => theme.colors.contrastText};
+    background-color: ${contrastText};
     background-repeat: no-repeat;
     background-position: 12px 11px;
 
