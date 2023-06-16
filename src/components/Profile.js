@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useAuth } from '../hooks/useAuth';
-import { usePayments } from '../hooks/usePayments';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowCircleLeft, faUser } from '@fortawesome/free-solid-svg-icons'
 import { ProfileContainerStyled, ProfileContentContainerStyled, ProfileHeaderContainerStyled, ProfileHeaderStyled, ProfileTextStyled, ActionButtonStyled, GoBackButtonStyled } from '../styles/Profile';
@@ -10,23 +9,9 @@ import { useNavigate } from 'react-router-dom'
 
 const Profile = () => { 
     const navigate = useNavigate();
-    const { user, logOut } = useAuth();
-    const { getCurrentPlan, getCustomer, manageSubscription } = usePayments();
-    const [subscription, setSubscription] = useState(null);
-    const [customer, setCustomer] = useState(null);
-
-    useEffect(() => {
-        const getDetails = async () => {
-            let sub = await getCurrentPlan(user.uid);
-            setSubscription(sub)
-            let cust = await getCustomer(user.email);
-            setCustomer(cust)
-        }
-        getDetails()
-    }, [user.uid, getCurrentPlan, user.email, getCustomer])
+    const { user, logOut, manageSubscription } = useAuth();
+    console.log(user);
     
-    
-
     return (
         <ProfileContainerStyled>
             
@@ -44,12 +29,12 @@ const Profile = () => {
                     <ProfileHeaderStyled>{user.email}</ProfileHeaderStyled>
                 </ProfileHeaderContainerStyled>
                 
-                {   subscription?
+                {   user.plan?
                     <>
-                        <ProfileTextStyled>Status: <span style={{color: subscription?.status==='active'?'green':'red'}}>{subscription?.status.charAt(0).toUpperCase() + subscription?.status.slice(1)}</span></ProfileTextStyled>
-                        <ProfileTextStyled>Plan: ${subscription?.plan.price.unit_amount/100} / {subscription?.plan.plan.interval}</ProfileTextStyled>
-                        <ProfileTextStyled>Member since: {subscription?.current_period_start_date}</ProfileTextStyled>
-                        <ProfileTextStyled>Renewal date: {subscription?.current_period_end_date}</ProfileTextStyled>
+                        <ProfileTextStyled>Status: <span style={{color: user.plan?.status==='active'?'green':'red'}}>{user.plan?.status.charAt(0).toUpperCase() + user.plan?.status.slice(1)}</span></ProfileTextStyled>
+                        <ProfileTextStyled>Plan: ${user.plan?.plan.price.unit_amount/100} / {user.plan?.plan.plan.interval}</ProfileTextStyled>
+                        <ProfileTextStyled>Member since: {user.plan?.current_period_start_date}</ProfileTextStyled>
+                        <ProfileTextStyled>Renewal date: {user.plan?.current_period_end_date}</ProfileTextStyled>
                     </>:
                     <div>loading...</div>
                     

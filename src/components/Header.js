@@ -6,7 +6,7 @@ import { MarginContainerStyled, LogoStyled } from '../styles/Margin';
 
 function Header() {
     const { user, logOut } = useAuth();
-    
+    console.log(user);
     return (
         <MarginContainerStyled className='margin-container'>
             <LogoStyled src={logo} alt='logo'/>

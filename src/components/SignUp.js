@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import plans from '../data/plans'
 import { useAuth } from '../hooks/useAuth';
-import { usePayments } from '../hooks/usePayments';
 import Loading from './Loading';
 import Recaptcha from './Recaptcha';
 import { 
@@ -17,6 +16,7 @@ import {
     HrStyled,
     PlansButton,
     PlanViewContainerStyled,
+    FormErrorStyled
 } from '../styles/Form';
 import { PrimaryButtonStyled } from '../styles/Button';
 import { ModalBackgroundStyled, NavLinkWrapper } from '../styles/Main';
@@ -24,8 +24,7 @@ import Products from './Products';
 
 
 const SignUp = () => {
-    const { signUp, signInWithGoogle, verificationEmail } = useAuth();
-    const { checkout } = usePayments();
+    const { signUp, signUpWithGoogle, verificationEmail, checkout } = useAuth();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
     const [error, setError] = useState('')
@@ -48,7 +47,7 @@ const SignUp = () => {
             setError('')
             setLoading(1)
             try {
-                let user = await signUp(email, password);
+                let user = await signUp(email, password, selectedPlan);
                 await verificationEmail();
                 await loadCheckout(selectedPlan, user.uid)
             } catch (error) {
@@ -68,10 +67,8 @@ const SignUp = () => {
         setError('')
         setLoading(1)
         try {
-            let user = await signInWithGoogle()
-            await verificationEmail()
-            await loadCheckout(selectedPlan, user.uid)
-            setLoading(0)
+            let { user } = await signUpWithGoogle(selectedPlan, loadCheckout);
+            console.log("USER IN SIGNUP", user);
         } catch (error) {
             setLoading(0)
             const errorCode = error.code;
@@ -142,8 +139,9 @@ const SignUp = () => {
                         <PlansButton onClick={() => setShowPlans(1)}>Show plans</PlansButton>
                     </PlanViewContainerStyled>
                     
+
                     <Recaptcha onChange={onRecaptchaChange}/>
-                    {error!==''?<p>{error}</p>:null}
+                    {error!==''?<FormErrorStyled>{error}</FormErrorStyled>:null}
                                                        
                     <FormNavContainerStyled>
                         <PrimaryButtonStyled

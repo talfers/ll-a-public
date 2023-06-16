@@ -39,10 +39,11 @@ export const LoadingContentContainerStyled = styled.div`
     justify-content: center;
     border-radius: 8px;
     opacity: 0.95;
-    padding: 30px 20px;
+    padding: 40px 30px;
     margin: 0px 24px;
     text-align: center;
     z-index: 99;
+    margin-bottom: 20px;
     @media only screen and ${devices.md} {
         max-width: 60%;
         padding: 20px 12px;
@@ -54,6 +55,7 @@ export const LoadingHeaderStyled = styled.h2`
     color: ${cardText};
     opacity: 1;
     font-size: 24px;
+    margin-bottom: 16px;
     @media only screen and ${devices.md} {
         font-size: 16px;
     }
