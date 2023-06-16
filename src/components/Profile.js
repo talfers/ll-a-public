@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import plans from '../data/plans';
 import { useAuth } from '../hooks/useAuth';
-import { usePayments } from '../hooks/usePayments';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowCircleLeft, faUser, faCircle } from '@fortawesome/free-solid-svg-icons'
 import { ProfileContainerStyled, ProfileContentContainerStyled, ProfileHeaderContainerStyled, ProfileHeaderStyled, ProfileTextStyled, ActionButtonStyled, GoBackButtonStyled } from '../styles/Profile';
@@ -88,11 +87,14 @@ const Profile = () => {
                 
                 {   subscription?.status?
                     <>
+
                         <ProfileTextStyled>Status: <FontAwesomeIcon icon={faCircle} size={"xs"} color={subscription?.status==='active'?'green':'red'} /> <span style={{color: subscription?.status==='active'?'green':'red'}}>{subscription?.status.charAt(0).toUpperCase() + subscription?.status.slice(1)}</span></ProfileTextStyled>
                         <ProfileTextStyled>Plan: ${subscription?.plan.price.unit_amount/100} / {subscription?.plan.plan.interval}</ProfileTextStyled>
                         <ProfileTextStyled>Member since: {subscription?.current_period_start_date}</ProfileTextStyled>
                         <ProfileTextStyled>Renewal date: {subscription?.current_period_end_date}</ProfileTextStyled>
                         <ActionButtonStyled onClick={() => manageSubscription(customer)}>Manage Account</ActionButtonStyled>
+
+
                     </>:
                     subscription===null?
                     <div>loading...</div>:

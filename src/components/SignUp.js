@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import plans from '../data/plans';
 import { useAuth } from '../hooks/useAuth';
-import { usePayments } from '../hooks/usePayments';
 import Loading from './Loading';
 import Recaptcha from './Recaptcha';
 import { 
@@ -13,6 +12,7 @@ import {
     LabelStyled, 
     PlansButton,
     PlanViewContainerStyled,
+    FormErrorStyled
 } from '../styles/Form';
 import { PrimaryButtonStyled } from '../styles/Button';
 import { ModalBackgroundStyled, NavLinkWrapper } from '../styles/Main';
@@ -20,8 +20,12 @@ import Products from './Products';
 
 
 const SignUp = () => {
+<<<<<<< HEAD
+    const { signUp, signUpWithGoogle, verificationEmail, checkout } = useAuth();
+=======
     const { signUp, verificationEmail } = useAuth();
     const { checkout } = usePayments();
+>>>>>>> bb2c412bda6561f6ba185bcc4b7ad284e5bfd9cd
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
     const [error, setError] = useState('')
@@ -49,7 +53,7 @@ const SignUp = () => {
             setError('')
             setLoading(1)
             try {
-                let user = await signUp(email, password);
+                let user = await signUp(email, password, selectedPlan);
                 await verificationEmail();
                 await loadCheckout(selectedPlan, user.uid)
             } catch (error) {
@@ -65,6 +69,23 @@ const SignUp = () => {
         }
     }
 
+<<<<<<< HEAD
+    const onSubmitWithGoogle = async () => {
+        setError('')
+        setLoading(1)
+        try {
+            let { user } = await signUpWithGoogle(selectedPlan, loadCheckout);
+            console.log("USER IN SIGNUP", user);
+        } catch (error) {
+            setLoading(0)
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            setError(errorMessage)
+            console.log(errorCode, errorMessage);
+        }
+    }
+=======
+>>>>>>> bb2c412bda6561f6ba185bcc4b7ad284e5bfd9cd
 
     const onRecaptchaChange = (value) => {
         setIsCaptchaSuccess(true)
@@ -129,8 +150,9 @@ const SignUp = () => {
                         <PlansButton onClick={() => setShowPlans(1)}>Show plans</PlansButton>
                     </PlanViewContainerStyled>
                     
+
                     <Recaptcha onChange={onRecaptchaChange}/>
-                    {error!==''?<p>{error}</p>:null}
+                    {error!==''?<FormErrorStyled>{error}</FormErrorStyled>:null}
                                                        
                     <FormNavContainerStyled>
                         <PrimaryButtonStyled

@@ -28,8 +28,8 @@ function App() {
   };
 
   return (
-    
       <AuthContextProvider>
+
         <PaymentsContextProvider>
           <TaskProvider>  
             <ThemeProvider theme={selectedTheme}>           

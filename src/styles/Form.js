@@ -211,3 +211,7 @@ export const RecaptchaContainerStyled = styled.div`
         }
       }
 `;
+
+export const FormErrorStyled = styled.p`
+      
+`;

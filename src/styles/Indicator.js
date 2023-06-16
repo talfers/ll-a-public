@@ -43,6 +43,7 @@ export const LoadingContentContainerStyled = styled.div`
     margin: 0px 24px;
     text-align: center;
     z-index: 99;
+    margin-bottom: 20px;
     @media only screen and ${devices.md} {
         max-width: 60%;
         padding: 20px 12px;
