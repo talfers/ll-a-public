@@ -21,7 +21,7 @@ function Products(props) {
         return props.plans.map((p, i) => (
             <ProductContainerStyled key={i} selected={props.selectedPlan===p.prices.priceId} onClick={() => {props.setSelectedPlan(p.prices.priceId)}}>
                 <IconContainerStyled>
-                    <FontAwesomeIconWrapper $theme={'dark'}>
+                    <FontAwesomeIconWrapper>
                        <FontAwesomeIcon icon={p.icon} size={"2xl"} color={'inherit'}/>
                     </FontAwesomeIconWrapper>
                 </IconContainerStyled>

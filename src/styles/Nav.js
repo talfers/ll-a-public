@@ -1,6 +1,7 @@
 import styled, { keyframes } from 'styled-components';
-import { devices } from "../data/constants"
-import { headline, activeColor, bg, cardText, ff, contrastText } from './'
+import { devices } from "../data/constants";
+import * as theme from "./Theme";
+
 
 const shrink = keyframes`   
     0% {
@@ -59,8 +60,8 @@ export const MenuBarContainerStyled = styled.div`
     align-items: center;
     background: transparent;
     width: 100%;
-    color: ${contrastText};
-    font-family: ${ff};
+    color: ${({ theme }) => theme.colors.contrastText};
+    font-family: ${({ theme }) => theme.colors.ff};
     @media only screen and ${devices.md} {
         display: flex;
     }
@@ -74,7 +75,7 @@ export const MenuContainerStyled = styled.div`
     width: 100vw;
     display: flex;
     flex-direction: column;
-    background: ${bg};
+    background: ${({ theme }) => theme.colors.bg};
     opacity: 0.95;
     color: #fafafa;
     transition: height 0.3s ease;
@@ -104,7 +105,7 @@ export const MenuButtonContainerStyled = styled.div`
 export const MenuButtonLineStyled = styled.div`
     height: 2px;
     width: 20px;
-    background: ${contrastText};
+    background: ${({ theme }) => theme.colors.contrastText};
     transition: all 0.2s ease;
     -webkit-transition: all 0.2s ease;
     -ms-transition: all 0.2s ease;
@@ -147,12 +148,12 @@ export const MenuItemContainerStyled = styled.div`
 `;
 
 export const MenuItemStyled = styled.div`
-    font-family: ${ff};
+    font-family: ${({ theme }) => theme.colors.ff};
     font-size: 1.2rem;
     padding: 1rem 0;
     margin: 0 5%;
     cursor: pointer;
-    color: ${contrastText};
+    color: ${({ theme }) => theme.colors.contrastText};
     transition: color 0.2s ease-in-out;
     -webkit-transition: color 0.2s ease-in-out;
     -ms-transition: color 0.2s ease-in-out;
@@ -170,7 +171,7 @@ export const MenuItemStyled = styled.div`
 export const MenuItemLineStyled = styled.div`
     width: 90%;
     height: 1px;
-    background: ${(props) => props.$active?activeColor:cardText};
+    background: ${(props) => props.$active?theme.dark.colors.activeColor:theme.dark.colors.cardText};
     margin: 0 auto;
     animation: 0.5s ${shrink} forwards;
     -webkit-animation: 0.5s ${shrink} forwards;
@@ -200,7 +201,7 @@ export const NavItemStyled = styled.li`
 export const NavLinkStyled = styled.button`
     background: rgba(0, 0, 0, 0);
     padding: 4px;
-    color: ${headline};
+    color: ${({ theme }) => theme.colors.headline};
     box-shadow: none;
     outline: none;
     border: none;
@@ -219,7 +220,7 @@ export const NavLinkStyled = styled.button`
         bottom: -2px;
         width: 100%;
         height: 2px;
-        background: ${activeColor};
+        background: ${({ theme }) => theme.colors.activeColor};
         opacity: 0;
         visibility: hidden;
         transition: visibility 0s, opacity 0.4s ease-in-out;

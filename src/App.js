@@ -1,6 +1,8 @@
+import {useState} from 'react';
 import { AuthContextProvider } from './hooks/useAuth';
 import { PaymentsContextProvider } from './hooks/usePayments';
-import { ThemeContextProvider } from './hooks/useTheme';
+import { ThemeProvider } from "styled-components";
+import { light, dark } from "./styles/Theme";
 import ProtectedRoute from './components/ProtectedRoute';
 import RedirectRoute from './components/RedirectRoute';
 import { Provider as TaskProvider } from './context/TaskContext';
@@ -15,17 +17,25 @@ import ResetPassword from './components/ResetPassword';
 import ResetPasswordMessage from './components/ResetPasswordMessage';
 import MainScreen from './components/MainScreen';
 import { Routes, Route } from 'react-router-dom';
+import { GlobalStyles } from "./styles/Global";
 
 
 function App() {
+  const [selectedTheme, setSelectedTheme] = useState(dark);
+
+  const handleThemeChange = () => {
+    setSelectedTheme(selectedTheme===light?dark:light);
+  };
+
   return (
     
       <AuthContextProvider>
         <PaymentsContextProvider>
-          <ThemeContextProvider>
-            <TaskProvider>
+          <TaskProvider>  
+            <ThemeProvider theme={selectedTheme}>           
                 <div className="App">
-                  <Header/>
+                  <GlobalStyles />
+                  <Header handleThemeChange={handleThemeChange} />
                   <Routes>
                     <Route path="/signin" element={<RedirectRoute><SignIn/></RedirectRoute>} />
                     <Route path="/signup" element={<RedirectRoute><SignUp/></RedirectRoute>} />
@@ -33,13 +43,13 @@ function App() {
                     <Route path="/resetsent" element={<ResetPasswordMessage/>} />
                     <Route path="/thankyou" element={<RedirectRoute><ThankYou/></RedirectRoute>}/>
                     <Route path="/verifyemail" element={<RedirectRoute><VerifyEmail/></RedirectRoute>}/>
-                    <Route path="/" element={<ProtectedRoute><MainScreen/></ProtectedRoute>} />
+                    <Route path="/" element={<ProtectedRoute><MainScreen handleThemeChange={handleThemeChange}/></ProtectedRoute>} />
                     <Route path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>} />
                   </Routes>
-                  <Footer/>
+                  <Footer/>  
                 </div>
-            </TaskProvider>
-          </ThemeContextProvider>
+              </ThemeProvider>
+          </TaskProvider>
         </PaymentsContextProvider>
       </AuthContextProvider>
       

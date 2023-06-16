@@ -1,6 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import { devices } from "../data/constants"
-import { activeColor, cardText, bg, cardBG, contrastText } from './'
+import { devices } from "../data/constants";
 
 const lineAnim = keyframes`   
     0% {
@@ -33,7 +32,7 @@ export const LoadingContainerStyled = styled.div`
 `;
 
 export const LoadingContentContainerStyled = styled.div`
-    background: ${cardBG};
+    background: ${({ theme }) => theme.colors.cardBG};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -52,7 +51,7 @@ export const LoadingContentContainerStyled = styled.div`
 `;
 
 export const LoadingHeaderStyled = styled.h2`
-    color: ${cardText};
+    color: ${({ theme }) => theme.colors.cardText};
     opacity: 1;
     font-size: 24px;
     margin-bottom: 16px;
@@ -88,7 +87,7 @@ export const LoadingIndicatorStyled = styled.div`
         left: -50%;
         height: 3px;
         width: 40%;
-        background-color: ${activeColor};
+        background-color: ${({ theme }) => theme.colors.activeColor};
         -webkit-animation: ${lineAnim} 1s linear infinite;
         -moz-animation: ${lineAnim} 1s linear infinite;
         animation: ${lineAnim} 1s linear infinite;
@@ -107,7 +106,7 @@ export const ProgressContainerStyled = styled.div`
 `;
 
 export const ProgressBarOuterStyled = styled.div`
-    background: ${cardText};
+    background: ${({ theme }) => theme.colors.cardText};
     width: 75%;
     height: 8px;
     border-radius: 4px;
@@ -119,17 +118,17 @@ export const ProgressBarOuterStyled = styled.div`
 `;
 
 export const ProgressBarStyled = styled.div`
-    background: ${bg};
+    background: ${({ theme }) => theme.colors.bg};
     width: ${(props) => props.$progress?`${props.$progress*100}%`:'0%'};
     height: 8px;
     border-radius: 4px;
 `;
 
 export const ProgressHeaderStyled = styled.h4`
-    color: ${contrastText};
+    color: ${({ theme }) => theme.colors.contrastText};
 `;
 
 export const ProgressHeaderSpanStyled = styled.span`
-    color: ${cardText};
+    color: ${({ theme }) => theme.colors.cardText};
     margin-left: 8px;
 `;

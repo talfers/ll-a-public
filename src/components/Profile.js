@@ -73,14 +73,14 @@ const Profile = () => {
                 null
             } 
             <GoBackButtonStyled onClick={() => {navigate(-1)}}>
-                <FontAwesomeIconWrapper $theme={'light'}>
+                <FontAwesomeIconWrapper>
                     <FontAwesomeIcon icon={faArrowCircleLeft} size={"xl"} color={'inherit'} />
                 </FontAwesomeIconWrapper>
                 <span style={{marginLeft:'4px'}}><strong>Go Back</strong></span>
             </GoBackButtonStyled>
             <ProfileContentContainerStyled>
                 <ProfileHeaderContainerStyled>
-                    <FontAwesomeIconWrapper $theme={'light'}>
+                    <FontAwesomeIconWrapper>
                         <FontAwesomeIcon icon={faUser} size={"xl"} color={'inherit'} />
                     </FontAwesomeIconWrapper>
                     <ProfileHeaderStyled>{user.email.length>20?`${user.email.slice(0,20)}..`:user.email}</ProfileHeaderStyled>
