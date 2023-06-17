@@ -1,18 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from '../imgs/logo-simple.png';
-import UserIcon from './UserIcon';
-import ThemeToggle from './ThemeToggle';
-import { useAuth } from '../hooks/useAuth';
-import { HeaderContainerStyled, LogoContainerStyled, LogoStyled } from '../styles/Margin';
+import Hamburger from './Hamburger';
+import { HeaderContainerStyled } from '../styles/Margin';
+import { LogoStyled } from '../styles/Nav';
+import { useNavigate } from 'react-router-dom'
 
-function Header(props) {
-    const { user, logOut } = useAuth();
+function Header({ user, tabs, setActiveTab, activeTabId, logOut }) {
+    let [menuOpen, setMenuOpen] = useState(0);
+    const navigate = useNavigate();
+    
+    const handleHomeClick = () => {
+        setMenuOpen(0);
+        navigate('/')
+    }
     
     return (
-        <HeaderContainerStyled className='margin-container'>
-            <LogoStyled src={logo} alt='logo'/>
-            {/* {user?user.emailVerified?<UserIcon user={user} logOut={logOut}/>:null:null} */}
-            {/* <ThemeToggle $mobile={false} onClick={props.handleThemeChange} /> */}
+        <HeaderContainerStyled>
+            <LogoStyled onClick={handleHomeClick} src={logo} alt='logo'/>
+            <Hamburger 
+                user={user}
+                tabs={tabs} 
+                onNavClick={setActiveTab}
+                activeTabId={activeTabId}
+                menuOpen={menuOpen}
+                setMenuOpen={setMenuOpen}
+            />
         </HeaderContainerStyled>
     );
 }

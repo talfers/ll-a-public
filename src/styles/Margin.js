@@ -17,13 +17,6 @@ export const HeaderContainerStyled = styled.div`
     height: 80px;
 `;
 
-
-export const LogoStyled = styled.img`
-    height: 40px;
-    padding-left: 20px;
-    z-index: 999;
-`;
-
 export const MarginTextStyled = styled.p`
     margin: 40px;
     @media only screen and ${devices.md} {

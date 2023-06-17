@@ -56,3 +56,37 @@ export const ModalBackgroundStyled = styled.div`
     justify-content: center;
     z-index: 15;
 `;
+
+export const PageHeaderStyled = styled.h1`
+    font-size: 2em;
+    color: ${({ theme }) => theme.colors.cardText};
+    align-self: flex-start;
+`;
+
+export const PageHeader2Styled = styled.h2`
+    font-size: 1.5em;
+    color: ${({ theme }) => theme.colors.cardText};
+    align-self: flex-start;
+`;
+
+export const PageHeaderSubTextStyled = styled.p`
+    margin: 12px 0px;
+    font-size: 14px;
+    color: ${({ theme }) => theme.colors.subTextColor};
+    text-align: left;
+    align-self: flex-start;
+    @media only screen and ${devices.md} {
+        display: none;
+    }
+`;
+
+export const PageHeaderSubTextMobileStyled = styled.p`
+    display: none;
+    @media only screen and ${devices.md} {
+        display: block;
+    }
+`;
+
+export const DividerStyled = styled.hr`
+    border: 1px solid ${({ theme }) => theme.colors.contrastText};
+`;

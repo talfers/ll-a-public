@@ -185,65 +185,9 @@ export const MenuItemIconStyled = styled.span`
     font-size: 21px;
 `;
 
-export const MenuItemLineStyled = styled.div`
-    
-`;
-
-
-//  NAV MENU
-export const NavContainerStyled = styled.ul`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    list-style: none;
-    padding: 10px 0 30px;
-    @media only screen and ${devices.md} {
-        display: none;
-    }
-`;
-
-export const NavItemStyled = styled.li`
-    &:not(:last-child) {
-        margin-right: 20px;
-    }
-`;
-
-export const NavLinkStyled = styled.button`
-    background: rgba(0, 0, 0, 0);
-    padding: 4px;
-    color: ${({ theme }) => theme.colors.headline};
-    box-shadow: none;
-    outline: none;
-    border: none;
+export const LogoStyled = styled.img`
+    height: 40px;
+    padding-left: 20px;
+    z-index: 999;
     cursor: pointer;
-    font-size: 20px;
-    display: block;
-    position: relative;
-    font-family: inherit;
-    font-weight: 400;
-
-    &:after {
-        content: '';
-        display: block;
-        position: absolute;
-        left: 0;
-        bottom: -2px;
-        width: 100%;
-        height: 2px;
-        background: ${({ theme }) => theme.colors.activeColor};
-        opacity: 0;
-        visibility: hidden;
-        transition: visibility 0s, opacity 0.4s ease-in-out;
-        -webkit-transition: visibility 0s, opacity 0.4s ease-in-out;
-        -ms-transition: visibility 0s, opacity 0.4s ease-in-out;
-        -moz-transition: visibility 0s, opacity 0.4s ease-in-out;
-    }
-    .active::after {
-        opacity: 1;
-        visibility: visible;
-        transition: visibility 0s, opacity 0.4s ease-in-out;
-        -webkit-transition: visibility 0s, opacity 0.4s ease-in-out;
-        -ms-transition: visibility 0s, opacity 0.4s ease-in-out;
-        -moz-transition: visibility 0s, opacity 0.4s ease-in-out;
-    }
 `;

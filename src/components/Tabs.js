@@ -1,12 +1,15 @@
 import React from 'react';
 import Tab from './Tab'
+import { TabsContainerStyled } from '../styles/Tabs';
 
-function Tabs(props) {
+function Tabs({activeTab, customer, subscription}) {
 
     return (
-        <div>  
-            <Tab tab={props.activeTab} customer={props.customer} subscription={props.subscription} />
-        </div>
+        <TabsContainerStyled>
+            <Tab tab={activeTab} customer={customer} subscription={subscription} />
+        </TabsContainerStyled>  
+            
+
     );
 }
 

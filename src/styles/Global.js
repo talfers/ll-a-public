@@ -23,22 +23,6 @@ code {
     monospace;
 }
 
-.tabs__button:after {
-    content: '';
-    display: block;
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 100%;
-    height: 2px;
-    background: ${({ theme }) => theme.colors.activeColor};
-    opacity: 0;
-    visibility: hidden;
-    transition: visibility 0s, opacity 0.4s ease-in-out;
-    -webkit-transition: visibility 0s, opacity 0.4s ease-in-out;
-    -ms-transition: visibility 0s, opacity 0.4s ease-in-out;
-}
-
 
 
 `

@@ -106,7 +106,7 @@ export const ProgressContainerStyled = styled.div`
 `;
 
 export const ProgressBarOuterStyled = styled.div`
-    background: ${({ theme }) => theme.colors.cardText};
+    background: ${({ theme }) => theme.colors.subTextColor};
     width: 75%;
     height: 8px;
     border-radius: 4px;
@@ -118,7 +118,7 @@ export const ProgressBarOuterStyled = styled.div`
 `;
 
 export const ProgressBarStyled = styled.div`
-    background: ${({ theme }) => theme.colors.bg};
+    background: ${({ theme }) => theme.colors.activeColor};
     width: ${(props) => props.$progress?`${props.$progress*100}%`:'0%'};
     height: 8px;
     border-radius: 4px;

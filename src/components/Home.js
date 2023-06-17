@@ -1,11 +1,20 @@
 import React from 'react';
-import { ContainerStyled, HomeHeaderStyled, BoxesContainerStyled, BoxSubTitleStyled } from '../styles/Home';
+import { HomeHeaderStyled, BoxesContainerStyled, BoxSubTitleStyled } from '../styles/Home';
+import { ContainerStyled } from '../styles/Main';
 import Box from './Box';
+import { useNavigate } from 'react-router-dom'
 
-function Home({tabs}) {
+function Home({tabs, setActiveTab}) {
+    const navigate = useNavigate();
+
+    const handleBoxClick = (item) => {
+        setActiveTab(item.id)
+        navigate('/assistant');
+    }
+
     const createBoxes = () => {
         return tabs.map(b => (
-            <Box box={b} />
+            <Box onClick={handleBoxClick} box={b} />
         ))
     }
     return (

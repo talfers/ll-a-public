@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
+// import UserIcon from './UserIcon';
+// import ThemeToggle from './ThemeToggle';
 import { 
     MenuBarContainerStyled,
     MenuButtonContainerStyled, 
@@ -7,7 +9,6 @@ import {
     MenuButtonLineBottomStyled,
     MenuButtonLineMiddleStyled,
     MenuItemStyled,
-    MenuItemLineStyled,
     MenuContainerStyled,
     MenuItemIconStyled,
     MenuTitleStyled,
@@ -15,16 +16,16 @@ import {
  } from '../styles/Nav'
  import iconMap from '../data/iconMap';
 
-function Hamburger(props) {
-    let [menuOpen, setMenuOpen] = useState(0)
 
+function Hamburger({ user, tabs, activeTabId, onNavClick, menuOpen, setMenuOpen }) {
+    
     const handleMenuClick = () => {
         setMenuOpen(menuOpen===1?0:1);
     }
       
     const handleLinkClick = (item) => {
         setMenuOpen(0);
-        props.onNavClick(item.id)
+        onNavClick(item.id)
     }
 
     return (
@@ -42,21 +43,22 @@ function Hamburger(props) {
                     <MenuListStyled $open={menuOpen}>
                     <MenuBorderStyled/>
                     <MenuTitleStyled>CREATE NEW</MenuTitleStyled>
-                    {props.tabs.map((item, i) => (
+                    {tabs.map((item, i) => (
                         <div key={i}>
                             
                             <MenuItemStyled 
                             key={i} 
                             onClick={()=>{ handleLinkClick(item) }}
-                            className={`tabs__button ${(props.activeTabId === item.id) ? 'active' : ''}`}
+                            className={`tabs__button ${(activeTabId === item.id) ? 'active' : ''}`}
                             >
                                 <MenuItemIconStyled>{iconMap[item.shortName]}</MenuItemIconStyled>
                                 <span>{item.name}</span>
                             </MenuItemStyled>
-                            <MenuItemLineStyled $active={props.activeTabId === item.id} />
                         </div>
                     ))}
                     </MenuListStyled>
+                    {/* {user?user.emailVerified?<UserIcon user={user} logOut={logOut}/>:null:null} */}
+                    {/* <ThemeToggle $mobile={false} onClick={props.handleThemeChange} /> */}
                 </MenuContainerStyled>:<></> 
             }
             

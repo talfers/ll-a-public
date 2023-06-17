@@ -1,25 +1,10 @@
 import styled from 'styled-components';
 import { devices } from "../data/constants";
 
-
-export const ContainerStyled = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content:center;
-    width: 100%;
-    max-width: 1200px;
-    text-align: center;
-    margin: 0 auto;
-    padding: 20px;
-    background: ${({ theme }) => theme.colors.cardBG};
-    border-radius: 12px;
-    color: ${({ theme }) => theme.colors.cardText};
-`;
-
 export const HomeHeaderStyled = styled.h2`
     font-size: 2em;
     color: ${({ theme }) => theme.colors.cardText};
+    align-self: flex-start;
 `;
 
 export const BoxesContainerStyled = styled.div`
@@ -63,6 +48,7 @@ export const BoxSubTitleStyled = styled.p`
     font-size: 14px;
     color: ${({ theme }) => theme.colors.subTextColor};
     text-align: left;
+    align-self: flex-start;
 `;
 
 export const BoxIconContainerStyled = styled.div`

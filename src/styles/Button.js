@@ -9,26 +9,26 @@ export const ButtonStyled = styled.div`
     font-weight: 600;
     font-family: ${theme.dark.colors.ff};
     border: 2px solid transparent;
-    margin: 8px;
+    margin: 8px 0px;
     pointer-events: ${props => props.$disabled?'none':''};
 `;
 
 export const PrimaryButtonStyled = styled(ButtonStyled)`
-    border: 2px solid ${theme.dark.colors.bg};
-    background-color: ${theme.dark.colors.bg};
-    color: #f5f5f5;
+    border: 2px solid ${({ theme }) => theme.colors.contrastText};
+    background-color: ${({ theme }) => theme.colors.bg};
+    color: ${({ theme }) => theme.colors.contrastText};
 
     &:hover {
         background-color: transparent;
-        border: 2px solid ${theme.dark.colors.contrastText};
-        color: ${theme.dark.colors.contrastText};
+        border: 2px solid ${({ theme }) => theme.colors.subTextColor};
+        color: ${({ theme }) => theme.colors.subTextColor};
     }
 
     @media only screen and ${devices.md} {
         &:hover {
             border: 2px solid transparent;
-            background-color: ${theme.dark.colors.bg};
-            color: #f5f5f5;
+            background-color: ${({ theme }) => theme.colors.bg};
+            color: ${({ theme }) => theme.colors.contrastText};
         }
     }
 `;

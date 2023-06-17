@@ -4,11 +4,11 @@ import { IconContext } from "react-icons";
 import { BoxContainerStyled, BoxTitleStyled, BoxIconContainerStyled } from '../styles/Home';
 
 
-function Box({box}) {
+function Box({box, onClick}) {
 
     return (
         <IconContext.Provider value={{ style: { fontSize: '20px' } }}>
-            <BoxContainerStyled>
+            <BoxContainerStyled onClick={() => onClick(box)}>
                 <BoxIconContainerStyled>{iconMap[box.shortName]}</BoxIconContainerStyled>
                 <BoxTitleStyled>{box.name}</BoxTitleStyled>
             </BoxContainerStyled>

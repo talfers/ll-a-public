@@ -18,7 +18,7 @@ export const FormSectionStyled = styled.section`
 export const InputContainerStyled = styled.div`
     display: flex;
     flex-direction: column;
-    margin: 8px 8px;
+    margin: 8px 8px 8px 0px;
     width: ${props => props.$size ? `${props.$size}%`:""};
     max-width: ${props => (props.$type === "number" || props.$type === "date") ? "150px" : props.$type === "text"?"600px":""};
     align-items: ${props => props.$type === "checkbox" ? "flex-start" : ""};
@@ -30,7 +30,7 @@ export const InputContainerStyled = styled.div`
 
 export const InputStyled = styled.input`
     border-radius: 8px;
-    border: ${({ theme }) => theme.colors.cardText} 2px solid;
+    border: ${({ theme }) => theme.colors.borderColor} 2px solid;
     padding: 6px;
     vertical-align:top;
     font-family: ${({ theme }) => theme.colors.ff};
@@ -44,7 +44,7 @@ export const InputStyled = styled.input`
 
 export const SelectStyled = styled.select`
     border-radius: 8px;
-    border: ${({ theme }) => theme.colors.cardText} 2px solid;
+    border: ${({ theme }) => theme.colors.borderColor} 2px solid;
     padding: 6px;
     vertical-align:top;
     min-width: 100px;
@@ -59,7 +59,7 @@ export const SelectStyled = styled.select`
 
 export const TextAreaStyled = styled.textarea`
     border-radius: 8px;
-    border: ${({ theme }) => theme.colors.cardText} 2px solid;
+    border: ${({ theme }) => theme.colors.borderColor} 2px solid;
     padding: 6px;
     vertical-align:top;
     font-family: ${({ theme }) => theme.colors.ff};
@@ -79,7 +79,6 @@ export const LabelStyled = styled.label`
 
 export const FormContainerStyled = styled.div`
     font-family: ${({ theme }) => theme.colors.ff};
-    padding: 16px;
     flex: 1;
 `;
 
