@@ -1,19 +1,19 @@
 import React from 'react';
-import logo from '../imgs/logo-500.png';
+import logo from '../imgs/logo-simple.png';
 import UserIcon from './UserIcon';
 import ThemeToggle from './ThemeToggle';
 import { useAuth } from '../hooks/useAuth';
-import { MarginContainerStyled, LogoStyled } from '../styles/Margin';
+import { HeaderContainerStyled, LogoContainerStyled, LogoStyled } from '../styles/Margin';
 
 function Header(props) {
     const { user, logOut } = useAuth();
     
     return (
-        <MarginContainerStyled className='margin-container'>
+        <HeaderContainerStyled className='margin-container'>
             <LogoStyled src={logo} alt='logo'/>
-            {user?user.emailVerified?<UserIcon user={user} logOut={logOut}/>:null:null}
-            <ThemeToggle $mobile={false} onClick={props.handleThemeChange} />
-        </MarginContainerStyled>
+            {/* {user?user.emailVerified?<UserIcon user={user} logOut={logOut}/>:null:null} */}
+            {/* <ThemeToggle $mobile={false} onClick={props.handleThemeChange} /> */}
+        </HeaderContainerStyled>
     );
 }
 

@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 
 
 export const GlobalStyles = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700);
 
 * {
   padding: 0;
@@ -39,12 +39,6 @@ code {
     -ms-transition: visibility 0s, opacity 0.4s ease-in-out;
 }
 
-.tabs__button.active::after {
-    opacity: 1;
-    visibility: visible;
-    transition: visibility 0s, opacity 0.4s ease-in-out;
-    -webkit-transition: visibility 0s, opacity 0.4s ease-in-out;
-    -ms-transition: visibility 0s, opacity 0.4s ease-in-out;
-}
+
 
 `

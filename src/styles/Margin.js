@@ -7,11 +7,21 @@ export const MarginContainerStyled = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 80px;
     color: ${({ theme }) => theme.colors.contrastText};
 `;
 
+export const HeaderContainerStyled = styled.div`
+    display: flex;
+    align-items: center;
+    height: 80px;
+`;
+
+
 export const LogoStyled = styled.img`
-    width: 200px;
+    height: 40px;
+    padding-left: 20px;
+    z-index: 999;
 `;
 
 export const MarginTextStyled = styled.p`

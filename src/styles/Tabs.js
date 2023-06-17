@@ -5,6 +5,10 @@ import { devices } from "../data/constants";
 export const TabsContainerStyled = styled.div`
     max-width: 80%;
     margin: 0px auto;
+    margin-top: 12px;
+    border-radius: 8px;
+    background: ${({ theme }) => theme.colors.cardBG};
+    min-height: 400px;
 `;
 
 export const TabContentContainerStyled = styled.div`
@@ -14,9 +18,7 @@ export const TabContentContainerStyled = styled.div`
     font-weight: 400;
     font-size: 16px;
     line-height: 1.4;
-    border-radius: 8px;
-    background: ${({ theme }) => theme.colors.cardBG};
-    min-height: 400px;
+   
 `;
 
 export const TabContentHeaderStyled = styled.h3`
