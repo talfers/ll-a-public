@@ -28,14 +28,19 @@ function MainPage({handleThemeChange}) {
     const [customer, setCustomer] = useState(null);
 
     useEffect(() => {
-        const getDetails = async () => {
-            let sub = await getCurrentPlan(user.uid);
-            setSubscription(sub)
-            let cust = await getCustomer(user.email);
-            setCustomer(cust)
+        if(user?.uid){
+            const getDetails = async () => {
+                let sub = await getCurrentPlan(user?.uid);
+                setSubscription(sub)
+                let cust = await getCustomer(user?.email);
+                setCustomer(cust)
+            }
+            getDetails()
+        } else {
+            return
         }
-        getDetails()
-    }, [user.uid, getCurrentPlan, user.email, getCustomer])
+        
+    }, [user?.uid, getCurrentPlan, user?.email, getCustomer])
   
     return (
         <div>

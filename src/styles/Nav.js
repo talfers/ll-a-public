@@ -138,18 +138,17 @@ export const MenuItemContainerStyled = styled.div`
 `;
 
 export const MenuListStyled = styled.div`
-    padding-top: 40px;
-`;
-
-export const MenuBorderStyled = styled.div`
-    height: 1px;
-    background:  ${({ theme }) => theme.colors.borderColor};
-    widhth: 100%;
-    margin-top: 40px;
+    margin-top: 80px;
+    color: ${({ theme }) => theme.colors.contrastText};
+    padding: 0px 20px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top: 1px solid ${({ theme }) => theme.colors.borderColor};
 `;
 
 export const MenuTitleStyled = styled.h2`
-    margin-left: 20px;
     font-size: 12px;
     color: ${({ theme }) => theme.colors.subTextColor};
     margin-top: 24px;
@@ -159,12 +158,10 @@ export const MenuItemStyled = styled.div`
     font-family: ${({ theme }) => theme.colors.ff};
     font-size: 14px;
     padding: 6px 0;
-    margin: 0 20px;
     cursor: pointer;
     display: flex;
     align-items: center;
     border-bottom: 2px solid transparent;
-    color: ${({ theme }) => theme.colors.contrastText};
     transition: all 0.2s ease-in-out, border-bottom .1s ease-out;
     -webkit-transition: color 0.2s ease-in-out, border-bottom .1s ease-out;
     -ms-transition: color 0.2s ease-in-out, border-bottom .1s ease-out;
@@ -190,4 +187,65 @@ export const LogoStyled = styled.img`
     padding-left: 20px;
     z-index: 999;
     cursor: pointer;
+`;
+
+export const NavFooterStyled = styled.div`
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+`;
+
+export const UserIconContainerStyled = styled.div`
+    z-index: 99;
+    display: flex;
+    font-size: 14px;
+    margin-right: 10px;
+`;
+
+export const UserContent = styled.span`
+    cursor: ${(props) => props.$disabled?'':'pointer'};
+    pointer-events: ${(props) => props.$disabled?'none':''};
+    margin-right: 10px;
+`;
+
+export const ThemeToggleContainer = styled.div`
+    height: 30px;
+    width: 64px;
+    position: relative;
+    background: ${theme.dark.colors.cardText};
+    border-radius: 30px;
+    cursor: pointer;
+    @media only screen and ${devices.md} {
+        display: ${(props) => props.$mobile?'block':'none'};
+        
+    }
+`;
+
+export const ThemeToggleBall = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 30px;
+    width: 30px;
+    border-radius: 30px;
+    background: ${theme.dark.colors.cardBG};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: ${({ theme }) => theme.colors.themeToggleTranslate};
+    transition: all 0.5s ease;
+`;
+
+export const ThemeIcons = styled.div`
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+`;
+
+export const ThemeImage = styled.i`
+    height: 20px;
+    width: 20px;
+    color: ${({ theme }) => theme.colors.themeToggleContrast};
 `;

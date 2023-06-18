@@ -7,7 +7,7 @@ export const dark = {
         cardBG: "#ffffff",
         cardText: "#000000",
         ff: "Open Sans",
-        activeColor: "#301e4e",
+        activeColor: "#7e46bc",
         contrastText: "#000000",
         borderColor: "#DDDDDD",
         opacityColor: "#f7f7f7",

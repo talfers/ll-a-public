@@ -5,7 +5,7 @@ import { HeaderContainerStyled } from '../styles/Margin';
 import { LogoStyled } from '../styles/Nav';
 import { useNavigate } from 'react-router-dom'
 
-function Header({ user, tabs, setActiveTab, activeTabId, logOut }) {
+function Header({ user, tabs, setActiveTab, activeTabId, logOut, handleThemeChange }) {
     let [menuOpen, setMenuOpen] = useState(0);
     const navigate = useNavigate();
     
@@ -17,14 +17,18 @@ function Header({ user, tabs, setActiveTab, activeTabId, logOut }) {
     return (
         <HeaderContainerStyled>
             <LogoStyled onClick={handleHomeClick} src={logo} alt='logo'/>
-            <Hamburger 
-                user={user}
-                tabs={tabs} 
-                onNavClick={setActiveTab}
-                activeTabId={activeTabId}
-                menuOpen={menuOpen}
-                setMenuOpen={setMenuOpen}
-            />
+            {user?
+                <Hamburger 
+                    user={user}
+                    logOut={logOut}
+                    tabs={tabs} 
+                    onNavClick={setActiveTab}
+                    activeTabId={activeTabId}
+                    menuOpen={menuOpen}
+                    setMenuOpen={setMenuOpen}
+                    handleThemeChange={handleThemeChange}
+                />
+                :null}
         </HeaderContainerStyled>
     );
 }

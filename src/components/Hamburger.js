@@ -1,6 +1,6 @@
 import React from 'react';
-// import UserIcon from './UserIcon';
-// import ThemeToggle from './ThemeToggle';
+import UserIcon from './UserIcon';
+import ThemeToggle from './ThemeToggle';
 import { 
     MenuBarContainerStyled,
     MenuButtonContainerStyled, 
@@ -12,13 +12,14 @@ import {
     MenuContainerStyled,
     MenuItemIconStyled,
     MenuTitleStyled,
-    MenuBorderStyled
+    NavFooterStyled
  } from '../styles/Nav'
  import iconMap from '../data/iconMap';
+ import { useNavigate } from 'react-router-dom'
 
 
-function Hamburger({ user, tabs, activeTabId, onNavClick, menuOpen, setMenuOpen }) {
-    
+function Hamburger({ user, tabs, activeTabId, onNavClick, menuOpen, setMenuOpen, logOut, handleThemeChange }) {
+    const navigate = useNavigate();
     const handleMenuClick = () => {
         setMenuOpen(menuOpen===1?0:1);
     }
@@ -26,6 +27,23 @@ function Hamburger({ user, tabs, activeTabId, onNavClick, menuOpen, setMenuOpen 
     const handleLinkClick = (item) => {
         setMenuOpen(0);
         onNavClick(item.id)
+    }
+
+    const handleUserClick = () => {
+        setMenuOpen(0);
+        navigate("/profile");
+
+    }
+
+    const handleLogOut = async () => {
+        try {
+            await logOut()
+            setMenuOpen(0);
+            navigate("/");
+        } catch (error) {
+            alert(error.message)
+            console.log(error);
+        }
     }
 
     return (
@@ -41,24 +59,29 @@ function Hamburger({ user, tabs, activeTabId, onNavClick, menuOpen, setMenuOpen 
                 menuOpen===1?
                 <MenuContainerStyled $open={menuOpen}>
                     <MenuListStyled $open={menuOpen}>
-                    <MenuBorderStyled/>
-                    <MenuTitleStyled>CREATE NEW</MenuTitleStyled>
-                    {tabs.map((item, i) => (
-                        <div key={i}>
-                            
-                            <MenuItemStyled 
-                            key={i} 
-                            onClick={()=>{ handleLinkClick(item) }}
-                            className={`tabs__button ${(activeTabId === item.id) ? 'active' : ''}`}
-                            >
-                                <MenuItemIconStyled>{iconMap[item.shortName]}</MenuItemIconStyled>
-                                <span>{item.name}</span>
-                            </MenuItemStyled>
-                        </div>
-                    ))}
+                    <div>
+                        <MenuTitleStyled>CREATE NEW</MenuTitleStyled>
+                        {tabs.map((item, i) => (
+                            <div key={i}>
+                                
+                                <MenuItemStyled 
+                                key={i} 
+                                onClick={()=>{ handleLinkClick(item) }}
+                                className={`tabs__button ${(activeTabId === item.id) ? 'active' : ''}`}
+                                >
+                                    <MenuItemIconStyled>{iconMap[item.shortName]}</MenuItemIconStyled>
+                                    <span>{item.name}</span>
+                                </MenuItemStyled>
+                            </div>
+                        ))}
+                    </div>
+                    <NavFooterStyled>
+                        {user?<UserIcon user={user} handleUserClick={handleUserClick} handleLogOut={handleLogOut}/>:null}
+                        <ThemeToggle $mobile={false} onClick={handleThemeChange} />
+                    </NavFooterStyled>
+                    
                     </MenuListStyled>
-                    {/* {user?user.emailVerified?<UserIcon user={user} logOut={logOut}/>:null:null} */}
-                    {/* <ThemeToggle $mobile={false} onClick={props.handleThemeChange} /> */}
+                    
                 </MenuContainerStyled>:<></> 
             }
             

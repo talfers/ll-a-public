@@ -3,11 +3,13 @@ import { devices } from "../data/constants";
 
 export const FormSectionStyled = styled.section`
     width: 60%;
+    max-width: 600px;
     background: ${({ theme }) => theme.colors.cardBG};
     border-radius: 12px;
     margin: 0 auto;
+    margin-top: 24px;
+    padding: 20px;
     color: ${({ theme }) => theme.colors.cardText};
-    max-width: 600px;
     box-shadow: ${({ theme }) => theme.colors.boxShadow};
     @media only screen and ${devices.md} {
         width: 80%;
@@ -135,7 +137,7 @@ export const PlansButton = styled.div`
 `;
 
 export const PlanViewContainerStyled = styled.div`
-    margin: 16px 8px 4px 8px;
+    margin: 16px 8px 4px 0px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -188,7 +190,7 @@ export const GoogleButtonStyled = styled.div`
 `;
 
 export const RecaptchaContainerStyled = styled.div`
-    margin: 16px 8px 0px 8px;
+    margin: 16px 8px 8px 0px;
     
     @media only screen and ${devices.md} {
             max-height: 48px;
