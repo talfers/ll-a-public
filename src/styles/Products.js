@@ -11,7 +11,7 @@ export const ProductModalStyled = styled.div`
     position: relative;
     align-items: center;
     justify-content: center;
-    border-radius: 12px;
+    border-radius: 8px;
     background: ${({ theme }) => theme.colors.cardBG};
     color: ${({ theme }) => theme.colors.cardText};
     font-family: ${({ theme }) => theme.colors.ff};
@@ -53,7 +53,7 @@ export const ProductContainerStyled = styled.div`
     cursor: pointer;
     margin: 0 12px;
     border-radius: 12px;
-    border: ${props => props.selected?`2px solid ${theme.dark.colors.activeColor}`:'2px solid transparent'};
+    border: ${props => props.selected?`2px solid ${theme.dark.colors.contrastText}`:'2px solid transparent'};
     @media only screen and ${devices.md} {
         height: inherit;
         padding: 12px;
@@ -78,10 +78,14 @@ export const ProductHeader = styled.h2`
     @media only screen and ${devices.md} {
         font-size: 1em;
     }
+    @media only screen and ${devices.xxl} {
+        font-size: 1.25em;
+    }
 `;
 
 export const ProductText = styled.p`
     margin-bottom: ${props => props.$spaceBelow?'20px':'0px'};
+    color: ${({ theme }) => theme.colors.subTextColor};
     @media only screen and ${devices.md} {
         font-size: 0.7em;
         margin-bottom: ${props => props.$spaceBelow?'8px':'0px'};

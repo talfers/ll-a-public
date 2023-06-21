@@ -4,7 +4,7 @@ import { devices } from "../data/constants";
 
 export const ResponseContainerStyled = styled.div`
     font-family: ${({ theme }) => theme.colors.ff};
-    padding: 16px;
+    margin-top: 12px;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -21,16 +21,12 @@ export const ResponseHeaderStyled = styled.div`
     }
 `;
 
-export const ResponseTitleStyled = styled.h3`
-    font-size: 24px;
-`;
-
 
 export const ResponseActionButtonsContainerStyled = styled.div`
     align-self: flex-end;
     display: flex;
     @media only screen and ${devices.md} {
-        align-self: center;
+        align-self: flex-start;
     }
 `;
 
@@ -39,9 +35,7 @@ export const ResponseButtonStyled = styled.div`
     padding: 6px;
     border-radius: 4px;
     font-size: 20px;
-    cursor: pointer;
-    margin: 0px 4px;
-    
+    cursor: pointer;    
     &:hover {
         transform: scale(1.15);
         -ms-transform: scale(1.15);
@@ -67,17 +61,4 @@ export const ResponseStyled = styled.div`
 
 export const ResponseItem = styled.div`
     margin: 10px 0px;
-`;
-
-export const CopySnack = styled.span`
-    padding: 10px;
-    background-color: ${({ theme }) => theme.colors.cardText};
-    color: ${({ theme }) => theme.colors.bg};
-    border-radius: 4px;
-    position: absolute;
-    width: ${props => props.$size?`${props.$size}px`:''};
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    left:  ${props => props.$size?`calc(50% - ${props.$size/2}px)`:''};
 `;

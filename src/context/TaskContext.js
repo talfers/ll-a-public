@@ -45,6 +45,12 @@ const taskReducer = (state, action) => {
   }
 }
 
+const updateLoading = (dispatch) => {
+  return (tabId, value) => {
+    dispatch({ type: 'update_loading', payload: { tabId, value } })
+  }
+}
+
 const postTaskData = (dispatch) => {
   return async (tab) => {
     try {
@@ -66,7 +72,7 @@ const postTaskData = (dispatch) => {
     // Read the response as a stream of data
     const reader = response.body.getReader();
     const decoder = new TextDecoder("utf-8");
-    
+    dispatch({ type: 'update_loading', payload: { tabId: tab.id, value: false } })
     while (true) {
       const { done, value } = await reader.read();
       
@@ -85,7 +91,7 @@ const postTaskData = (dispatch) => {
         const { choices } = parsedLine;
         const { delta } = choices[0];
         const { content } = delta;
-  
+        
         // Update the UI with the new content
         if (content) {
           if(content === '' || content === ' ') dispatch({type: 'post_response', payload: {response: tab.response += '\n', tabId: tab.id}})
@@ -95,6 +101,7 @@ const postTaskData = (dispatch) => {
     }
     }
     catch(err) {
+      updateLoading(tab.id, false)
       console.log(`Error posting to the assistant API. Error: ${err}`);
     }
   }
@@ -103,12 +110,6 @@ const postTaskData = (dispatch) => {
 const updateValue = (dispatch) => {
   return (value, tab, section, name) => {
     dispatch({ type: 'update_value', payload: {tab, section, name, value }})
-  }
-}
-
-const updateLoading = (dispatch) => {
-  return (tabId, value) => {
-    dispatch({ type: 'update_loading', payload: { tabId, value } })
   }
 }
 

@@ -15,7 +15,7 @@ import {
     PlanViewContainerStyled,
 } from '../styles/Form';
 import { PrimaryButtonStyled } from '../styles/Button';
-import { ModalBackgroundStyled, NavLinkWrapper } from '../styles/Main';
+import { ModalBackgroundStyled, NavLinkWrapper, PageHeaderStyled } from '../styles/Main';
 import Products from './Products';
 
 
@@ -94,7 +94,8 @@ const SignUp = () => {
             null
         } 
         <FormSectionStyled>
-            <FormContainerStyled>                                                                                             
+            <PageHeaderStyled>Sign Up</PageHeaderStyled>
+            <FormContainerStyled>                                                                                           
                 <form>                                                                                            
                     <InputContainerStyled>
                         <LabelStyled htmlFor="email-address">

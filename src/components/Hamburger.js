@@ -1,5 +1,4 @@
 import React from 'react';
-import UserIcon from './UserIcon';
 import ThemeToggle from './ThemeToggle';
 import { 
     MenuBarContainerStyled,
@@ -12,7 +11,8 @@ import {
     MenuContainerStyled,
     MenuItemIconStyled,
     MenuTitleStyled,
-    NavFooterStyled
+    NavFooterStyled,
+    MenuItemNameStyled
  } from '../styles/Nav'
  import iconMap from '../data/iconMap';
  import { useNavigate } from 'react-router-dom'
@@ -26,6 +26,7 @@ function Hamburger({ user, tabs, activeTabId, onNavClick, menuOpen, setMenuOpen,
       
     const handleLinkClick = (item) => {
         setMenuOpen(0);
+        navigate("/assistant");
         onNavClick(item.id)
     }
 
@@ -60,7 +61,7 @@ function Hamburger({ user, tabs, activeTabId, onNavClick, menuOpen, setMenuOpen,
                 <MenuContainerStyled $open={menuOpen}>
                     <MenuListStyled $open={menuOpen}>
                     <div>
-                        <MenuTitleStyled>CREATE NEW</MenuTitleStyled>
+                        <MenuTitleStyled>Create New</MenuTitleStyled>
                         {tabs.map((item, i) => (
                             <div key={i}>
                                 
@@ -69,14 +70,28 @@ function Hamburger({ user, tabs, activeTabId, onNavClick, menuOpen, setMenuOpen,
                                 onClick={()=>{ handleLinkClick(item) }}
                                 className={`tabs__button ${(activeTabId === item.id) ? 'active' : ''}`}
                                 >
-                                    <MenuItemIconStyled>{iconMap[item.shortName]}</MenuItemIconStyled>
-                                    <span>{item.name}</span>
+                                    <MenuItemIconStyled>{iconMap[item.name]}</MenuItemIconStyled>
+                                    <MenuItemNameStyled>{item.name}</MenuItemNameStyled>
                                 </MenuItemStyled>
                             </div>
                         ))}
                     </div>
+                    {user?
+                    <div>  
+                        <MenuTitleStyled>User Details</MenuTitleStyled>
+                         
+                            <MenuItemStyled onClick={()=>{ handleUserClick() }}>
+                                <MenuItemIconStyled>{iconMap['User']}</MenuItemIconStyled>
+                                <MenuItemNameStyled>Profile</MenuItemNameStyled>
+                            </MenuItemStyled>
+                        
+                            <MenuItemStyled onClick={()=>{ handleLogOut() }}>
+                                <MenuItemIconStyled>{iconMap['Signout']}</MenuItemIconStyled>
+                                <MenuItemNameStyled>Sign out</MenuItemNameStyled>
+                            </MenuItemStyled>
+                    </div>
+                    :null}
                     <NavFooterStyled>
-                        {user?<UserIcon user={user} handleUserClick={handleUserClick} handleLogOut={handleLogOut}/>:null}
                         <ThemeToggle $mobile={false} onClick={handleThemeChange} />
                     </NavFooterStyled>
                     

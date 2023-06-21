@@ -13,8 +13,11 @@ export const ContainerStyled = styled.div`
     margin: 0 auto;
     padding: 20px;
     background: ${({ theme }) => theme.colors.cardBG};
-    border-radius: 12px;
+    border-radius: 8px;
     color: ${({ theme }) => theme.colors.cardText};
+    @media only screen and ${devices.xxl} {
+        max-width: 2000px;
+    }
 `;
 
 export const ParagraphStyled = styled.p`
@@ -50,7 +53,7 @@ export const ModalBackgroundStyled = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.3);
+    background: ${({ theme }) => theme.colors.opacityColor};
     display: flex;
     align-items: center;
     justify-content: center;
@@ -67,6 +70,7 @@ export const PageHeader2Styled = styled.h2`
     font-size: 1.5em;
     color: ${({ theme }) => theme.colors.cardText};
     align-self: flex-start;
+
 `;
 
 export const PageHeaderSubTextStyled = styled.p`
@@ -78,6 +82,7 @@ export const PageHeaderSubTextStyled = styled.p`
     @media only screen and ${devices.md} {
         display: none;
     }
+    
 `;
 
 export const PageHeaderSubTextMobileStyled = styled.p`
@@ -89,4 +94,26 @@ export const PageHeaderSubTextMobileStyled = styled.p`
 
 export const DividerStyled = styled.hr`
     border: 1px solid ${({ theme }) => theme.colors.contrastText};
+`;
+
+export const PageSubTitleStyled = styled.p`
+    margin: 12px 0px;
+    font-size: 14px;
+    color: ${({ theme }) => theme.colors.subTextColor};
+    text-align: left;
+    align-self: flex-start;
+`;
+
+export const CopySnack = styled.span`
+    padding: 10px;
+    background-color: ${({ theme }) => theme.colors.bg};
+    color: ${({ theme }) => theme.colors.contrastText};
+    border: 1.5px solid ${({ theme }) => theme.colors.contrastText};
+    border-radius: 4px;
+    position: absolute;
+    width: ${props => props.$size?`${props.$size}px`:''};
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    left:  ${props => props.$size?`calc(50% - ${props.$size/2}px)`:''};
 `;

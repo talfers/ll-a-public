@@ -9,7 +9,7 @@ function Box({box, onClick}) {
     return (
         <IconContext.Provider value={{ style: { fontSize: '20px' } }}>
             <BoxContainerStyled onClick={() => onClick(box)}>
-                <BoxIconContainerStyled>{iconMap[box.shortName]}</BoxIconContainerStyled>
+                <BoxIconContainerStyled>{iconMap[box.name]}</BoxIconContainerStyled>
                 <BoxTitleStyled>{box.name}</BoxTitleStyled>
             </BoxContainerStyled>
         </IconContext.Provider>

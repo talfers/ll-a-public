@@ -4,7 +4,7 @@ import { useAuth } from '../hooks/useAuth';
 import { ContainerStyled, NavLinkWrapper, ParagraphStyled } from '../styles/Main';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
-import { CopySnack } from '../styles/Response'
+import { CopySnack } from '../styles/Main'
 
 const ThankYou = () => {
   const { user, verificationEmail } = useAuth();

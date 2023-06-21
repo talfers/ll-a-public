@@ -1,8 +1,8 @@
 export const createAdvertisingMessage = (data) => {
     return `Please create a response that must be minimum 120 words that is a compelling and attractive advertisement for a rental property that a landlord has for rent. The property has 
     ${data['property']['bedrooms']['value']} bedrooms, ${data['property']['bathrooms']['value']} bathrooms and is ${data['property']['sqft']['value']} square feet. Also, the property has the following features 
-    and amenities that should be highlighted in the advertisment: ${data['property']['features']['value']}. Lastly, the property has the following lease terms and tenant
-    requirements that should be disclosed: ${data['property']['terms']['value']}.`
+    and amenities that should be highlighted in the advertisment: ${data['features']['features']['value']}. Lastly, the property has the following lease terms and tenant
+    requirements that should be disclosed: ${data['details']['terms']['value']}.`
 }
 
 export const createLeaseMessage = (data) => {
@@ -31,8 +31,8 @@ export const createMessageMessage = (data) => {
 export const createLegalMessage = (data) => {
     return `I understand that you can only provide general information and I should consult an attourney if I need professional advice, however in hypothetical terms, 
     based on the information that you can find in articles and elsewhere, I need to you answer or advice on the following LEGAL subject 
-    matter: ${data['legal']['subject']['value']}. Please answer with as much detail as possible even though you can only provide general 
-    information as a AI model. The question is: ${data['legal']['question']['value']}`
+    matter: ${data['advice']['subject']['value']}. Please answer with as much detail as possible even though you can only provide general 
+    information as a AI model. The question is: ${data['advice']['question']['value']}`
 }
 
 export const process_request = (tab) => {
@@ -46,7 +46,7 @@ export const process_request = (tab) => {
             
         else if (tab["shortName"] === "messaging") message = createMessageMessage(tab['inputs'])
             
-        else if (tab["shortName"] === "legal") message = createLegalMessage(tab['inputs'])
+        else if (tab["shortName"] === "advice") message = createLegalMessage(tab['inputs'])
             
         else throw new Error('Form name not found');
 

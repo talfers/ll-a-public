@@ -111,10 +111,10 @@ export const MenuButtonLineTopStyled = styled(MenuButtonLineStyled)`
 
 export const MenuButtonLineMiddleStyled = styled(MenuButtonLineStyled)`
     opacity: ${(props) => props.$open?0:1};
-    transform: ${(props) => props.$open?'translateX(-16px)':"none"};
-    -webkit-transform: ${(props) => props.$open?'translateX(-16px)':"none"};
-    -ms-transform: ${(props) => props.$open?'translateX(-16px)':"none"};
-    -moz-transform: ${(props) => props.$open?'translateX(-16px)':"none"};
+    transform: ${(props) => props.$open?'translateX(16px)':"none"};
+    -webkit-transform: ${(props) => props.$open?'translateX(16px)':"none"};
+    -ms-transform: ${(props) => props.$open?'translateX(16px)':"none"};
+    -moz-transform: ${(props) => props.$open?'translateX(16px)':"none"};
 `;
 
 export const MenuButtonLineBottomStyled = styled(MenuButtonLineStyled)`
@@ -144,7 +144,7 @@ export const MenuListStyled = styled.div`
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    
     border-top: 1px solid ${({ theme }) => theme.colors.borderColor};
 `;
 
@@ -152,6 +152,7 @@ export const MenuTitleStyled = styled.h2`
     font-size: 12px;
     color: ${({ theme }) => theme.colors.subTextColor};
     margin-top: 24px;
+    text-transform: uppercase;
 `;
 
 export const MenuItemStyled = styled.div`
@@ -161,25 +162,28 @@ export const MenuItemStyled = styled.div`
     cursor: pointer;
     display: flex;
     align-items: center;
-    border-bottom: 2px solid transparent;
-    transition: all 0.2s ease-in-out, border-bottom .1s ease-out;
-    -webkit-transition: color 0.2s ease-in-out, border-bottom .1s ease-out;
-    -ms-transition: color 0.2s ease-in-out, border-bottom .1s ease-out;
-    -moz-transition: color 0.2s ease-in-out, border-bottom .1s ease-out;
+    transition: background 0.2s ease-in-out;
+    -webkit-transition: background 0.2s ease-in-out;
+    -ms-transition: background 0.2s ease-in-out;
+    -moz-transition: background 0.2s ease-in-out;
     animation: 0.5s ${slideIn} forwards;
     -webkit-animation: 0.5s ${slideIn} forwards;
     -ms-animation: 0.5s ${slideIn} forwards;
     -moz-animation: 0.5s ${slideIn} forwards;
     &:hover {
-        color: ${({ theme }) => theme.colors.subTextColor};
-        border-bottom: 2px solid ${({ theme }) => theme.colors.contrastText};
+        background: ${({ theme }) => theme.colors.opacityColor};
     }
 `;
 
+export const MenuItemNameStyled = styled.span`
+    margin-left: 16px;
+`;
+
+
 export const MenuItemIconStyled = styled.span`
-    margin-right: 16px;
-    margin-top: 8px;
+    padding: 4px 0px;
     font-size: 21px;
+    display:flex;
 `;
 
 export const LogoStyled = styled.img`
@@ -187,26 +191,16 @@ export const LogoStyled = styled.img`
     padding-left: 20px;
     z-index: 999;
     cursor: pointer;
+    position: fixed;
 `;
 
 export const NavFooterStyled = styled.div`
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-top: 12px;
 `;
 
-export const UserIconContainerStyled = styled.div`
-    z-index: 99;
-    display: flex;
-    font-size: 14px;
-    margin-right: 10px;
-`;
 
-export const UserContent = styled.span`
-    cursor: ${(props) => props.$disabled?'':'pointer'};
-    pointer-events: ${(props) => props.$disabled?'none':''};
-    margin-right: 10px;
-`;
 
 export const ThemeToggleContainer = styled.div`
     height: 30px;

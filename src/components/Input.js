@@ -4,6 +4,7 @@ import Selector from './Selector';
 import { InputStyled, InputContainerStyled, TextAreaStyled, LabelStyled } from '../styles/Form';
 import locations from '../data/locations';
 import Checkbox from './Checkbox';
+import Counter from './Counter';
 
 
 function Input(props) {
@@ -15,7 +16,7 @@ function Input(props) {
         $type={props.input.type}
         $size={props.input.size}
         >
-            <LabelStyled htmlFor={props.input.name} className="label">{props.input.title}</LabelStyled>
+            {props.input.type==='number'?null:<LabelStyled htmlFor={props.input.name} className="label">{props.input.title}</LabelStyled>}
             {
                 props.input.type === 'textarea'?
                 <TextAreaStyled 
@@ -42,7 +43,16 @@ function Input(props) {
                     tab={props.tab}
                     section={props.section}
                     onChange={updateValue}
-                />:
+                />:props.input.type === 'number'?
+                <Counter 
+                    input={props.input}
+                    name={props.name}
+                    tab={props.tab}
+                    section={props.section}
+                    onUpdate={updateValue}
+                    step={props.input.step}
+                />
+                :
                 <InputStyled 
                     type={props.input.type}
                     id={props.name}

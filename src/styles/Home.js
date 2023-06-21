@@ -1,11 +1,6 @@
 import styled from 'styled-components';
 import { devices } from "../data/constants";
 
-export const HomeHeaderStyled = styled.h2`
-    font-size: 2em;
-    color: ${({ theme }) => theme.colors.cardText};
-    align-self: flex-start;
-`;
 
 export const BoxesContainerStyled = styled.div`
     display: flex;
@@ -43,13 +38,6 @@ export const BoxTitleStyled = styled.h3`
     font-weight: 600;
 `;
 
-export const BoxSubTitleStyled = styled.p`
-    margin: 12px 0px;
-    font-size: 14px;
-    color: ${({ theme }) => theme.colors.subTextColor};
-    text-align: left;
-    align-self: flex-start;
-`;
 
 export const BoxIconContainerStyled = styled.div`
 

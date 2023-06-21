@@ -2,23 +2,23 @@ import React, { useState } from 'react';
 import { InputContainerStyled, InputStyled } from '../styles/Form';
 
 
-function Checkbox(props) {
+function Checkbox({input, section, name, tab, onChange}) {
     let [checked, setChecked] = useState(false)
 
     return (
         <InputContainerStyled
-        key={props.input.name} 
-        $type={props.input.type}
-        $size={props.input.size}
+        key={input.name} 
+        $type={input.type}
+        $size={input.size}
         >
             <InputStyled 
                 type="checkbox"
-                id={props.name}
-                name={props.name}
-                checked={props.input.value} 
+                id={name}
+                name={name}
+                checked={input.value} 
                 onChange={(e) => {
                     setChecked(!checked)
-                    props.onChange(checked, props.tab, props.section, props.name)
+                    onChange(checked, tab, section, name)
                 }} 
             />
 

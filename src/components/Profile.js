@@ -3,9 +3,9 @@ import plans from '../data/plans';
 import { useAuth } from '../hooks/useAuth';
 import { usePayments } from '../hooks/usePayments';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowCircleLeft, faUser, faCircle } from '@fortawesome/free-solid-svg-icons'
-import { ProfileContainerStyled, ProfileContentContainerStyled, ProfileHeaderContainerStyled, ProfileHeaderStyled, ProfileTextStyled, ActionButtonStyled, GoBackButtonStyled } from '../styles/Profile';
-import { FontAwesomeIconWrapper, ModalBackgroundStyled } from '../styles/Main';
+import { faCircle } from '@fortawesome/free-solid-svg-icons'
+import { ProfileContentContainerStyled, ProfileHeaderContainerStyled, ProfileTextStyled, ActionButtonStyled, GoBackButtonStyled } from '../styles/Profile';
+import { ContainerStyled, ModalBackgroundStyled, PageHeaderStyled } from '../styles/Main';
 import { useNavigate } from 'react-router-dom'
 import Loading from './Loading';
 import Products from './Products';
@@ -35,9 +35,9 @@ const Profile = () => {
     
 
     const loadCheckout = async (e) => {
-        e.preventDefault()
-        setError('')
-        setLoading(1)
+        e.preventDefault();
+        setError('');
+        setLoading(1);
         try {
             await checkout(selectedPlan, user.uid, '/profile', '/profile' )
         } catch (error) {
@@ -50,7 +50,7 @@ const Profile = () => {
     }
 
     return (
-        <ProfileContainerStyled>
+        <ContainerStyled>
             {
                 loading?
                 <Loading message={"Loading..."}/>
@@ -72,18 +72,16 @@ const Profile = () => {
                 :
                 null
             } 
-            <GoBackButtonStyled onClick={() => {navigate(-1)}}>
+            {/* <GoBackButtonStyled onClick={() => {navigate(-1)}}>
                 <FontAwesomeIconWrapper>
                     <FontAwesomeIcon icon={faArrowCircleLeft} size={"xl"} color={'inherit'} />
                 </FontAwesomeIconWrapper>
                 <span style={{marginLeft:'4px'}}><strong>Go Back</strong></span>
-            </GoBackButtonStyled>
+            </GoBackButtonStyled> */}
             <ProfileContentContainerStyled>
                 <ProfileHeaderContainerStyled>
-                    <FontAwesomeIconWrapper>
-                        <FontAwesomeIcon icon={faUser} size={"xl"} color={'inherit'} />
-                    </FontAwesomeIconWrapper>
-                    <ProfileHeaderStyled>{user.email.length>20?`${user.email.slice(0,20)}..`:user.email}</ProfileHeaderStyled>
+                    <PageHeaderStyled>Profile</PageHeaderStyled>
+                    <h4>Email: {user.email.length>35?`${user.email.slice(0,35)}..`:user.email}</h4>
                 </ProfileHeaderContainerStyled>
                 
                 {   subscription?.status?
@@ -95,7 +93,7 @@ const Profile = () => {
                         <ActionButtonStyled onClick={() => manageSubscription(customer)}>Manage Account</ActionButtonStyled>
                     </>:
                     subscription===null?
-                    <div>loading...</div>:
+                    <div>Loading...</div>:
                     <div>
                         <p>Please pay for an account before talking to the assistant</p>
                         {error!==''?<p>{error}</p>:null}
@@ -109,7 +107,7 @@ const Profile = () => {
                 }
             </ProfileContentContainerStyled>
             <ActionButtonStyled onClick={() => logOut()}>Signout</ActionButtonStyled>
-        </ProfileContainerStyled>
+        </ContainerStyled>
     )
 }
  

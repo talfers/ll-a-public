@@ -1,27 +1,16 @@
 import styled from 'styled-components';
 import { devices } from "../data/constants";
-import { ContainerStyled } from './Main';
 
-export const ProfileContainerStyled = styled(ContainerStyled)`
-    position: relative;
-`;
 
 export const ProfileContentContainerStyled = styled.div`
     text-align: left;
     margin-bottom: 20px;
-    margin-top: 24px;
-    padding: 20px;
 `;
 
 export const ProfileHeaderContainerStyled = styled.div`
     display: flex;
-    border-bottom: 1.5px solid ${({ theme }) => theme.colors.cardText};
-    margin-bottom: 4px;
-`;
-
-export const ProfileHeaderStyled = styled.h2`
-    margin-left: 8px;
-    margin-bottom: 4px;
+    flex-direction: column;
+    margin-bottom: 12px;
 `;
 
 export const ProfileTextStyled = styled.div`
@@ -40,11 +29,11 @@ export const ActionButtonStyled = styled.div`
 `;
 
 export const GoBackButtonStyled = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    position: absolute;
-    top: 10px;
-    left: 10px;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    // cursor: pointer;
+    // position: absolute;
+    // top: 10px;
+    // left: 10px;
 `;

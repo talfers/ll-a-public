@@ -20,23 +20,28 @@ const tabs = [
                     title: "Bedrooms",
                     placeholder: "",
                     type: "number",
-                    size: 15,
-                    value: ''
+                    size: 100,
+                    step: 1,
+                    value: 0
                 },
                 "bathrooms": {
                     title: "Bathrooms",
                     placeholder: "",
                     type: "number",
-                    size: 15,
-                    value: ''
+                    size: 100,
+                    step: 1,
+                    value: 0
                 },
                 "sqft": {
                     title: "Sqft",
                     placeholder: "",
                     type: "number",
-                    size: 15,
-                    value: ''
-                },
+                    size: 100,
+                    step: 50,
+                    value: 500
+                    
+                }},
+            "features": {
                 "features": {
                     title: "Property features",
                     placeholder: "Be sure to include any notable features such as a balcony, yard, parking or pool that help your property stand out..",
@@ -44,7 +49,9 @@ const tabs = [
                     type: "textarea",
                     size: 100,
                     value: ''
-                },
+                }
+            },
+            "details": {
                 "terms": {
                     title: "Lease terms & requirements",
                     placeholder: "Include details about lease terms like rental price or utilities as well as any tenant requirements such as no pets or a minimum credit score.",
@@ -53,9 +60,8 @@ const tabs = [
                     size: 100,
                     value: ''
                 }
-                    
-            }, 
-        }
+            }       
+        }, 
     },
     {
         id: 1,
@@ -170,7 +176,8 @@ const tabs = [
                     placeholder: "$1,000",
                     type: "number",
                     size: 30,
-                    value: ''
+                    step: 25,
+                    value: 0
                 },
                 "rent_due_date": {
                     title: "Rent Due Date",
@@ -191,7 +198,8 @@ const tabs = [
                     placeholder: "$1,000",
                     type: "number",
                     size: 30,
-                    value: ''
+                    step: 25,
+                    value: 0
                 }
                 
             },
@@ -208,14 +216,16 @@ const tabs = [
                     placeholder: "$500",
                     type: "number",
                     size: 30,
-                    value: ''
+                    step: 25,
+                    value: 0
                 },
                 "pet_rent": {
                     title: "Pet rent",
                     placeholder: "$50",
                     type: "number",
                     size: 30,
-                    value: ''
+                    step: 25,
+                    value: 0
                 },
             },
             "late_fees": {
@@ -224,7 +234,8 @@ const tabs = [
                     placeholder: "$50",
                     type: "number",
                     size: 30,
-                    value: ''
+                    step: 5,
+                    value: 0
                 },
                 "late_fee_start": {
                     title: "Late fee start",
@@ -252,7 +263,8 @@ const tabs = [
                     placeholder: "$50",
                     type: "number",
                     size: 20,
-                    value: ''
+                    step: 5,
+                    value: 0
                 },
                 
             },
@@ -333,7 +345,8 @@ const tabs = [
                     placeholder: "5",
                     type: "number",
                     size: 20,
-                    value: ''
+                    step: 1,
+                    value: 0
                 },
                 "guest_stay_short": {
                     title: "How long can they stay at a time",
@@ -409,21 +422,24 @@ const tabs = [
                     placeholder: "5",
                     type: "number",
                     size: 30,
-                    value: ''
+                    step: 1,
+                    value: 0
                 },
                 "key_replacement_amount": {
                     title: "New key fee",
                     placeholder: "$150",
                     type: "number",
                     size: 20,
-                    value: ''
+                    step: 10,
+                    value: 0
                 },
                 "lockout_amount": {
                     title: "Lockout fee",
                     placeholder: "$300",
                     type: "number",
                     size: 20,
-                    value: ''
+                    step: 10,
+                    value: 0
                 }
             },
             "provisions": {

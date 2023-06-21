@@ -14,7 +14,7 @@ import {
     OrContainerStyled,
     HrStyled
 } from '../styles/Form';
-import { NavLinkWrapper } from '../styles/Main';
+import { NavLinkWrapper, PageHeaderStyled } from '../styles/Main';
 import { PrimaryButtonStyled } from '../styles/Button';
 
 
@@ -66,6 +66,7 @@ const SignIn = () => {
     return(
         <main>        
             <FormSectionStyled>
+                <PageHeaderStyled>Sign In</PageHeaderStyled>
                 <FormContainerStyled>                                
                     <form>                                              
                         <InputContainerStyled>

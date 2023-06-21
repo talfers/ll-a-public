@@ -21,7 +21,8 @@ export const LoadingContainerStyled = styled.div`
     right: 0;
     left: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.12);
+    background: ${({ theme }) => theme.colors.opacityColor};
+    opacity: 0.90;
     width: 100%;
     height: 100%;
     display: flex;
@@ -32,17 +33,18 @@ export const LoadingContainerStyled = styled.div`
 `;
 
 export const LoadingContentContainerStyled = styled.div`
-    background: ${({ theme }) => theme.colors.cardBG};
+    background: ${({ theme }) => theme.colors.bg};
+    opacity: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     border-radius: 8px;
-    opacity: 0.95;
     padding: 40px 30px;
     margin: 0px 24px;
     text-align: center;
     z-index: 99;
+    
     @media only screen and ${devices.md} {
         max-width: 60%;
         padding: 20px 12px;
@@ -67,6 +69,7 @@ export const LoadingTextStyled = styled.p`
     @media only screen and ${devices.md} {
         font-size: 12px;
     }
+    
 `;
 
 export const LoadingIndicatorStyled = styled.div`
@@ -106,7 +109,7 @@ export const ProgressContainerStyled = styled.div`
 `;
 
 export const ProgressBarOuterStyled = styled.div`
-    background: ${({ theme }) => theme.colors.subTextColor};
+    background: ${({ theme }) => theme.colors.borderColor};
     width: 75%;
     height: 8px;
     border-radius: 4px;
