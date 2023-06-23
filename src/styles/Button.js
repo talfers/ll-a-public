@@ -13,9 +13,11 @@ export const ButtonStyled = styled.div`
     margin: 8px 8px 8px 0px;
     pointer-events: ${props => props.$disabled?'none':''};
     transition: background-color 0.3s ease-out, border-color 0.3s ease-out;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     @media only screen and ${devices.xxl} {
-        display: flex
-        align-items: center;
         width: 20%;
         max-width: 240px;
         justify-content: center;

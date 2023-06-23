@@ -24,10 +24,11 @@ export const CounterButtonStyled = styled.div`
     opacity: ${(props) => props.$disabled?0.5:1};
     font-size: 24px;
     border-radius: 100%;
-    height: 36px;
-    width: 36px;
+    height: 30px;
+    width: 30px;
     margin: 0px 4px;
     cursor: pointer;
+    z-index: 0;
     pointer-events: ${(props) => props.$disabled?'none':""};
     &:hover {
         border: 1px solid ${({ theme }) => theme.colors.contrastText};

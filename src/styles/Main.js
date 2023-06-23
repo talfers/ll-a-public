@@ -16,6 +16,7 @@ export const ContainerStyled = styled.div`
     border-radius: 8px;
     color: ${({ theme }) => theme.colors.cardText};
     @media only screen and ${devices.xxl} {
+        width: 95%;
         max-width: 2000px;
     }
 `;
@@ -57,7 +58,7 @@ export const ModalBackgroundStyled = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 15;
+    z-index: 75;
 `;
 
 export const PageHeaderStyled = styled.h1`

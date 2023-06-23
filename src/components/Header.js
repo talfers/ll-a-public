@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from '../imgs/logo-simple.png';
+import logo from '../imgs/logo-full-dark.png';
 import Hamburger from './Hamburger';
 import { HeaderContainerStyled } from '../styles/Margin';
 import { LogoStyled } from '../styles/Nav';

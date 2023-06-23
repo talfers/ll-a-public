@@ -26,7 +26,7 @@ export const LoadingContainerStyled = styled.div`
     width: 100%;
     height: 100%;
     display: flex;
-    z-index: 999;
+    z-index: 95;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -43,7 +43,7 @@ export const LoadingContentContainerStyled = styled.div`
     padding: 40px 30px;
     margin: 0px 24px;
     text-align: center;
-    z-index: 99;
+    z-index: 95;
     
     @media only screen and ${devices.md} {
         max-width: 60%;
@@ -105,7 +105,7 @@ export const ProgressContainerStyled = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-bottom: 16px;
+    margin: 16px;
 `;
 
 export const ProgressBarOuterStyled = styled.div`

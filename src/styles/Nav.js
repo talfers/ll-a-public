@@ -40,12 +40,12 @@ export const MenuBarContainerStyled = styled.div`
     height: 80px;
     top: 0;
     right: 0;
-    z-index: 80;
-    opacity: 0.9;
+    z-index: 98;
+    
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    background: transparent;
+    background: ${({ theme }) => theme.colors.bg};
     // border: solid 1px ${({ theme }) => theme.colors.borderColor};
     width: 100%;
     color: ${({ theme }) => theme.colors.contrastText};
@@ -65,13 +65,13 @@ export const MenuContainerStyled = styled.div`
     display: flex;
     flex-direction: column;
     background: ${({ theme }) => theme.colors.bg};
+    z-index: 90;
     opacity: 1;
     color: #fafafa;
     transition: height 0.3s ease;
     -webkit-transition: height 0.3s ease;
     -ms-transition: height 0.3s ease;
     -moz-transition: height 0.3s ease;
-
 `;
 
 
@@ -85,7 +85,7 @@ export const MenuButtonContainerStyled = styled.div`
     cursor: pointer;
     padding: 4px;
     margin: 20px;
-    z-index: 95;
+    z-index: 98;
     border: solid 1px ${({ theme }) => theme.colors.borderColor};
     border-radius: 100%;
 `;
@@ -129,7 +129,7 @@ export const MenuButtonLineBottomStyled = styled(MenuButtonLineStyled)`
 
 export const MenuItemContainerStyled = styled.div`
     opacity: 0;
-    z-index: 95;
+    z-index: 98;
     font-family: ${theme.dark.colors.contrastText};
     animation: 1s ${appear} forwards;
     -webkit-animation: 1s ${appear} forwards;
@@ -187,9 +187,9 @@ export const MenuItemIconStyled = styled.span`
 `;
 
 export const LogoStyled = styled.img`
-    height: 40px;
+    height: 20px;
     padding-left: 20px;
-    z-index: 999;
+    z-index: 99;
     cursor: pointer;
     position: fixed;
 `;

@@ -23,7 +23,7 @@ export const BoxContainerStyled = styled.div`
     justify-content: space-between;
     cursor: pointer;
     transition: background 0.3s ease-out;
-    :hover {
+    &:hover {
         background: ${({ theme }) => theme.colors.opacityColor};
     }
     @media only screen and ${devices.md} {

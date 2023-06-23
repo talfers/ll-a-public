@@ -46,12 +46,38 @@ const tabs = [
                     title: "Property features",
                     placeholder: "Be sure to include any notable features such as a balcony, yard, parking or pool that help your property stand out..",
                     name: "features",
+                    // type: "cluster",
+                    type: "textarea",
+                    size: 100,
+                    value: ''
+                    // value: [
+                    //     {name: 'central_ac', value: false},
+                    //     {name: 'central_heat', value: false},
+                    //     {name: 'off_street_parking', value: false},
+                    //     {name: 'washer_and_dryer', value: false},
+                    //     {name: 'pool', value: false},
+                    //     {name: 'patio', value: false},
+                    //     {name: 'hardwood_floors', value: false},
+                    //     {name: 'garage', value: false},
+                    //     {name: 'good schools', value: false},
+                    //     {name: 'views', value: false},
+                    //     {name: 'freshly renovated', value: false},
+                    //     {name: 'garden', value: false},
+                    //     {name: 'energy efficient', value: false},
+                    // ]
+                }
+            },
+            "additional_features": {
+                "additional_features": {
+                    title: "Additional features",
+                    placeholder: "Be sure to include any notable features that help your property stand out..",
+                    name: "additional_features",
                     type: "textarea",
                     size: 100,
                     value: ''
                 }
             },
-            "details": {
+            "terms": {
                 "terms": {
                     title: "Lease terms & requirements",
                     placeholder: "Include details about lease terms like rental price or utilities as well as any tenant requirements such as no pets or a minimum credit score.",
@@ -175,7 +201,15 @@ const tabs = [
                     title: "Rent amount",
                     placeholder: "$1,000",
                     type: "number",
-                    size: 30,
+                    size: 100,
+                    step: 25,
+                    value: 0
+                },
+                "security_deposit": {
+                    title: "Security deposit",
+                    placeholder: "$1,000",
+                    type: "number",
+                    size: 100,
                     step: 25,
                     value: 0
                 },
@@ -192,15 +226,8 @@ const tabs = [
                     type: "text",
                     size: 30,
                     value: ''
-                },
-                "security_deposit": {
-                    title: "Security deposit",
-                    placeholder: "$1,000",
-                    type: "number",
-                    size: 30,
-                    step: 25,
-                    value: 0
                 }
+                
                 
             },
             "pets": {
@@ -215,7 +242,7 @@ const tabs = [
                     title: "Pet deposit",
                     placeholder: "$500",
                     type: "number",
-                    size: 30,
+                    size: 100,
                     step: 25,
                     value: 0
                 },
@@ -223,7 +250,7 @@ const tabs = [
                     title: "Pet rent",
                     placeholder: "$50",
                     type: "number",
-                    size: 30,
+                    size: 100,
                     step: 25,
                     value: 0
                 },
@@ -233,7 +260,7 @@ const tabs = [
                     title: "Late fee amount",
                     placeholder: "$50",
                     type: "number",
-                    size: 30,
+                    size: 100,
                     step: 5,
                     value: 0
                 },
@@ -262,7 +289,7 @@ const tabs = [
                     title: "Bad check penalty",
                     placeholder: "$50",
                     type: "number",
-                    size: 20,
+                    size: 100,
                     step: 5,
                     value: 0
                 },
@@ -344,7 +371,7 @@ const tabs = [
                     title: "# of guests allowed",
                     placeholder: "5",
                     type: "number",
-                    size: 20,
+                    size: 100,
                     step: 1,
                     value: 0
                 },
@@ -421,7 +448,7 @@ const tabs = [
                     title: "Number of keys",
                     placeholder: "5",
                     type: "number",
-                    size: 30,
+                    size: 100,
                     step: 1,
                     value: 0
                 },
@@ -429,7 +456,7 @@ const tabs = [
                     title: "New key fee",
                     placeholder: "$150",
                     type: "number",
-                    size: 20,
+                    size: 100,
                     step: 10,
                     value: 0
                 },
@@ -437,7 +464,7 @@ const tabs = [
                     title: "Lockout fee",
                     placeholder: "$300",
                     type: "number",
-                    size: 20,
+                    size: 100,
                     step: 10,
                     value: 0
                 }
@@ -627,13 +654,6 @@ const tabs = [
         response: "",
         inputs: {
             "advice": {
-                "subject": {
-                    title: "Subject",
-                    placeholder: "Question subject matter",
-                    type: "text",
-                    size: 50,
-                    value: ''
-                },
                 "question": {
                     title: "Question",
                     placeholder: "Enter your legal question. Please include any relevant background information, specific questions, and any relevant laws or regulations that may be applicable.",

@@ -5,7 +5,7 @@ import { useAuth } from '../hooks/useAuth';
 import { usePayments } from '../hooks/usePayments';
 import ProgressBar from './ProgressBar';
 import { SectionContainerStyled, SectionsContainerStyled, FormContainerStyled, FormNavContainerStyled } from '../styles/Form';
-import { ButtonStyled, PrimaryButtonStyled, SecondaryButtonStyled } from '../styles/Button';
+import { PrimaryButtonStyled, SecondaryButtonStyled } from '../styles/Button';
 import Input from './Input';
 import { ModalBackgroundStyled } from '../styles/Main';
 import Loading from './Loading';
@@ -111,7 +111,7 @@ function Form(props) {
                     <FormNavContainerStyled>
                         {
                             Object.keys(props.tab.inputs).length > 1?
-                            <ButtonStyled onClick={() => decrementStep(props.tab.id, props.tab.step)}>Back</ButtonStyled>:
+                            <SecondaryButtonStyled onClick={() => decrementStep(props.tab.id, props.tab.step)}>Back</SecondaryButtonStyled>:
                             <></>
                         }
                         
@@ -123,7 +123,10 @@ function Form(props) {
                             <SecondaryButtonStyled onClick={() => decrementStep(props.tab.id, props.tab.step)}>Back</SecondaryButtonStyled>:
                             <></> 
                         }
-                        <PrimaryButtonStyled onClick={() => incrementStep(props.tab.id, props.tab.step)}>Next</PrimaryButtonStyled>
+                        {   props.tab.step===0?
+                            <PrimaryButtonStyled onClick={() => incrementStep(props.tab.id, props.tab.step)}>Start</PrimaryButtonStyled>:
+                            <PrimaryButtonStyled onClick={() => incrementStep(props.tab.id, props.tab.step)}>Next</PrimaryButtonStyled>
+                        }
                     </FormNavContainerStyled>
                     
                 }

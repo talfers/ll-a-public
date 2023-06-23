@@ -30,8 +30,7 @@ export const createMessageMessage = (data) => {
 
 export const createLegalMessage = (data) => {
     return `I understand that you can only provide general information and I should consult an attourney if I need professional advice, however in hypothetical terms, 
-    based on the information that you can find in articles and elsewhere, I need to you answer or advice on the following LEGAL subject 
-    matter: ${data['advice']['subject']['value']}. Please answer with as much detail as possible even though you can only provide general 
+    based on the information that you can find in articles and elsewhere, I need to you answer or advice on the following LEGAL question. Please answer with as much detail as possible even though you can only provide general 
     information as a AI model. The question is: ${data['advice']['question']['value']}`
 }
 
