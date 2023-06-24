@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import ThemeToggle from './ThemeToggle';
 import { 
     MenuBarContainerStyled,
     MenuButtonContainerStyled, 
@@ -7,20 +8,43 @@ import {
     MenuButtonLineBottomStyled,
     MenuButtonLineMiddleStyled,
     MenuItemStyled,
-    MenuItemLineStyled,
-    MenuContainerStyled
+    MenuContainerStyled,
+    MenuItemIconStyled,
+    MenuTitleStyled,
+    NavFooterStyled,
+    MenuItemNameStyled
  } from '../styles/Nav'
+ import iconMap from '../data/iconMap';
+ import { useNavigate } from 'react-router-dom'
 
-function Hamburger(props) {
-    let [menuOpen, setMenuOpen] = useState(0)
 
+function Hamburger({ user, tabs, activeTabId, onNavClick, menuOpen, setMenuOpen, logOut, handleThemeChange }) {
+    const navigate = useNavigate();
     const handleMenuClick = () => {
         setMenuOpen(menuOpen===1?0:1);
     }
       
     const handleLinkClick = (item) => {
         setMenuOpen(0);
-        props.onNavClick(item.id)
+        navigate("/assistant");
+        onNavClick(item.id)
+    }
+
+    const handleUserClick = () => {
+        setMenuOpen(0);
+        navigate("/profile");
+
+    }
+
+    const handleLogOut = async () => {
+        try {
+            await logOut()
+            setMenuOpen(0);
+            navigate("/");
+        } catch (error) {
+            alert(error.message)
+            console.log(error);
+        }
     }
 
     return (
@@ -36,19 +60,43 @@ function Hamburger(props) {
                 menuOpen===1?
                 <MenuContainerStyled $open={menuOpen}>
                     <MenuListStyled $open={menuOpen}>
-                    {props.tabs.map((item, i) => (
-                        <div key={i}>
-                            <MenuItemStyled 
-                            key={i} 
-                            onClick={()=>{ handleLinkClick(item) }}
-                            className={`tabs__button ${(props.activeTabId === item.id) ? 'active' : ''}`}
-                            >
-                                {item.name}
+                    <div>
+                        <MenuTitleStyled>Create New</MenuTitleStyled>
+                        {tabs.map((item, i) => (
+                            <div key={i}>
+                                
+                                <MenuItemStyled 
+                                key={i} 
+                                onClick={()=>{ handleLinkClick(item) }}
+                                className={`tabs__button ${(activeTabId === item.id) ? 'active' : ''}`}
+                                >
+                                    <MenuItemIconStyled>{iconMap[item.name]}</MenuItemIconStyled>
+                                    <MenuItemNameStyled>{item.name}</MenuItemNameStyled>
+                                </MenuItemStyled>
+                            </div>
+                        ))}
+                    </div>
+                    {user?
+                    <div>  
+                        <MenuTitleStyled>User Details</MenuTitleStyled>
+                         
+                            <MenuItemStyled onClick={()=>{ handleUserClick() }}>
+                                <MenuItemIconStyled>{iconMap['User']}</MenuItemIconStyled>
+                                <MenuItemNameStyled>Profile</MenuItemNameStyled>
                             </MenuItemStyled>
-                            <MenuItemLineStyled $active={props.activeTabId === item.id} />
-                        </div>
-                    ))}
+                        
+                            <MenuItemStyled onClick={()=>{ handleLogOut() }}>
+                                <MenuItemIconStyled>{iconMap['Signout']}</MenuItemIconStyled>
+                                <MenuItemNameStyled>Sign out</MenuItemNameStyled>
+                            </MenuItemStyled>
+                    </div>
+                    :null}
+                    <NavFooterStyled>
+                        <ThemeToggle $mobile={false} onClick={handleThemeChange} />
+                    </NavFooterStyled>
+                    
                     </MenuListStyled>
+                    
                 </MenuContainerStyled>:<></> 
             }
             

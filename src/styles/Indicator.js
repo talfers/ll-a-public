@@ -1,6 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import { devices } from "../data/constants"
-import { activeColor, cardText, bg, cardBG, contrastText } from './'
+import { devices } from "../data/constants";
 
 const lineAnim = keyframes`   
     0% {
@@ -22,28 +21,30 @@ export const LoadingContainerStyled = styled.div`
     right: 0;
     left: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.12);
+    background: ${({ theme }) => theme.colors.opacityColor};
+    opacity: 0.90;
     width: 100%;
     height: 100%;
     display: flex;
+    z-index: 95;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 `;
 
 export const LoadingContentContainerStyled = styled.div`
-    background: ${cardBG};
+    background: ${({ theme }) => theme.colors.bg};
+    opacity: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     border-radius: 8px;
-    opacity: 0.95;
     padding: 40px 30px;
     margin: 0px 24px;
     text-align: center;
-    z-index: 99;
-    margin-bottom: 20px;
+    z-index: 95;
+    
     @media only screen and ${devices.md} {
         max-width: 60%;
         padding: 20px 12px;
@@ -52,7 +53,7 @@ export const LoadingContentContainerStyled = styled.div`
 `;
 
 export const LoadingHeaderStyled = styled.h2`
-    color: ${cardText};
+    color: ${({ theme }) => theme.colors.cardText};
     opacity: 1;
     font-size: 24px;
     margin-bottom: 16px;
@@ -68,6 +69,7 @@ export const LoadingTextStyled = styled.p`
     @media only screen and ${devices.md} {
         font-size: 12px;
     }
+    
 `;
 
 export const LoadingIndicatorStyled = styled.div`
@@ -88,7 +90,7 @@ export const LoadingIndicatorStyled = styled.div`
         left: -50%;
         height: 3px;
         width: 40%;
-        background-color: ${activeColor};
+        background-color: ${({ theme }) => theme.colors.activeColor};
         -webkit-animation: ${lineAnim} 1s linear infinite;
         -moz-animation: ${lineAnim} 1s linear infinite;
         animation: ${lineAnim} 1s linear infinite;
@@ -103,11 +105,11 @@ export const ProgressContainerStyled = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-bottom: 16px;
+    margin: 16px;
 `;
 
 export const ProgressBarOuterStyled = styled.div`
-    background: ${cardText};
+    background: ${({ theme }) => theme.colors.borderColor};
     width: 75%;
     height: 8px;
     border-radius: 4px;
@@ -119,17 +121,17 @@ export const ProgressBarOuterStyled = styled.div`
 `;
 
 export const ProgressBarStyled = styled.div`
-    background: ${bg};
+    background: ${({ theme }) => theme.colors.activeColor};
     width: ${(props) => props.$progress?`${props.$progress*100}%`:'0%'};
     height: 8px;
     border-radius: 4px;
 `;
 
 export const ProgressHeaderStyled = styled.h4`
-    color: ${contrastText};
+    color: ${({ theme }) => theme.colors.contrastText};
 `;
 
 export const ProgressHeaderSpanStyled = styled.span`
-    color: ${cardText};
+    color: ${({ theme }) => theme.colors.cardText};
     margin-left: 8px;
 `;

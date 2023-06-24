@@ -1,13 +1,25 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import plans from '../data/plans';
 import { Context as TaskContext } from '../context/TaskContext';
+import { useAuth } from '../hooks/useAuth';
+import { usePayments } from '../hooks/usePayments';
 import ProgressBar from './ProgressBar';
 import { SectionContainerStyled, SectionsContainerStyled, FormContainerStyled, FormNavContainerStyled } from '../styles/Form';
-import { ButtonStyled, PrimaryButtonStyled } from '../styles/Button';
+import { PrimaryButtonStyled, SecondaryButtonStyled } from '../styles/Button';
 import Input from './Input';
+import { ModalBackgroundStyled } from '../styles/Main';
+import Loading from './Loading';
+import Products from './Products';
 
 
 function Form(props) {
+    const { user } = useAuth()
+    const { checkout } = usePayments()
     const {postTaskData, incrementStep, decrementStep, resetResponse, updateLoading} = useContext(TaskContext);
+    const [showPlans, setShowPlans] = useState(0);
+    const [selectedPlan, setSelectedPlan] = useState(plans[0].prices.priceId);
+    const [loading, setLoading] = useState(0);
+    const [error, setError] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -16,11 +28,31 @@ function Form(props) {
             const elem = document.getElementById("response");
             updateLoading(props.tab.id, true)
             elem.scrollIntoView();
-            await postTaskData(props.tab)
-            updateLoading(props.tab.id, false)
-            elem.scrollIntoView();
+            try {
+                await postTaskData(props.tab);
+                elem.scrollIntoView();
+            } catch (err) {
+                setError(err.message)
+                console.log(err.message);
+            }
         } else {
-            alert('Please pay for an account before talking to the assistant');
+            setShowPlans(1);
+        }
+    }
+
+    const loadCheckout = async (e) => {
+        e.preventDefault()
+        setError('')
+        setLoading(1)
+        try {
+            await checkout(selectedPlan, user.uid, '/', '/' )
+        } catch (err) {
+            setLoading(0)
+            const errorCode = err.code;
+            const errorMessage = err.message;
+            setError(errorMessage)
+            alert(error)
+            console.log(errorCode, errorMessage);
         }
     }
 
@@ -47,6 +79,27 @@ function Form(props) {
     return (
         <FormContainerStyled>
             {
+                loading?
+                <Loading message={"Loading..."}/>
+                :null
+            }
+            
+            {
+                showPlans===1?
+                <ModalBackgroundStyled>
+                    <Products
+                    plans={plans} 
+                    setShowPlans={setShowPlans} 
+                    selectedPlan={selectedPlan} 
+                    setSelectedPlan={setSelectedPlan}
+                    onContinue={loadCheckout}
+                    continueText={'Continue to Pay'}
+                    />
+                </ModalBackgroundStyled>
+                :
+                null
+            } 
+            {
                 Object.keys(props.tab.inputs).length>1?<ProgressBar steps={Object.keys(props.tab.inputs)} step={props.tab.step}/>:<></> 
             }
             <form>
@@ -58,7 +111,7 @@ function Form(props) {
                     <FormNavContainerStyled>
                         {
                             Object.keys(props.tab.inputs).length > 1?
-                            <ButtonStyled onClick={() => decrementStep(props.tab.id, props.tab.step)}>Back</ButtonStyled>:
+                            <SecondaryButtonStyled onClick={() => decrementStep(props.tab.id, props.tab.step)}>Back</SecondaryButtonStyled>:
                             <></>
                         }
                         
@@ -67,10 +120,13 @@ function Form(props) {
                     <FormNavContainerStyled>
                         {
                             props.tab.step>0?
-                            <ButtonStyled onClick={() => decrementStep(props.tab.id, props.tab.step)}>Back</ButtonStyled>:
+                            <SecondaryButtonStyled onClick={() => decrementStep(props.tab.id, props.tab.step)}>Back</SecondaryButtonStyled>:
                             <></> 
                         }
-                        <PrimaryButtonStyled onClick={() => incrementStep(props.tab.id, props.tab.step)}>Next</PrimaryButtonStyled>
+                        {   props.tab.step===0?
+                            <PrimaryButtonStyled onClick={() => incrementStep(props.tab.id, props.tab.step)}>Start</PrimaryButtonStyled>:
+                            <PrimaryButtonStyled onClick={() => incrementStep(props.tab.id, props.tab.step)}>Next</PrimaryButtonStyled>
+                        }
                     </FormNavContainerStyled>
                     
                 }

@@ -5,7 +5,7 @@ import { useAuth } from '../hooks/useAuth';
 const RedirectRoute = ({children}) => {
     const { user } = useAuth();
     return (
-        user?user.emailVerified?user.plan?<Navigate to='/' />:children:children:children
+        user?user.emailVerified?<Navigate to='/' />:children:children
     )
     
 }

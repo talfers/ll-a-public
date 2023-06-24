@@ -1,32 +1,15 @@
 import React from 'react';
-import Navigation from './Navigation';
-import Hamburger from './Hamburger';
 import Tab from './Tab'
+import { TabsContainerStyled } from '../styles/Tabs';
 
-function Tabs(props) {
-    const [activeTabId, setActiveTab] = React.useState(props.tabs[0].id);
-    
-    const activeTab = React.useMemo(() => (
-        props.tabs.find((tab) => (
-            tab.id === activeTabId
-        ))
-    ), [activeTabId, props.tabs]);
+function Tabs({activeTab, customer, subscription}) {
 
     return (
+        <TabsContainerStyled>
+            <Tab tab={activeTab} customer={customer} subscription={subscription} />
+        </TabsContainerStyled>  
+            
 
-        <div>
-                <Hamburger 
-                    tabs={props.tabs} 
-                    onNavClick={setActiveTab}
-                    activeTabId={activeTabId}
-                />
-                <Navigation 
-                    tabs={props.tabs} 
-                    onNavClick={setActiveTab}
-                    activeTabId={activeTabId}
-                />
-            <Tab tab={activeTab} customer={props.customer} subscription={props.subscription} />
-        </div>
     );
 }
 

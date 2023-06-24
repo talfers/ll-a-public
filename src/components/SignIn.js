@@ -12,10 +12,9 @@ import {
     GoogleButtonStyled, 
     GoogleButtonContainerStyled,
     OrContainerStyled,
-    HrStyled,
-    FormErrorStyled
+    HrStyled
 } from '../styles/Form';
-import { NavLinkWrapper } from '../styles/Main';
+import { NavLinkWrapper, PageHeaderStyled } from '../styles/Main';
 import { PrimaryButtonStyled } from '../styles/Button';
 
 
@@ -67,6 +66,7 @@ const SignIn = () => {
     return(
         <main>        
             <FormSectionStyled>
+                <PageHeaderStyled>Sign In</PageHeaderStyled>
                 <FormContainerStyled>                                
                     <form>                                              
                         <InputContainerStyled>
@@ -97,7 +97,7 @@ const SignIn = () => {
                             />
                         </InputContainerStyled>
                         <Recaptcha data-size={'compact'} onChange={onRecaptchaChange}/>
-                        {error!==''?<FormErrorStyled>{error}</FormErrorStyled>:null}
+                        {error!==''?<p>{error}</p>:null}
                         
                         <FormNavContainerStyled>
                             <PrimaryButtonStyled                                    

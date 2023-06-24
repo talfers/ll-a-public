@@ -1,17 +1,14 @@
 import React from 'react';
+import iconMap from '../data/iconMap';
 import { useSnack } from '../hooks/useSnack';
 import { useDownloadFile } from "../hooks/useDownloadFile";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FontAwesomeIconWrapper } from '../styles/Main';
-import { faCopy, faCheck, faFileWord, faFilePdf } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIconWrapper, PageHeader2Styled, CopySnack } from '../styles/Main';
 import { 
     ResponseActionButtonsContainerStyled, 
     ResponseContainerStyled, 
     ResponseHeaderStyled, 
     ResponseStyled, 
     ResponseButtonStyled, 
-    ResponseTitleStyled, 
-    CopySnack, 
     ResponseItem 
 } from '../styles/Response'
 
@@ -38,28 +35,28 @@ function Response(props) {
 
             {props.tab.response!==''?
                 <ResponseHeaderStyled>
-                    <ResponseTitleStyled>Assistant Response</ResponseTitleStyled>
-                    {snack!==''?<CopySnack $size={snack.includes('Downloaded')?172:96}><FontAwesomeIcon icon={faCheck} size={"lg"} color={'green'}/>{snack}</CopySnack>:<></>}
+                    <PageHeader2Styled>Assistant Response</PageHeader2Styled>
+                    {snack!==''?<CopySnack $size={snack.includes('Downloaded')?176:100}>{iconMap['Check']}{snack}</CopySnack>:<></>}
                     <ResponseActionButtonsContainerStyled>
                         <ResponseButtonStyled onClick={() => {
                             navigator.clipboard.writeText(props.tab.response)
                             showSnack('Copied!')}}>
-                            <FontAwesomeIconWrapper $theme={'light'}>
-                                <FontAwesomeIcon icon={faCopy} size={"lg"} color={'inherit'}/>
+                            <FontAwesomeIconWrapper>
+                                {iconMap['Copy']}
                             </FontAwesomeIconWrapper>
                         </ResponseButtonStyled>
                         <ResponseButtonStyled onClick={() => {
                             downloadFile('docx', 'response', props.tab.shortName)
                             showSnack('Doc Downloaded!')}}>
-                            <FontAwesomeIconWrapper $theme={'light'}>
-                                <FontAwesomeIcon icon={faFileWord} size={"lg"} color={'inherit'}/>
+                            <FontAwesomeIconWrapper>
+                                {iconMap['Word']}
                             </FontAwesomeIconWrapper> 
                         </ResponseButtonStyled>
                         <ResponseButtonStyled onClick={() => {
                             downloadFile('pdf', 'response', props.tab.shortName)
                             showSnack('PDF Downloaded!')}}>
-                            <FontAwesomeIconWrapper $theme={'light'}>
-                                <FontAwesomeIcon icon={faFilePdf} size={"lg"} color={'inherit'}/>
+                            <FontAwesomeIconWrapper>
+                                {iconMap['Pdf']}
                             </FontAwesomeIconWrapper>
                         </ResponseButtonStyled>
                     </ResponseActionButtonsContainerStyled>
