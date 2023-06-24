@@ -42,4 +42,3 @@ export const BoxTitleStyled = styled.h3`
 export const BoxIconContainerStyled = styled.div`
 
 `;
-

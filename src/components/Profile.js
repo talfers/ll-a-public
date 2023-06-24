@@ -4,16 +4,14 @@ import { useAuth } from '../hooks/useAuth';
 import { usePayments } from '../hooks/usePayments';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons'
-import { ProfileContentContainerStyled, ProfileHeaderContainerStyled, ProfileTextStyled, ActionButtonStyled, GoBackButtonStyled } from '../styles/Profile';
+import { ProfileContentContainerStyled, ProfileHeaderContainerStyled, ProfileTextStyled, ActionButtonStyled } from '../styles/Profile';
 import { ContainerStyled, ModalBackgroundStyled, PageHeaderStyled } from '../styles/Main';
-import { useNavigate } from 'react-router-dom'
 import Loading from './Loading';
 import Products from './Products';
 import { PlanViewContainerStyled, PlansButton } from '../styles/Form';
 
 
 const Profile = () => { 
-    const navigate = useNavigate();
     const { user, logOut } = useAuth();
     const { getCurrentPlan, getCustomer, manageSubscription, checkout } = usePayments();
     const [subscription, setSubscription] = useState(null);

@@ -23,4 +23,3 @@ export const TabContentContainerStyled = styled.div`
     line-height: 1.4;
    
 `;
-

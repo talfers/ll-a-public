@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { devices } from "../data/constants";
-import * as theme from "./Theme";
 
 
 export const MarginContainerStyled = styled.div`
