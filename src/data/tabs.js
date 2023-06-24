@@ -46,25 +46,25 @@ const tabs = [
                     title: "Property features",
                     placeholder: "Be sure to include any notable features such as a balcony, yard, parking or pool that help your property stand out..",
                     name: "features",
-                    // type: "cluster",
-                    type: "textarea",
+                    type: "cluster",
+                    // type: "textarea",
                     size: 100,
-                    value: ''
-                    // value: [
-                    //     {name: 'central_ac', value: false},
-                    //     {name: 'central_heat', value: false},
-                    //     {name: 'off_street_parking', value: false},
-                    //     {name: 'washer_and_dryer', value: false},
-                    //     {name: 'pool', value: false},
-                    //     {name: 'patio', value: false},
-                    //     {name: 'hardwood_floors', value: false},
-                    //     {name: 'garage', value: false},
-                    //     {name: 'good schools', value: false},
-                    //     {name: 'views', value: false},
-                    //     {name: 'freshly renovated', value: false},
-                    //     {name: 'garden', value: false},
-                    //     {name: 'energy efficient', value: false},
-                    // ]
+                    // value: ''
+                    value: {
+                        'central_ac': false,
+                        'central_heat': false,
+                        'off_street_parking': false,
+                        'washer_and_dryer': false,
+                        'pool': false,
+                        'patio': false,
+                        'hardwood_floors': false,
+                        'garage': false,
+                        'good schools': false,
+                        'views': false,
+                        'freshly_renovated': false,
+                        'garden': false,
+                        'energy_efficient': false,
+                    }
                 }
             },
             "additional_features": {
