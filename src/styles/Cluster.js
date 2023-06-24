@@ -22,4 +22,3 @@ export const ClusterItemContainerStyled = styled(BoxContainerStyled)`
         transform: scale(0.95);
     }
 `;
-

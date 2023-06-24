@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { devices } from "../data/constants";
-import { ff, cardText, bg } from './'
+
 
 export const ResponseContainerStyled = styled.div`
     font-family: ${({ theme }) => theme.colors.ff};
@@ -31,7 +31,7 @@ export const ResponseActionButtonsContainerStyled = styled.div`
 `;
 
 export const ResponseButtonStyled = styled.div`
-    background-color: ${bg};
+    background-color: ${({ theme }) => theme.colors.bg};
     padding: 6px;
     border-radius: 4px;
     font-size: 20px;

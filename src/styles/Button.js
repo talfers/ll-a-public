@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { devices } from "../data/constants";
-import { ff, bg, contrastText } from './'
+import * as theme from "./Theme";
 
 export const ButtonStyled = styled.div`
     padding: 12px 20px;

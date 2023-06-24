@@ -1,6 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import { devices } from "../data/constants"
-import { activeColor, cardText, bg, cardBG, contrastText } from './'
+import { devices } from "../data/constants";
 
 const lineAnim = keyframes`   
     0% {
@@ -54,7 +53,7 @@ export const LoadingContentContainerStyled = styled.div`
 `;
 
 export const LoadingHeaderStyled = styled.h2`
-    color: ${cardText};
+    color: ${({ theme }) => theme.colors.cardText};
     opacity: 1;
     font-size: 24px;
     margin-bottom: 16px;
@@ -91,7 +90,7 @@ export const LoadingIndicatorStyled = styled.div`
         left: -50%;
         height: 3px;
         width: 40%;
-        background-color: ${activeColor};
+        background-color: ${({ theme }) => theme.colors.activeColor};
         -webkit-animation: ${lineAnim} 1s linear infinite;
         -moz-animation: ${lineAnim} 1s linear infinite;
         animation: ${lineAnim} 1s linear infinite;
@@ -129,10 +128,10 @@ export const ProgressBarStyled = styled.div`
 `;
 
 export const ProgressHeaderStyled = styled.h4`
-    color: ${contrastText};
+    color: ${({ theme }) => theme.colors.contrastText};
 `;
 
 export const ProgressHeaderSpanStyled = styled.span`
-    color: ${cardText};
+    color: ${({ theme }) => theme.colors.cardText};
     margin-left: 8px;
 `;

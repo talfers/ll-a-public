@@ -23,7 +23,7 @@ export const ActionButtonStyled = styled.div`
     cursor: pointer;
     padding: 4px 6px;
     border-radius: 4px;
-    border: 1px solid ${cardText};
+    border: 1px solid ${({ theme }) => theme.colors.cardText};
     margin: 4px 0px 4px 12px;
     text-align: center;
 `;

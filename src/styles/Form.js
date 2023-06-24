@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { devices } from "../data/constants";
-import { cardText, activeColor, ff, cardBG, bg, contrastText, boxShadow } from './';
 
 export const FormSectionStyled = styled.section`
     width: 60%;
@@ -35,7 +34,7 @@ export const InputStyled = styled.input`
     border: ${({ theme }) => theme.colors.borderColor} 1px solid;
     padding: 6px;
     vertical-align:top;
-    font-family: ${ff};
+    font-family: ${({ theme }) => theme.colors.ff};
     
     &:focus {
         outline: none !important;
@@ -50,7 +49,7 @@ export const SelectStyled = styled.select`
     padding: 6px;
     vertical-align:top;
     min-width: 100px;
-    font-family: ${ff};
+    font-family: ${({ theme }) => theme.colors.ff};
 
     &:focus {
         outline: none !important;
@@ -64,7 +63,7 @@ export const TextAreaStyled = styled.textarea`
     border: ${({ theme }) => theme.colors.borderColor} 1px solid;
     padding: 6px;
     vertical-align:top;
-    font-family: ${ff};
+    font-family: ${({ theme }) => theme.colors.ff};
 
     &:focus {
         outline: none !important;
@@ -122,7 +121,7 @@ export const OrContainerStyled = styled.div`
 
 export const HrStyled = styled.hr`
     height: 1.25px;
-    background: ${bg};
+    background: ${({ theme }) => theme.colors.bg};
     width: 100px;
     margin: 0px 12px;
 `;
@@ -131,7 +130,7 @@ export const PlansButton = styled.div`
     cursor: pointer;
     padding: 4px 6px;
     border-radius: 4px;
-    border: 1px solid ${cardText};
+    border: 1px solid ${({ theme }) => theme.colors.cardText};
     margin-left: 12px;
     text-align: center;
 `;
@@ -210,8 +209,4 @@ export const RecaptchaContainerStyled = styled.div`
             -webkit-transform-origin:0 0;
         }
       }
-`;
-
-export const FormErrorStyled = styled.p`
-      
 `;
