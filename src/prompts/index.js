@@ -1,8 +1,8 @@
 export const createAdvertisingMessage = (data) => {
     return `Please create a response that must be minimum 120 words that is a compelling and attractive advertisement for a rental property that a landlord has for rent. The property has 
     ${data['property']['bedrooms']['value']} bedrooms, ${data['property']['bathrooms']['value']} bathrooms and is ${data['property']['sqft']['value']} square feet. Also, the property has the following features 
-    and amenities that should be highlighted in the advertisment: ${data['features']['features']['value']}. Lastly, the property has the following lease terms and tenant
-    requirements that should be disclosed: ${data['details']['terms']['value']}.`
+    and amenities that should be highlighted in the advertisment:${Object.keys(data['features']['features']['value']).filter(key => data['features']['features']['value'][key]).map(key => ` ${key.replaceAll('_', ' ')}`)}. 
+    Additionally, the following additional features should also be highlighted in the advertisment: ${data['additional_features']['additional_features']['value']}. Lastly, the property has the following lease terms and tenant requirements that should be disclosed: ${data['terms']['terms']['value']}.`
 }
 
 export const createLeaseMessage = (data) => {

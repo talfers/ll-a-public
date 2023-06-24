@@ -55,6 +55,7 @@ const postTaskData = (dispatch) => {
   return async (tab) => {
     try {
     let message = prompts.process_request(tab)
+    console.log(message);
     // Fetch the response from the OpenAI API with the signal from AbortController
     const response = await fetch(config.REACT_APP_OPENAI_URL, {
       method: "POST",
