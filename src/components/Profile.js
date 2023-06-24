@@ -1,27 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import plans from '../data/plans';
+import React from 'react';
 import { useAuth } from '../hooks/useAuth';
-import { usePayments } from '../hooks/usePayments';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons'
 import { ProfileContentContainerStyled, ProfileHeaderContainerStyled, ProfileTextStyled, ActionButtonStyled, GoBackButtonStyled } from '../styles/Profile';
 import { ContainerStyled, ModalBackgroundStyled, PageHeaderStyled } from '../styles/Main';
 import { useNavigate } from 'react-router-dom'
-import Loading from './Loading';
-import Products from './Products';
-import { PlanViewContainerStyled, PlansButton } from '../styles/Form';
 
 
 const Profile = () => { 
     const navigate = useNavigate();
     const { user, logOut } = useAuth();
-    const { getCurrentPlan, getCustomer, manageSubscription, checkout } = usePayments();
+    const { getCurrentPlan, getCustomer, manageSubscription } = usePayments();
     const [subscription, setSubscription] = useState(null);
     const [customer, setCustomer] = useState(null);
-    const [showPlans, setShowPlans] = useState(0);
-    const [selectedPlan, setSelectedPlan] = useState(plans[0].prices.priceId);
-    const [loading, setLoading] = useState(0);
-    const [error, setError] = useState('');
 
     useEffect(() => {
         const getDetails = async () => {
@@ -86,26 +77,21 @@ const Profile = () => {
                 
                 {   subscription?.status?
                     <>
-                        <ProfileTextStyled>Status: <FontAwesomeIcon icon={faCircle} size={"xs"} color={subscription?.status==='active'?'green':'red'} /> <span style={{color: subscription?.status==='active'?'green':'red'}}>{subscription?.status.charAt(0).toUpperCase() + subscription?.status.slice(1)}</span></ProfileTextStyled>
-                        <ProfileTextStyled>Plan: ${subscription?.plan.price.unit_amount/100} / {subscription?.plan.plan.interval}</ProfileTextStyled>
-                        <ProfileTextStyled>Member since: {subscription?.current_period_start_date}</ProfileTextStyled>
-                        <ProfileTextStyled>Renewal date: {subscription?.current_period_end_date}</ProfileTextStyled>
-                        <ActionButtonStyled onClick={() => manageSubscription(customer)}>Manage Account</ActionButtonStyled>
+                        <ProfileTextStyled>Status: <span style={{color: user.plan?.status==='active'?'green':'red'}}>{user.plan?.status.charAt(0).toUpperCase() + user.plan?.status.slice(1)}</span></ProfileTextStyled>
+                        <ProfileTextStyled>Plan: ${user.plan?.plan.price.unit_amount/100} / {user.plan?.plan.plan.interval}</ProfileTextStyled>
+                        <ProfileTextStyled>Member since: {user.plan?.current_period_start_date}</ProfileTextStyled>
+                        <ProfileTextStyled>Renewal date: {user.plan?.current_period_end_date}</ProfileTextStyled>
                     </>:
                     subscription===null?
                     <div>Loading...</div>:
                     <div>
                         <p>Please pay for an account before talking to the assistant</p>
-                        {error!==''?<p>{error}</p>:null}
-                        <PlanViewContainerStyled>
-                            Selected Plan: {plans.filter(p => p.prices.priceId === selectedPlan)[0].name}
-                            {'  '}${plans.filter(p => p.prices.priceId === selectedPlan)[0].prices.priceData.unit_amount/100}
-                            <PlansButton onClick={() => setShowPlans(1)}>Show plans</PlansButton>
-                        </PlanViewContainerStyled>
+                        <ActionButtonStyled onClick={() => loadCheckout()}>Pay Now</ActionButtonStyled>
                     </div>
                     
                 }
             </ProfileContentContainerStyled>
+            <ActionButtonStyled onClick={() => manageSubscription(customer)}>Manage Account</ActionButtonStyled>
             <ActionButtonStyled onClick={() => logOut()}>Signout</ActionButtonStyled>
         </ContainerStyled>
     )

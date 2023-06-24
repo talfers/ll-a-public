@@ -11,7 +11,8 @@ import keys from '../keys';
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: keys.REACT_APP_FIREBASE_API_KEY,
-  authDomain: "landlordassist.io",
+  // authDomain: "landlordassist.io",
+  authDomain: "http://localhost:3000",
   projectId: "landlord-assistant",
   storageBucket: "landlord-assistant.appspot.com",
   messagingSenderId: "831902295561",

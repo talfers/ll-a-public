@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { devices } from "../data/constants";
 
+
 export const TabsContainerStyled = styled.div`
     width: 80%;
     max-width: 80%;

@@ -1,3 +1,9 @@
+// export const bg = "#fff";
+// export const headline = "#000000";
+// export const paragraph = "#301e4e";
+// export const cardBG = "#fff";
+// export const cardText = "#301e4e";
+// export const activeColor = "#ff6e6c";
 let theme = 'dark';
 
 export const bg = theme==='dark'?"#301e4e":'#fff';

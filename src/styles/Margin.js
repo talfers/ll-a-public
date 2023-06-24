@@ -1,13 +1,11 @@
 import styled from 'styled-components';
 import { devices } from "../data/constants";
-import * as theme from "./Theme";
-
+import { contrastText } from './';
 
 export const MarginContainerStyled = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 80px;
     color: ${({ theme }) => theme.colors.contrastText};
 `;
 

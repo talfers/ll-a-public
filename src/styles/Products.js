@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { devices } from "../data/constants";
-import * as theme from "./Theme";
+import { devices } from "../data/constants"
+import { bg, cardText, ff, cardBG, activeColor } from './'
 
 export const ProductModalStyled = styled.div`
     width: 90%;
@@ -63,9 +63,9 @@ export const ProductContainerStyled = styled.div`
 export const IconContainerStyled = styled.div`
     // padding: 12px;
     // border-radius: 50%;
-    // border: 2px solid ${({ theme }) => theme.colors.bg};
+    // border: 2px solid ${bg};
     margin-bottom: 10px;
-    color: ${({ theme }) => theme.colors.bg};
+    color: ${bg};
 `;
 
 export const ButtonContainerStyled = styled.div`

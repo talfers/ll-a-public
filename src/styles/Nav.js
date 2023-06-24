@@ -1,7 +1,6 @@
 import styled, { keyframes } from 'styled-components';
-import { devices } from "../data/constants";
-import * as theme from "./Theme";
-
+import { devices } from "../data/constants"
+import { headline, activeColor, bg, cardText, ff, contrastText } from './'
 
 const slideIn = keyframes`   
     0% {
