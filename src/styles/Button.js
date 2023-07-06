@@ -53,3 +53,17 @@ export const SecondaryButtonStyled = styled(ButtonStyled)`
         }
     }
 `;
+
+export const RestartButtonStyled = styled(ButtonStyled)`
+    background-color: transparent;
+    border: 1.5px solid ${({ theme }) => theme.colors.contrastText};
+    color: ${({ theme }) => theme.colors.contrastText};
+    &:hover {
+        background-color: ${({ theme }) => theme.colors.opacityColor};
+    }
+    @media only screen and ${devices.md} {
+        &:hover {
+            background-color: transparent;
+        }
+    }
+`;

@@ -5,7 +5,7 @@ import { useAuth } from '../hooks/useAuth';
 import { usePayments } from '../hooks/usePayments';
 import ProgressBar from './ProgressBar';
 import { SectionContainerStyled, SectionsContainerStyled, FormContainerStyled, FormNavContainerStyled } from '../styles/Form';
-import { PrimaryButtonStyled, SecondaryButtonStyled } from '../styles/Button';
+import { PrimaryButtonStyled, SecondaryButtonStyled, RestartButtonStyled} from '../styles/Button';
 import Input from './Input';
 import { ModalBackgroundStyled } from '../styles/Main';
 import Loading from './Loading';
@@ -24,7 +24,7 @@ function Form(props) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if(props.subscription?.status==='active') {
-            resetResponse(props.tab.id)
+            //resetResponse(props.tab.id)
             const elem = document.getElementById("response");
             updateLoading(props.tab.id, true)
             elem.scrollIntoView();
@@ -114,7 +114,8 @@ function Form(props) {
                             <SecondaryButtonStyled onClick={() => decrementStep(props.tab.id, props.tab.step)}>Back</SecondaryButtonStyled>:
                             <></>
                         }
-                        
+
+                        <RestartButtonStyled onClick={() => resetResponse(props.tab.id, props.tab.step)}>Restart</RestartButtonStyled>:
                         <PrimaryButtonStyled onClick={handleSubmit} id={props.tab.shortName}>{props.tab.submitMessage}</PrimaryButtonStyled>
                     </FormNavContainerStyled>:
                     <FormNavContainerStyled>
