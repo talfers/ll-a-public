@@ -33,6 +33,7 @@ const taskReducer = (state, action) => {
     case 'reset_response':
       const resetState = {...state}
       resetState.tabs[action.payload.tabId].response = ""
+      resetState.tabs[action.payload.tabId].step = action.payload.step
       return resetState;
     case 'update_loading':
       const updateLoadingState = {...state}
@@ -130,7 +131,7 @@ const decrementStep = (dispatch) => {
 
 const resetResponse = (dispatch) => {
   return (tabId) => {
-    dispatch({ type: 'reset_response', payload: { tabId } })
+    dispatch({ type: 'reset_response', payload: { tabId, step: 0} })
   }
 }
 
